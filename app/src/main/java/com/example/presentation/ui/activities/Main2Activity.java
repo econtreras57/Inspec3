@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.domain.model.Findings;
 import com.example.domain.model.Inspection;
@@ -20,6 +21,8 @@ import com.example.presentation.view.FindingsView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
 
 public class Main2Activity
         extends BaseActivity
@@ -171,4 +174,28 @@ public class Main2Activity
     public Context getContext() {
         return null;
     }
+
+    public void onAddClicked(View v) {
+
+        Context context = getApplicationContext();
+        CharSequence text = "Click ADD button " ;
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        // Empaqueta objeto _nuevo_...
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("objetoFindings", new Findings());
+
+        // Y envía ese paquete a la siguiente pantlla...
+        Intent intent = new Intent(this, MainFindingsActivity.class);
+        intent.putExtra("objetoFindings", bundle);
+
+        String message = "0";
+        intent.putExtra(EXTRA_MESSAGE, message);
+
+        startActivity(intent);      // intent
+
+    }
+
 }

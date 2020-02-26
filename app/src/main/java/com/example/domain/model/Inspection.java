@@ -25,6 +25,12 @@ public class Inspection
     @SerializedName("status")
     private String status;   // estado inspección {open, close}
 
+    @SerializedName("subStatusDate")
+    private String subStatusDate;    // fecha del último cambio de estado
+    @SerializedName("subStatus")
+    private String subStatus;   // sub-estado inspección {pendiente de X}
+
+
     @SerializedName("plan")
     private String plan;    // tipo {planned, not planned}
 
@@ -135,6 +141,22 @@ public class Inspection
 
     public void setStatusDate(String statusDate) {
         this.statusDate = statusDate;
+    }
+
+    public String getSubStatusDate() {
+        return subStatusDate;
+    }
+
+    public void setSubStatusDate(String subStatusDate) {
+        this.subStatusDate = subStatusDate;
+    }
+
+    public String getSubStatus() {
+        return subStatus;
+    }
+
+    public void setSubStatus(String subStatus) {
+        this.subStatus = subStatus;
     }
 }
 

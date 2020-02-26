@@ -51,6 +51,7 @@ public class MainActivity
         inspection.setContractor("HMZ Ingenieros");
         inspection.setStatusDate("2020-02-14");
         inspection.setStatus("Abierto");
+        inspection.setSubStatus("Pendiente de cierre");
 
         listaInspection.add(inspection);
 
@@ -62,6 +63,7 @@ public class MainActivity
         inspection.setContractor("HMZ Ingenieros");
         inspection.setStatusDate("2020-02-05");
         inspection.setStatus("Abierto");
+        inspection.setSubStatus("Pendiente de cierre");
 
         listaInspection.add(inspection);
 
@@ -73,6 +75,31 @@ public class MainActivity
         inspection.setContractor("HMZ Ingenieros");
         inspection.setStatusDate("2020-02-05");
         inspection.setStatus("Abierto");
+        inspection.setSubStatus("Pendiente de cierre");
+
+        listaInspection.add(inspection);
+
+        inspection = new Inspection();
+        inspection.setId(4);
+        inspection.setProject("PE-MOPAR");
+        inspection.setInspector("Carlos Cabrera");
+        inspection.setSite("SE Moquegua");
+        inspection.setContractor("HMZ Ingenieros");
+        inspection.setStatusDate("2020-02-05");
+        inspection.setStatus("Cerrado");
+        inspection.setSubStatus("Resuelto");
+
+        listaInspection.add(inspection);
+
+        inspection = new Inspection();
+        inspection.setId(5);
+        inspection.setProject("PE-MOPAR");
+        inspection.setInspector("Juan Pérez");
+        inspection.setSite("SE Moquegua");
+        inspection.setContractor("HMZ Ingenieros");
+        inspection.setStatusDate("2020-02-22");
+        inspection.setStatus("Abierto");
+        inspection.setSubStatus("Falta documentación");
 
         listaInspection.add(inspection);
 
@@ -173,4 +200,28 @@ public class MainActivity
         startActivity(intent);      // intent
 
     }
+
+    public void onAddClicked(View v) {
+
+        Context context = getApplicationContext();
+        CharSequence text = "Click ADD button " ;
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        // Empaqueta objeto _nuevo_...
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("objetoInspection", new Inspection());
+
+        // Y envía ese paquete a la siguiente pantlla...
+        Intent intent = new Intent(this, MainInspectionActivity.class);
+        intent.putExtra("objetoInspection", bundle);
+
+        String message = "0";
+        intent.putExtra(EXTRA_MESSAGE, message);
+
+        startActivity(intent);      // intent
+
+    }
+
 }

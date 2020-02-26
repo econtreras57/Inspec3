@@ -1,9 +1,14 @@
 package com.example.presentation.ui.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +33,7 @@ public class ListAdapterInspection
             ListAdapterInspection.OnItemClickListener listener,
             Context context,
             ArrayList<Inspection> item
-    )     {
+    ) {
 
         this.mlistener = listener;
         this.mContext = context;
@@ -50,9 +55,9 @@ public class ListAdapterInspection
 
         View view = LayoutInflater.from
                 (parent.getContext()).inflate(
-                        R.layout.ly_item_inspection,
-                        parent,
-                        false);
+                R.layout.ly_item_inspection,
+                parent,
+                false);
 
         ListAdapterInspection.InspectionViewHolder
                 rvMainAdapterViewHolder =
@@ -69,13 +74,37 @@ public class ListAdapterInspection
         Inspection inspection = items.get(position);    // carga objeto INSPECTION( position )
 
         holder.position.setText(Integer.toString(position));     // guarda la posición
-        holder.project.setText( inspection.getProject() );
+        holder.project.setText(inspection.getProject());
         holder.inspector.setText(inspection.getInspector());
         holder.site.setText(inspection.getSite());
         holder.contractor.setText(inspection.getContractor());
         holder.status.setText(inspection.getStatus());
         holder.statusDate.setText(inspection.getStatusDate());
+        holder.subStatus.setText(inspection.getSubStatus());
 
+        if (inspection.getStatus() != "Abierto") {
+            holder.subStatus.setTextColor(Color.BLACK);
+            holder.status.setTextColor(Color.BLACK);
+            holder.status.setBackground(this.mContext.getDrawable(R.drawable.textview_border_blue));
+
+// 2020-02-26 ECV: Para otros usos...
+
+            // Obtiene un "drawable"
+//            Drawable mContextDrawable = this.mContext.getDrawable(R.drawable.textview_border);
+
+            // Un color para manejar...
+//            int color = Color.parseColor("#E91E63"); //The color u want
+
+            // Pintar todo_ el "drawable"...
+//            mContextDrawable.setTint(color);
+
+            // O combinar (... parece más útil para pintar todo_ un ícono)
+//            mContextDrawable.setColorFilter(new PorterDuffColorFilter(Color.GREEN, PorterDuff.Mode.DST_OUT));
+
+            // Finalmente, aplicar el cambio donde corresponda...
+//            holder.status.setBackground(mContextDrawable);
+
+        }
     }
 
     @Override
@@ -95,18 +124,20 @@ public class ListAdapterInspection
         TextView contractor;
         TextView status;
         TextView statusDate;
+        TextView subStatus;
 
 
         public InspectionViewHolder(View v) {
             super(v);
 
-            position=(TextView)v.findViewById(R.id.tv_position);
-            project=(TextView)v.findViewById(R.id.tv_project);
-            inspector=(TextView)v.findViewById(R.id.tv_inspector);
-            site=(TextView)v.findViewById(R.id.tv_site);
-            contractor=(TextView)v.findViewById(R.id.tv_contractor);
-            status=(TextView)v.findViewById(R.id.tv_status);
-            statusDate=(TextView)v.findViewById(R.id.tv_statusDate);
+            position = (TextView) v.findViewById(R.id.tv_position);
+            project = (TextView) v.findViewById(R.id.tv_project);
+            inspector = (TextView) v.findViewById(R.id.tv_inspector);
+            site = (TextView) v.findViewById(R.id.tv_site);
+            contractor = (TextView) v.findViewById(R.id.tv_contractor);
+            status = (TextView) v.findViewById(R.id.tv_status);
+            statusDate = (TextView) v.findViewById(R.id.tv_statusDate);
+            subStatus = (TextView) v.findViewById(R.id.tv_subStatus);
 
             v.setOnClickListener(this);
 

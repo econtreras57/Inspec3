@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.presentation.ui.activities.MainInspectionActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.presentation.ui.activities.MainInspectionActivity">
+
+
+        <TextView
+            android:id="@+id/tv_titPlan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Tipo de Inspección (planeada?)"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
+        <ToggleButton
+            android:id="@+id/toggleButtonPlan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="ToggleButton"
+            app:layout_constraintStart_toStartOf="@+id/tv_titPlan"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titPlan" />
+
+        <TextView
+            android:id="@+id/tv_titProject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Proyecto (*)"
+            app:layout_constraintStart_toStartOf="@+id/toggleButtonPlan"
+            app:layout_constraintTop_toBottomOf="@+id/toggleButtonPlan" />
+
+        <Spinner
+            android:id="@+id/spinner_project"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_titProject"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titProject" />
+
+        <TextView
+            android:id="@+id/tv_titContractor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Contratista (*)"
+            app:layout_constraintStart_toStartOf="@+id/spinner_project"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_project" />
+
+        <Spinner
+            android:id="@+id/spinner_contractor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_titContractor"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titContractor" />
+
+        <TextView
+            android:id="@+id/tv_titLocType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tipo de ubicación (*)"
+            app:layout_constraintStart_toStartOf="@+id/spinner_contractor"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_contractor" />
+
+        <Spinner
+            android:id="@+id/spinner_locType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_titLocType"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titLocType" />
+
+        <TextView
+            android:id="@+id/tv_titSite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Lugar (ubicación) (*)"
+            app:layout_constraintStart_toStartOf="@+id/spinner_locType"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_locType" />
+
+        <Spinner
+            android:id="@+id/spinner_site"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@android:drawable/btn_dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_titSite"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titSite" />
+
+        <TextView
+            android:id="@+id/tv_titResponsible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Responsable del área inspecc.(*)"
+            app:layout_constraintStart_toStartOf="@+id/spinner_site"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_site" />
+
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/textview_border_blue"
+            android:backgroundTint="#3F51B5"
+            android:fontFamily="sans-serif-light"
+            android:text="Guardar"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/et_reponsible"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_reponsible" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="80dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_reponsible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Apellidos, Nombres"
+            app:layout_constraintStart_toStartOf="@+id/tv_titResponsible"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titResponsible" />
+
+        <TextView
+            android:id="@+id/tv_titDocInspeccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Nueva Inspección"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/divider2"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

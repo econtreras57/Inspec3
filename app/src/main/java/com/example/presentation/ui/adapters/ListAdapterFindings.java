@@ -98,7 +98,9 @@ public class ListAdapterFindings
 
         if (findings.getStatus() != "Abierto") {
             holder.status.setTextColor(Color.BLACK);
-            holder.status.setBackground(this.mContext.getDrawable(R.drawable.textview_border_blue));
+            holder.status.setBackground(null);
+//            holder.status.setBackground(this.mContext.getDrawable(R.drawable.textview_border_blue));
+            // <-- ok para saber
         }
 
     }
