@@ -30,8 +30,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="ToggleButton"
-            app:layout_constraintStart_toStartOf="@+id/tv_titPlan"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titPlan" />
+            app:layout_constraintStart_toStartOf="@+id/tv_titTipo"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titTipo" />
 
         <TextView
             android:id="@+id/tv_titProject"

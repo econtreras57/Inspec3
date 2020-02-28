@@ -19,9 +19,9 @@
             android:id="@+id/tv_titTipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
-            android:text="Acto o Condición (acto?)"
+            android:text="Acto o Condición (*)"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
@@ -29,30 +29,33 @@
         <RadioGroup
 
             android:id="@+id/toggleButtonsTipo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-
+            android:layout_marginEnd="16dp"
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/tv_titTipo"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titTipo"
             android:tag="btnGroupTipoAC"
-            >
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_titTipo"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titTipo">
 
             <Button
                 android:id="@+id/radio_acto"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/textview_border_grey"
+                android:layout_weight="5"
+                android:background="@drawable/textview_border_gray"
                 android:onClick="onRadioButtonClicked"
                 android:tag="btnActo"
                 android:text="Acto" />
 
             <Button
                 android:id="@+id/radio_condicion"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/textview_border_grey"
+                android:layout_weight="5"
+                android:background="@drawable/textview_border_gray"
                 android:onClick="onRadioButtonClicked"
                 android:tag="btnCondicion"
                 android:text="Condición" />
@@ -93,9 +96,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
             android:background="@android:drawable/btn_dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_management"
             app:layout_constraintStart_toStartOf="@+id/tv_titSubtype"
             app:layout_constraintTop_toBottomOf="@+id/tv_titSubtype" />
 
@@ -113,13 +115,12 @@
             android:layout_width="0dp"
             android:layout_height="144dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/textview_border_grey"
+            android:background="@drawable/textview_border_gray"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:padding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/spinner_subtype"
             app:layout_constraintStart_toStartOf="@+id/tv_titText"
             app:layout_constraintTop_toBottomOf="@+id/tv_titText" />
 
@@ -133,43 +134,34 @@
             app:layout_constraintStart_toStartOf="@+id/et_text"
             app:layout_constraintTop_toBottomOf="@+id/et_text" />
 
-        <Spinner
-            android:id="@+id/spinner_photos"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:drawable/btn_dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_titPhotos"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titPhotos" />
-
         <TextView
             android:id="@+id/tv_titRiskLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Nivel de Riesgo (*)"
-            app:layout_constraintStart_toStartOf="@+id/spinner_photos"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_photos" />
+            app:layout_constraintStart_toStartOf="@+id/tv_titPhotos"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <RadioGroup
 
             android:id="@+id/toggleButtonsRiskLevel"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-
             android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/tv_titRiskLevel"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titRiskLevel"
+
             android:tag="btnGroupRiskLevel"
-            >
+            android:weightSum="12"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/tv_titRiskLevel"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titRiskLevel">
 
             <Button
                 android:id="@+id/radio_lowRisk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="4"
                 android:background="@drawable/textview_border_black"
                 android:backgroundTint="#778BC34A"
                 android:onClick="onRadioButtonClicked"
@@ -180,7 +172,8 @@
                 android:id="@+id/radio_mediumRisk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/textview_border_black"
+                android:layout_weight="4"
+                android:background="@drawable/textview_border_white"
                 android:backgroundTint="#75FFBB33"
                 android:onClick="onRadioButtonClicked"
                 android:tag="btnMedRisk"
@@ -190,6 +183,7 @@
                 android:id="@+id/radio_highRisk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="4"
                 android:background="@drawable/textview_border_black"
                 android:backgroundTint="#77FF4444"
                 android:onClick="onRadioButtonClicked"
@@ -208,13 +202,14 @@
 
         <EditText
             android:id="@+id/et_planedClosureDate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:drawableRight="@android:drawable/ic_menu_today"
             android:ems="10"
             android:hint="2020-02-27"
             android:inputType="date"
+            app:layout_constraintEnd_toEndOf="@+id/toggleButtonsRiskLevel"
             app:layout_constraintStart_toStartOf="@+id/tv_planedClosureDate"
             app:layout_constraintTop_toBottomOf="@+id/tv_planedClosureDate" />
 
@@ -264,13 +259,45 @@
             android:id="@+id/tv_titDocInspeccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="16dp"
             android:text="Nuevo Hallazgo"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/divider2"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="128dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+
+            android:weightSum="10"
+            app:layout_constraintEnd_toEndOf="@+id/et_text"
+            app:layout_constraintStart_toStartOf="@+id/tv_titPhotos"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titPhotos">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@drawable/textview_border_gray"
+                android:clickable="true"
+                android:onClick="onImgClicked"
+                app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@drawable/textview_border_gray"
+                app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

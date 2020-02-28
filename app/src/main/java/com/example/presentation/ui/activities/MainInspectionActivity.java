@@ -1,13 +1,23 @@
 package com.example.presentation.ui.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.domain.model.Inspection;
 import com.example.inspec3.R;
+import com.example.presentation.utils.ImageUtil;
 import com.example.presentation.view.InspectionView;
 
 import java.util.ArrayList;
@@ -74,4 +84,5 @@ public class MainInspectionActivity
     public Context getContext() {
         return null;
     }
-}
+
+} // fin clase

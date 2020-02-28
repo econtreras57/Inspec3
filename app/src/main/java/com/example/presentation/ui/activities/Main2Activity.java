@@ -99,6 +99,7 @@ public class Main2Activity
         }   // Recibe objeto inspection
 
         TextView tv_position = findViewById(R.id.tv_position);
+        TextView tv_subStatus = findViewById(R.id.tv_subStatus);
         TextView tv_project = findViewById(R.id.tv_project);
         TextView tv_inspector = findViewById(R.id.tv_inspector);
         TextView tv_site = findViewById(R.id.tv_site);
@@ -107,6 +108,7 @@ public class Main2Activity
         TextView tv_statusDate = findViewById(R.id.tv_statusDate);
 
         tv_position.setText( inspection.getId().toString() );
+        tv_subStatus.setText( inspection.getSubStatus().toString() );
         tv_project.setText( inspection.getProject());
         tv_inspector.setText( inspection.getInspector());
         tv_site.setText( inspection.getSite());
