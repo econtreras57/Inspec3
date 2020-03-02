@@ -82,7 +82,7 @@ public class ListAdapterInspection
         holder.statusDate.setText(inspection.getStatusDate());
         holder.subStatus.setText(inspection.getSubStatus());
 
-        if (inspection.getStatus() != "Abierto") {
+        if ( !inspection.getStatus().equals("Abierto") ) {
             holder.subStatus.setTextColor(Color.BLACK);
             holder.status.setTextColor(Color.BLACK);
             holder.status.setBackground(this.mContext.getDrawable(R.drawable.textview_border_blue));

@@ -155,19 +155,23 @@ public class MainFindingsActivity
         Button button1 = (Button) findViewById(R.id.radio_acto);
         button1.setBackground(this.getDrawable(R.drawable.textview_border_gray));
         button1.setTypeface(null, button1.getTypeface().NORMAL);
+        button1.setTextColor(Color.GRAY);
 
         Button button2 = (Button) findViewById(R.id.radio_condicion);
         button2.setBackground(this.getDrawable(R.drawable.textview_border_gray));
         button2.setTypeface(null, button1.getTypeface().NORMAL);
+        button2.setTextColor(Color.GRAY);
 
 
         switch (idButton) {
             case "btnActo":
                 button1.setBackground(drawableBg);
+                button1.setTextColor(Color.BLACK);
                 button1.setTypeface(null, button1.getTypeface().BOLD);
                 break;
             case "btnCondicion":
                 button2.setBackground(drawableBg);
+                button2.setTextColor(Color.BLACK);
                 button2.setTypeface(null, button1.getTypeface().BOLD);
                 break;
         }
@@ -181,7 +185,7 @@ public class MainFindingsActivity
 
         String idButton = ((Button) view).getTag().toString();
 
-        Drawable drawableBg = this.getDrawable(R.drawable.textview_border_wk1);
+        Drawable drawableBg = this.getDrawable(R.drawable.textview_border_wk1); // white
         drawableBg = DrawableCompat.wrap(drawableBg);
         DrawableCompat.setTintMode(drawableBg, PorterDuff.Mode.ADD);
         DrawableCompat.setTint(drawableBg, Color.WHITE);

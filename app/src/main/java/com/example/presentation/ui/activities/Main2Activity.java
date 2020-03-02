@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -84,7 +85,6 @@ public class Main2Activity
 
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,6 +116,11 @@ public class Main2Activity
         tv_status.setText( inspection.getStatus());
         tv_statusDate.setText( inspection.getStatusDate());
 
+        if ( !tv_status.getText().equals("Abierto") ) {
+            tv_subStatus.setTextColor(Color.BLACK);
+            tv_status.setTextColor(Color.BLACK);
+            tv_status.setBackground(this.getDrawable(R.drawable.textview_border_blue));
+        }
 
         rvFindings = findViewById(R.id.rvFindings);
         rvFindings.setLayoutManager(

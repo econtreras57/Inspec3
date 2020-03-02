@@ -38,7 +38,7 @@
         android:focusable="true"
         android:onClick="onAddClicked"
         android:tint="#FFFFFF"
-        app:backgroundTint="#3F51B5"
+        app:backgroundTint="@color/colorAccentOff"
         app:fabSize="auto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

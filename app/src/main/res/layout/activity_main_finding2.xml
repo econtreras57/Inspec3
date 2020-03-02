@@ -48,7 +48,8 @@
                 android:background="@drawable/textview_border_gray"
                 android:onClick="onRadioButtonClicked"
                 android:tag="btnActo"
-                android:text="Acto" />
+                android:text="Acto"
+                android:textColor="@color/silver" />
 
             <Button
                 android:id="@+id/radio_condicion"
@@ -58,7 +59,8 @@
                 android:background="@drawable/textview_border_gray"
                 android:onClick="onRadioButtonClicked"
                 android:tag="btnCondicion"
-                android:text="Condición" />
+                android:text="Condición"
+                android:textColor="@color/silver" />
 
         </RadioGroup>
 
@@ -163,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:background="@drawable/textview_border_black"
-                android:backgroundTint="#778BC34A"
+                android:backgroundTint="@color/translucent_green"
                 android:onClick="onRadioButtonClicked"
                 android:tag="btnLowRisk"
                 android:text="Low Risk" />
@@ -174,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:background="@drawable/textview_border_white"
-                android:backgroundTint="#75FFBB33"
+                android:backgroundTint="@color/translucent_yellow"
                 android:onClick="onRadioButtonClicked"
                 android:tag="btnMedRisk"
                 android:text="Med. Risk" />
@@ -185,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:background="@drawable/textview_border_black"
-                android:backgroundTint="#77FF4444"
+                android:backgroundTint="@color/translucent_red"
                 android:onClick="onRadioButtonClicked"
                 android:tag="btnHighRisk"
                 android:text="High Risk" />

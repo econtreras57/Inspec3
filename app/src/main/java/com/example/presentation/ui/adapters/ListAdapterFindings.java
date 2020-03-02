@@ -1,24 +1,21 @@
 package com.example.presentation.ui.adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.domain.model.Findings;
 import com.example.inspec3.R;
 
-import java.security.AccessControlContext;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
-import static java.security.AccessController.getContext;
 
 
 public class ListAdapterFindings
@@ -84,19 +81,23 @@ public class ListAdapterFindings
 //        if (findings.getRiskLevel()=="HIGH") holder.risk.setBackgroundColor(Color.RED);
 //        if (findings.getRiskLevel()=="Medium") holder.risk.setBackgroundColor(Color.YELLOW);
 
+        Resources res = mContext.getResources();
+//        int color = res.getColor(R.color.red);
+
         switch (findings.getRiskLevel()) {
             case "HIGH":
-                holder.risk.setBackgroundColor(Color.RED);
+                holder.risk.setBackgroundColor( res.getColor(R.color.translucent_red) );
                 break;
             case "Medium":
-                holder.risk.setBackgroundColor(Color.YELLOW);
+                holder.risk.setBackgroundColor( res.getColor(R.color.translucent_yellow) );
                 break;
             default:
-                holder.risk.setBackgroundColor(Color.GRAY);
+                holder.risk.setBackgroundColor( res.getColor(R.color.translucent_green) );
                 break;
         }
 
-        if (findings.getStatus() != "Abierto") {
+//        if (findings.getStatus() != "Abierto") {
+        if ( !findings.getStatus().equalsIgnoreCase("Abierto") ) {
             holder.status.setTextColor(Color.BLACK);
             holder.status.setBackground(null);
 //            holder.status.setBackground(this.mContext.getDrawable(R.drawable.textview_border_blue));

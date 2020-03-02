@@ -105,7 +105,9 @@
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_user"
+        android:background="@drawable/ic_user"
+        android:backgroundTint="@color/gray"
+        android:backgroundTintMode="add"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_position" />
 
@@ -115,7 +117,9 @@
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_factory"
+        android:background="@drawable/ic_factory"
+        android:backgroundTint="@color/gray"
+        android:backgroundTintMode="add"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ic_user" />
 
@@ -125,7 +129,9 @@
         android:layout_height="28dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_group"
+        android:background="@drawable/ic_group"
+        android:backgroundTint="@color/gray"
+        android:backgroundTintMode="add"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ic_factory" />
 

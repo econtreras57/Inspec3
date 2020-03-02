@@ -47,7 +47,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:background="#E91E63"
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/tv_bottomLine"
         app:layout_constraintStart_toEndOf="@+id/tv_position"
         app:layout_constraintTop_toBottomOf="@+id/tv_risk" />
@@ -80,7 +80,7 @@
         android:background="@drawable/textview_border_blue"
         android:gravity="center"
         android:text="TextView"
-        android:textColor="#3F51B5"
+        android:textColor="@color/colorAccentOff"
         app:layout_constraintStart_toStartOf="@+id/tv_text"
         app:layout_constraintTop_toBottomOf="@+id/tv_text" />
 
@@ -92,7 +92,7 @@
         android:background="@drawable/textview_border"
         android:gravity="center"
         android:text="TextView"
-        android:textColor="#E91E63"
+        android:textColor="@color/colorAccent"
         app:layout_constraintStart_toEndOf="@+id/tv_date"
         app:layout_constraintTop_toTopOf="@+id/tv_date" />
 
