@@ -73,7 +73,7 @@ public class ListAdapterInspection
 
         Inspection inspection = items.get(position);    // carga objeto INSPECTION( position )
 
-        holder.position.setText(Integer.toString(position));     // guarda la posición
+        holder.position.setText(Integer.toString(position+1));     // guarda la posición
         holder.project.setText(inspection.getProject());
         holder.inspector.setText(inspection.getInspector());
         holder.site.setText(inspection.getSite());
@@ -86,23 +86,6 @@ public class ListAdapterInspection
             holder.subStatus.setTextColor(Color.BLACK);
             holder.status.setTextColor(Color.BLACK);
             holder.status.setBackground(this.mContext.getDrawable(R.drawable.textview_border_blue));
-
-// 2020-02-26 ECV: Para otros usos...
-
-            // Obtiene un "drawable"
-//            Drawable mContextDrawable = this.mContext.getDrawable(R.drawable.textview_border);
-
-            // Un color para manejar...
-//            int color = Color.parseColor("#E91E63"); //The color u want
-
-            // Pintar todo_ el "drawable"...
-//            mContextDrawable.setTint(color);
-
-            // O combinar (... parece más útil para pintar todo_ un ícono)
-//            mContextDrawable.setColorFilter(new PorterDuffColorFilter(Color.GREEN, PorterDuff.Mode.DST_OUT));
-
-            // Finalmente, aplicar el cambio donde corresponda...
-//            holder.status.setBackground(mContextDrawable);
 
         }
     }
@@ -147,7 +130,7 @@ public class ListAdapterInspection
         public void onClick(View v) {
 
             int i = Integer.parseInt(position.getText().toString());
-            Inspection inspection = items.get(i);
+            Inspection inspection = items.get(i-1);
 
             mlistener.onItemClicked(v, inspection);
 

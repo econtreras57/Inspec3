@@ -1,9 +1,5 @@
 package com.example.presentation.ui.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,18 +8,23 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.domain.model.Findings;
 import com.example.domain.model.Inspection;
 import com.example.inspec3.R;
 import com.example.presentation.ui.adapters.ListAdapterFindings;
-import com.example.presentation.ui.adapters.ListAdapterFindings;
-import com.example.presentation.view.FindingsView;
 import com.example.presentation.view.FindingsView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
+
+/** Muestra Hallazgos de una Inspección
+ * 2020-02
+ */
 
 public class Main2Activity
         extends BaseActivity
@@ -143,11 +144,6 @@ public class Main2Activity
     }
 
     @Override
-    public void onItemClicked(View v, Findings findings) {
-
-    }
-
-    @Override
     public void findingsCreated(Findings findings) {
 
     }
@@ -182,6 +178,37 @@ public class Main2Activity
         return null;
     }
 
+    @Override
+    public void onItemClicked(View v, Findings findings) {
+
+        this.v = v;
+
+        //region Toast
+        TextView tv_position = v.findViewById(R.id.tv_position);
+
+        Context context = getApplicationContext();
+        CharSequence text =
+                "Click pos.: " + tv_position.getText().toString();
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+        //endregion
+
+        // Empaqueta objeto "lost" recibido...
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("objetoFindings", findings);
+
+        // Y envía el paquete a siguiente pantlla...
+        Intent intent = new Intent(this, MainFindingsActivity.class);
+        intent.putExtra("objetoFindings", bundle);
+
+        String message = tv_position.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+
+        startActivity(intent);      // intent
+
+    }
+
     public void onAddClicked(View v) {
 
         Context context = getApplicationContext();
@@ -198,7 +225,31 @@ public class Main2Activity
         Intent intent = new Intent(this, MainFindingsActivity.class);
         intent.putExtra("objetoFindings", bundle);
 
-        String message = "0";
+        String message = "-1";
+        intent.putExtra(EXTRA_MESSAGE, message);
+
+        startActivity(intent);      // intent
+
+    }
+
+    public void onHeaderClicked(View v) {
+
+        Context context = getApplicationContext();
+        CharSequence text = "Click HEADER button " ;
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        // Empaqueta objeto _nuevo_...
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("objetoInspection", inspection);
+
+        // Y envía ese paquete a la siguiente pantlla...
+        Intent intent = new Intent(this, MainInspectionActivity.class);
+        intent.putExtra("objetoInspection", bundle);
+
+//        String message = "-7";
+        String message = inspection.getId().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
 
         startActivity(intent);      // intent

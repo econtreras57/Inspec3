@@ -71,7 +71,7 @@ public class ListAdapterFindings
 
         Findings findings = items.get(position);    // carga objeto FINDINGS( position )
 
-        holder.position.setText(Integer.toString(position));     // guarda la posición
+        holder.position.setText(Integer.toString(position+1));     // guarda la posición
         holder.risk.setText(findings.getRiskLevel());
         holder.subtype.setText(findings.getSubtype());
         holder.text.setText(findings.getText());
@@ -142,7 +142,7 @@ public class ListAdapterFindings
         public void onClick(View v) {
 
             int i = Integer.parseInt(position.getText().toString());
-            Findings findings = items.get(i);
+            Findings findings = items.get(i-1);
 
             mlistener.onItemClicked(v, findings);
 

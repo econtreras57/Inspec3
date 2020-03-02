@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.domain.model.Findings;
@@ -34,14 +35,20 @@ import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
 import static com.example.presentation.utils.Constants.MY_PERMISSIONS_REQUEST_CAMERA;
 import static com.example.presentation.utils.Constants.REQUEST_IMAGE_CAPTURE;
 
+/** Datos Registro Hallazgo, con foto
+ * 2020-02
+ */
+
 public class MainFindingsActivity
         extends BaseActivity
         implements FindingsView {
 
     Findings findings;
+    TextView tv_titDocActivity;
 
     ImageView imageView1;
     ImageView imageView2;
+
 
 
     @Override
@@ -56,7 +63,7 @@ public class MainFindingsActivity
         this.findings = (Findings) bundle.getSerializable("objetoFindings");
 
         String message = intent.getStringExtra(EXTRA_MESSAGE);
-        int position = Integer.parseInt(message);   // posición del arreglo (o 0 si nuevo)
+        int position = Integer.parseInt(message);   // posición del arreglo (o -1 si nuevo)
 
         // Load fields on screen
 
@@ -64,11 +71,19 @@ public class MainFindingsActivity
         imageView1 = findViewById(R.id.imageView1);
         imageView2 = findViewById(R.id.imageView2);
 
+        tv_titDocActivity = findViewById(R.id.tv_titDocActivity);
+
         // photo_x
-        if (position == 0) {
+        if (position == -1) {
             findings.setPhoto_1("");
             findings.setPhoto_2("");
+            tv_titDocActivity.setText("Nuevo Hallazgo");
+        } else {
+            tv_titDocActivity.setText("Hallazgo: " + message);
         }
+
+        if (findings.getPhoto_1()==null) findings.setPhoto_1("");
+        if (findings.getPhoto_2()==null) findings.setPhoto_2("");
 
         imageView1.setImageBitmap( ImageUtil.convert(findings.getPhoto_1()) );
         imageView2.setImageBitmap( ImageUtil.convert(findings.getPhoto_2()) );

@@ -1,22 +1,17 @@
 package com.example.presentation.ui.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.domain.model.Inspection;
 import com.example.inspec3.R;
-import com.example.presentation.ui.activities.BaseActivity;
 import com.example.presentation.ui.adapters.ListAdapterInspection;
 import com.example.presentation.view.InspectionView;
 
@@ -25,6 +20,9 @@ import java.util.List;
 
 import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
 
+/** Muestra Inspecciones
+ * 2020-02
+ */
 
 public class MainActivity
         extends BaseActivity
@@ -217,7 +215,7 @@ public class MainActivity
         Intent intent = new Intent(this, MainInspectionActivity.class);
         intent.putExtra("objetoInspection", bundle);
 
-        String message = "0";
+        String message = "-1";
         intent.putExtra(EXTRA_MESSAGE, message);
 
         startActivity(intent);      // intent
