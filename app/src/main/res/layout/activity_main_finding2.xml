@@ -277,6 +277,7 @@
                 android:background="@drawable/textview_border_blue"
                 android:backgroundTint="@color/colorAccentOff"
                 android:fontFamily="sans-serif-light"
+                android:onClick="onButtonSaveClicked"
                 android:text="@string/guardar"
                 android:textColor="@color/white"
                 android:textSize="24sp"

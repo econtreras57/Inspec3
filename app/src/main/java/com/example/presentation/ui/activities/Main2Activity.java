@@ -203,6 +203,7 @@ public class Main2Activity
         // Y envía el paquete a siguiente pantlla...
         Intent intent = new Intent(this, MainFindingsActivity.class);
         intent.putExtra("objetoFindings", bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         String message = tv_position.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
@@ -226,6 +227,7 @@ public class Main2Activity
         // Y envía ese paquete a la siguiente pantlla...
         Intent intent = new Intent(this, MainFindingsActivity.class);
         intent.putExtra("objetoFindings", bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         String message = "-1";
         intent.putExtra(EXTRA_MESSAGE, message);
