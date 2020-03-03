@@ -21,8 +21,8 @@ public class Findings
     private String inspectionId;    // header record is inspection
     @SerializedName("type")
     private String type;    // tipo {act, condition}
-    @SerializedName("subtype")
-    private String subtype;    // ... {acto: no usar x, condición: no tiene procedimiento, falta x}
+    @SerializedName("subType")
+    private String subType;    // ... {acto: no usar x, condición: no tiene procedimiento, falta x}
     @SerializedName("management")
     private String management;    // gestión
     @SerializedName("text")
@@ -68,12 +68,12 @@ public class Findings
         this.type = type;
     }
 
-    public String getSubtype() {
-        return subtype;
+    public String getSubType() {
+        return subType;
     }
 
-    public void setSubtype(String subtype) {
-        this.subtype = subtype;
+    public void setSubType(String subType) {
+        this.subType = subType;
     }
 
     public String getManagement() {

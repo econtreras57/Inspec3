@@ -7,215 +7,299 @@
     android:layout_height="match_parent"
     tools:context="com.example.presentation.ui.activities.MainInspectionActivity">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.presentation.ui.activities.MainInspectionActivity">
+        android:layout_height="wrap_content">
 
-
-        <TextView
-            android:id="@+id/tv_titTipo"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutHeader"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="Tipo de Inspección (planeada?)"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
-        <RadioGroup
-
-            android:id="@+id/toggleButtonsPlan"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="horizontal"
-            android:tag="btnGroupPlanned"
-            android:weightSum="10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_titTipo"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titTipo">
-
-            <Button
-                android:id="@+id/radio_planned"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:background="@drawable/textview_border_gray"
-                android:onClick="onRadioButtonClicked"
-                android:tag="btnPlanned"
-                android:text="Planeada"
-                android:textColor="@color/silver" />
-
-            <Button
-                android:id="@+id/radio_notPlanned"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:background="@drawable/textview_border_gray"
-                android:onClick="onRadioButtonClicked"
-                android:tag="btnNotPlanned"
-                android:text="No planeada"
-                android:textColor="@color/silver" />
-
-        </RadioGroup>
-
-
-        <TextView
-            android:id="@+id/tv_titProject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Proyecto (*)"
-            app:layout_constraintStart_toStartOf="@+id/toggleButtonsPlan"
-            app:layout_constraintTop_toBottomOf="@+id/toggleButtonsPlan" />
-
-        <Spinner
-            android:id="@+id/spinner_project"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:drawable/btn_dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_titProject"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titProject" />
-
-        <TextView
-            android:id="@+id/tv_titContractor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Contratista (*)"
-            app:layout_constraintStart_toStartOf="@+id/spinner_project"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_project" />
-
-        <Spinner
-            android:id="@+id/spinner_contractor"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:drawable/btn_dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_titContractor"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titContractor" />
-
-        <TextView
-            android:id="@+id/tv_titLocType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Tipo de ubicación (*)"
-            app:layout_constraintStart_toStartOf="@+id/spinner_contractor"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_contractor" />
-
-        <Spinner
-            android:id="@+id/spinner_locType"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:drawable/btn_dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_titLocType"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titLocType" />
-
-        <TextView
-            android:id="@+id/tv_titSite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Lugar (ubicación) (*)"
-            app:layout_constraintStart_toStartOf="@+id/spinner_locType"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_locType" />
-
-        <Spinner
-            android:id="@+id/spinner_site"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:background="@android:drawable/btn_dropdown"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_titSite"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titSite" />
-
-        <TextView
-            android:id="@+id/tv_titResponsible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Responsable del área inspecc.(*)"
-            app:layout_constraintStart_toStartOf="@+id/spinner_site"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_site" />
-
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="32dp"
-            android:background="@drawable/textview_border_blue"
-            android:backgroundTint="#3F51B5"
-            android:fontFamily="sans-serif-light"
-            android:text="Guardar"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/et_reponsible"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="409dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="24dp"
-            android:background="?android:attr/listDivider"
+            android:background="@color/colorAccentOff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_reponsible" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="409dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="80dp"
-            android:background="?android:attr/listDivider"
+            <TextView
+                android:id="@+id/tv_titDocActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/textview_border_blue"
+                android:backgroundTint="@color/colorAccentOff"
+                android:text="@string/nueva_inspecci_n"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ic_user"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/ic_user"
+                android:backgroundTint="@color/gray"
+                android:backgroundTintMode="add"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_titDocActivity" />
+
+            <TextView
+                android:id="@+id/tv_inspector"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toEndOf="@+id/ic_user"
+                app:layout_constraintTop_toTopOf="@+id/ic_user" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/textview_border_white"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_statusDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="statusDate"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="@+id/tv_status"
+                app:layout_constraintTop_toBottomOf="@+id/tv_status" />
+
+            <TextView
+                android:id="@+id/tv_subStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="subStatus"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_statusDate"
+                app:layout_constraintTop_toBottomOf="@+id/tv_statusDate" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:drawable/screen_background_dark_transparent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_subStatus" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutHeader">
 
-        <EditText
-            android:id="@+id/et_reponsible"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Apellidos, Nombres"
-            app:layout_constraintStart_toStartOf="@+id/tv_titResponsible"
-            app:layout_constraintTop_toBottomOf="@+id/tv_titResponsible" />
+            <TextView
+                android:id="@+id/tv_titTipo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/tipo_de_inspecci_n_planeada"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_titDocActivity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
-            android:text="Nueva Inspección"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/divider2"
-            app:layout_constraintStart_toStartOf="parent" />
+            <RadioGroup
 
+                android:id="@+id/toggleButtonsPlan"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal"
+                android:tag="btnGroupPlanned"
+                android:weightSum="10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_titTipo"
+                app:layout_constraintTop_toBottomOf="@+id/tv_titTipo">
 
+                <Button
+                    android:id="@+id/radio_planned"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:background="@drawable/textview_border_gray"
+                    android:onClick="onRadioButtonClicked"
+                    android:tag="btnPlanned"
+                    android:text="@string/planeada"
+                    android:textColor="@color/silver" />
+
+                <Button
+                    android:id="@+id/radio_notPlanned"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:background="@drawable/textview_border_gray"
+                    android:onClick="onRadioButtonClicked"
+                    android:tag="btnNotPlanned"
+                    android:text="@string/no_planeada"
+                    android:textColor="@color/silver" />
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_titProject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/proyecto"
+                app:layout_constraintStart_toStartOf="@+id/toggleButtonsPlan"
+                app:layout_constraintTop_toBottomOf="@+id/toggleButtonsPlan" />
+
+            <Spinner
+                android:id="@+id/spinner_project"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:tag="spinner_project"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_titProject"
+                app:layout_constraintTop_toBottomOf="@+id/tv_titProject" />
+
+            <TextView
+                android:id="@+id/tv_titContractor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/contratista"
+                app:layout_constraintStart_toStartOf="@+id/spinner_project"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_project" />
+
+            <Spinner
+                android:id="@+id/spinner_contractor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:tag="spinner_contractor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_titContractor"
+                app:layout_constraintTop_toBottomOf="@+id/tv_titContractor" />
+
+            <TextView
+                android:id="@+id/tv_titLocType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/tipo_de_ubicaci_n"
+                app:layout_constraintStart_toStartOf="@+id/spinner_contractor"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_contractor" />
+
+            <Spinner
+                android:id="@+id/spinner_locType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:tag="spinner_locType"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_titLocType"
+                app:layout_constraintTop_toBottomOf="@+id/tv_titLocType" />
+
+            <TextView
+                android:id="@+id/tv_titSite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/lugar_ubicaci_n"
+                app:layout_constraintStart_toStartOf="@+id/spinner_locType"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_locType" />
+
+            <Spinner
+                android:id="@+id/spinner_site"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@android:drawable/btn_dropdown"
+                android:tag="spinner_site"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_titSite"
+                app:layout_constraintTop_toBottomOf="@+id/tv_titSite" />
+
+            <TextView
+                android:id="@+id/tv_titResponsible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/responsable_del_area_inspecc"
+                app:layout_constraintStart_toStartOf="@+id/spinner_site"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_site" />
+
+            <EditText
+                android:id="@+id/et_reponsible"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="@string/Hint_responsible"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/apellidos_nombres"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_titResponsible"
+                app:layout_constraintTop_toBottomOf="@+id/tv_titResponsible" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="24dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_reponsible"
+                app:layout_constraintHorizontal_bias="0.0"
+                />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/textview_border_blue"
+                android:backgroundTint="#3F51B5"
+                android:fontFamily="sans-serif-light"
+                android:onClick="onButtonSaveClicked"
+                android:text="@string/guardar"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/et_reponsible"
+                app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

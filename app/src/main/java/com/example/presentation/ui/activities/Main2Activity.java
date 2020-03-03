@@ -47,27 +47,29 @@ public class Main2Activity
         findings = new Findings();
         findings.setId(1);
         findings.setRiskLevel("HIGH");
-        findings.setSubtype("Procedure missing");
+        findings.setSubType("Procedure missing");
         findings.setText("No hay procedimiento para esta actividad.");
         findings.setDate("2020-02-25");
         findings.setStatus("Abierto");
+        findings.setType("Condición");
 
         listaFindings.add(findings);
 
         findings = new Findings();
         findings.setId(2);
         findings.setRiskLevel("Low");
-        findings.setSubtype("Procedure missing");
+        findings.setSubType("Procedure missing");
         findings.setText("No hay procedimiento para esta actividad.");
         findings.setDate("2020-02-25");
         findings.setStatus("Abierto");
+        findings.setType("Acto");
 
         listaFindings.add(findings);
 
         findings = new Findings();
         findings.setId(3);
         findings.setRiskLevel("Medium");
-        findings.setSubtype("Procedure missing");
+        findings.setSubType("Procedure missing");
         findings.setText("No hay procedimiento para esta actividad.");
         findings.setDate("2020-02-25");
         findings.setStatus("Cerrado");
@@ -77,7 +79,7 @@ public class Main2Activity
         findings = new Findings();
         findings.setId(4);
         findings.setRiskLevel("Medium");
-        findings.setSubtype("Procedure missing");
+        findings.setSubType("Procedure missing");
         findings.setText("No hay procedimiento para esta actividad.");
         findings.setDate("2020-02-26");
         findings.setStatus("Cerrado");
@@ -247,6 +249,7 @@ public class Main2Activity
         // Y envía ese paquete a la siguiente pantlla...
         Intent intent = new Intent(this, MainInspectionActivity.class);
         intent.putExtra("objetoInspection", bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
 //        String message = "-7";
         String message = inspection.getId().toString();

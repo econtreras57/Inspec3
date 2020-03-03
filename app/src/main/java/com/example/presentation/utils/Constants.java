@@ -12,6 +12,10 @@ public class Constants {
     public static final int REQUEST_IMAGE_CAPTURE = 1;     // 2020-02-19 ecv: para la foto
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 64;    // 2020-02-19 ecv: permiso...
 
+    public static final Boolean SWITCH_BUTTON_ON = true;
+    public static final Boolean SWITCH_BUTTON_OFF = false;
+
+
 
     public class PREFERENCES {
         public static final String PREFERENCE_CURRENT_USER = "PREFERENCE_CURRENT_USER";

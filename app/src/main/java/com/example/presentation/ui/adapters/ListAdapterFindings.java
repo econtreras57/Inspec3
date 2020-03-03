@@ -73,7 +73,7 @@ public class ListAdapterFindings
 
         holder.position.setText(Integer.toString(position+1));     // guarda la posición
         holder.risk.setText(findings.getRiskLevel());
-        holder.subtype.setText(findings.getSubtype());
+        holder.subtype.setText(findings.getSubType());
         holder.text.setText(findings.getText());
         holder.date.setText(findings.getDate());
         holder.status.setText(findings.getStatus());

@@ -1,3 +1,95 @@
 <resources>
     <string name="app_name">Inspec3</string>
+    <string name="tipo_de_inspecci_n_planeada">Tipo de Inspección (planeada?)</string>
+    <string name="proyecto">Proyecto (*)</string>
+    <string name="contratista">Contratista (*)</string>
+    <string name="tipo_de_ubicaci_n">Tipo de ubicación (*)</string>
+    <string name="lugar_ubicaci_n">Lugar (ubicación) (*)</string>
+    <string name="responsable_del_area_inspecc">Responsable del área inspecc.(*)</string>
+    <string name="guardar">Guardar</string>
+    <string name="planeada">Planeada</string>
+    <string name="apellidos_nombres">Apellidos, Nombres</string>
+    <string name="nueva_inspecci_n">Nueva Inspección</string>
+    <string name="edita_inspecci_n">Inspección : %1$s</string>
+    <string name="no_planeada">No planeada</string>
+    <string name="Hint_responsible">Nombre del responsable</string>
+    <string name="nuevo_hallazgo">Nuevo Hallazgo</string>
+    <string name="edita_hallazgo">Hallazgo : %1$s</string>
+    <string name="acto_o_condici_n">Acto o Condición (*)</string>
+    <string name="gesti_n_management">Gestión (management) (*)</string>
+    <string name="tipo_de_acto_o_condici_n_subtype">Tipo de acto o condición (subType) (*)</string>
+    <string name="descripci_n_text">Descripción (text) (*)</string>
+    <string name="fotograf_as">Fotografías</string>
+    <string name="nivel_de_riesgo">Nivel de Riesgo (*)</string>
+    <string name="fecha_estimada_de_cierre">Fecha estimada de cierre (*)</string>
+<!--    <string name="guardar">Guardar</string>-->
+
+    <string-array name="projects_array">
+        <item>Sun Star</item>
+        <item>PE-MOPAR</item>
+        <item>PE-HVAC</item>
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+    <string-array name="contractors_array">
+        <item>Moons...</item>
+        <item>Deimos</item>
+        <item>Phobos</item>
+        <item>Titan</item>
+        <item>Hyperion</item>
+        <item>Phoebe</item>
+        <item>Mars</item>
+        <item>Janus</item>
+        <item>Miranda</item>
+        <item>Puck</item>
+        <item>Triton</item>
+        <item>HMZ Ingenieros</item>
+        <item>DHJ Engineers</item>
+    </string-array>
+
+    <string-array name="locType_array">
+        <item>Fábrica</item>
+        <item>Taller</item>
+        <item>Mina</item>
+        <item>Oficinas</item>
+        <item>Teccho</item>
+    </string-array>
+
+    <string-array name="sites_array">
+        <item>SE Moquegua</item>
+        <item>SE Tacna</item>
+        <item>SE Ilo</item>
+        <item>SE Arequipa</item>
+        <item>SE Lima</item>
+        <item>SE Trujillo</item>
+        <item>SE Cajamarca</item>
+        <item>SE Junín</item>
+    </string-array>
+
+    <string-array name="management_array">
+        <item>Maestranza</item>
+        <item>Mantenimiento</item>
+        <item>Línea 1</item>
+        <item>Línea 2</item>
+        <item>Línea 3</item>
+        <item>Transporte</item>
+        <item>Mina 1</item>
+        <item>Mina 2</item>
+    </string-array>
+
+    <string-array name="subType_array">
+        <item>Falta Procedimiento</item>
+        <item>Procedure missing</item>
+        <item>Falta IPER</item>
+        <item>Falta Permiso de Trabajo</item>
+    </string-array>
+
+
 </resources>

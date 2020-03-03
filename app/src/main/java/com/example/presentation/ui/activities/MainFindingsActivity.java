@@ -1,27 +1,26 @@
 package com.example.presentation.ui.activities;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.domain.model.Findings;
 import com.example.inspec3.R;
@@ -31,9 +30,13 @@ import com.example.presentation.view.FindingsView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.inspec3.R.string.edita_hallazgo;
+import static com.example.inspec3.R.string.nuevo_hallazgo;
 import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
 import static com.example.presentation.utils.Constants.MY_PERMISSIONS_REQUEST_CAMERA;
 import static com.example.presentation.utils.Constants.REQUEST_IMAGE_CAPTURE;
+import static com.example.presentation.utils.Constants.SWITCH_BUTTON_OFF;
+import static com.example.presentation.utils.Constants.SWITCH_BUTTON_ON;
 
 /** Datos Registro Hallazgo, con foto
  * 2020-02
@@ -41,13 +44,23 @@ import static com.example.presentation.utils.Constants.REQUEST_IMAGE_CAPTURE;
 
 public class MainFindingsActivity
         extends BaseActivity
-        implements FindingsView {
+        implements FindingsView, AdapterView.OnItemSelectedListener {
 
     Findings findings;
     TextView tv_titDocActivity;
 
     ImageView imageView1;
     ImageView imageView2;
+
+    Button btnActo;
+    Button btnCondicion;
+
+    Button btnLowRisk;
+    Button btnMedRisk;
+    Button btnHighRisk;
+
+    Spinner spinnerManagement;
+    Spinner spinnerSubType;
 
 
 
@@ -61,26 +74,48 @@ public class MainFindingsActivity
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("objetoFindings");
         this.findings = (Findings) bundle.getSerializable("objetoFindings");
+        if (findings==null) findings = new Findings();
 
         String message = intent.getStringExtra(EXTRA_MESSAGE);
         int position = Integer.parseInt(message);   // posición del arreglo (o -1 si nuevo)
 
-        // Load fields on screen
+        // Set and load fields on screen (and other objects on screen)
+        btnActo=findViewById(R.id.radio_acto);
+        btnCondicion=findViewById(R.id.radio_condicion);
+
+        if (findings.getType()==null) findings.setType("");
+        if (findings.getType().equalsIgnoreCase("Acto"))
+            switchButton(btnActo, SWITCH_BUTTON_ON);
+        if (findings.getType().equalsIgnoreCase("Condición"))
+            switchButton(btnCondicion, SWITCH_BUTTON_ON);
+
+
+        btnLowRisk=findViewById(R.id.radio_lowRisk);
+        btnMedRisk=findViewById(R.id.radio_mediumRisk);
+        btnHighRisk=findViewById(R.id.radio_highRisk);
+
+        switchButton(btnLowRisk,SWITCH_BUTTON_OFF);
+        switchButton(btnMedRisk,SWITCH_BUTTON_OFF);
+        switchButton(btnHighRisk,SWITCH_BUTTON_OFF);
+
+        if (findings.getRiskLevel()==null) findings.setRiskLevel("");
+        if (findings.getRiskLevel().equalsIgnoreCase("Low"))
+            switchButton(btnLowRisk,SWITCH_BUTTON_ON);
+        if (findings.getRiskLevel().equalsIgnoreCase("Medium"))
+            switchButton(btnMedRisk,SWITCH_BUTTON_ON);
+        if (findings.getRiskLevel().equalsIgnoreCase("High"))
+            switchButton(btnHighRisk,SWITCH_BUTTON_ON);
+
 
         // para las fotos
         imageView1 = findViewById(R.id.imageView1);
         imageView2 = findViewById(R.id.imageView2);
 
+        spinnerManagementLoad();
+        spinnerSubTypeLoad();
+
         tv_titDocActivity = findViewById(R.id.tv_titDocActivity);
 
-        // photo_x
-        if (position == -1) {
-            findings.setPhoto_1("");
-            findings.setPhoto_2("");
-            tv_titDocActivity.setText("Nuevo Hallazgo");
-        } else {
-            tv_titDocActivity.setText("Hallazgo: " + message);
-        }
 
         if (findings.getPhoto_1()==null) findings.setPhoto_1("");
         if (findings.getPhoto_2()==null) findings.setPhoto_2("");
@@ -88,8 +123,45 @@ public class MainFindingsActivity
         imageView1.setImageBitmap( ImageUtil.convert(findings.getPhoto_1()) );
         imageView2.setImageBitmap( ImageUtil.convert(findings.getPhoto_2()) );
 
+
+        String title_add = getString(nuevo_hallazgo);
+        String title_upd = getString(edita_hallazgo, message);
+        if (position == -1) {
+            findings.setPhoto_1("");
+            findings.setPhoto_2("");
+            tv_titDocActivity.setText(title_add);
+        } else {
+            tv_titDocActivity.setText(title_upd);
+        }
+
     }
 
+    public void spinnerManagementLoad() {
+//        Spinner spinnerManagement = (Spinner) findViewById(R.id.spinner_management);
+        spinnerManagement = (Spinner) findViewById(R.id.spinner_management);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapterManagement = ArrayAdapter.createFromResource(this,
+                R.array.management_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapterManagement.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinnerManagement.setAdapter(adapterManagement);
+
+        spinnerManagement.setSelection(adapterManagement.getPosition(findings.getManagement()));
+        spinnerManagement.setOnItemSelectedListener(this);
+    }
+
+    public void spinnerSubTypeLoad() {
+        spinnerSubType = (Spinner) findViewById(R.id.spinner_subType);
+        ArrayAdapter<CharSequence> adapterSubType = ArrayAdapter.createFromResource(this,
+                R.array.subType_array, android.R.layout.simple_spinner_item);
+        adapterSubType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSubType.setAdapter(adapterSubType);
+
+        spinnerSubType.setSelection(adapterSubType.getPosition(findings.getSubType()));
+        spinnerSubType.setOnItemSelectedListener(this);
+    }
+    
     @Override
     public void findingsCreated(Findings findings) {
 
@@ -149,100 +221,100 @@ public class MainFindingsActivity
 
         switch (rgTag) {
             case "btnGroupTipoAC":
-                onRBClicked_tipo(view);
+                setBtnGroupTipoAC(view);
                 break;
             case "btnGroupRiskLevel":
-                onRBClicked_risk(view);
+                setBtnGroupRiskLevel(view);
                 break;
         }
     }
 
-    public void onRBClicked_tipo(View view) {
+    public void setBtnGroupTipoAC(View view) {
 
         // colorea botones Acto, Condición
 
-
-        String idButton = ((Button) view).getTag().toString();
-
-        Drawable drawableBg = this.getDrawable(R.drawable.textview_border_black);
-
-
-        Button button1 = (Button) findViewById(R.id.radio_acto);
-        button1.setBackground(this.getDrawable(R.drawable.textview_border_gray));
-        button1.setTypeface(null, button1.getTypeface().NORMAL);
-        button1.setTextColor(Color.GRAY);
-
-        Button button2 = (Button) findViewById(R.id.radio_condicion);
-        button2.setBackground(this.getDrawable(R.drawable.textview_border_gray));
-        button2.setTypeface(null, button1.getTypeface().NORMAL);
-        button2.setTextColor(Color.GRAY);
-
-
-        switch (idButton) {
+        String tagButton = ((Button) view).getTag().toString();
+        switch (tagButton) {
             case "btnActo":
-                button1.setBackground(drawableBg);
-                button1.setTextColor(Color.BLACK);
-                button1.setTypeface(null, button1.getTypeface().BOLD);
+                switchButton(btnActo, SWITCH_BUTTON_ON);
+                switchButton(btnCondicion, SWITCH_BUTTON_OFF);
                 break;
             case "btnCondicion":
-                button2.setBackground(drawableBg);
-                button2.setTextColor(Color.BLACK);
-                button2.setTypeface(null, button1.getTypeface().BOLD);
+                switchButton(btnActo, SWITCH_BUTTON_OFF);
+                switchButton(btnCondicion, SWITCH_BUTTON_ON);
                 break;
         }
 
     }
 
-    public void onRBClicked_risk(View view) {
+    public void setBtnGroupRiskLevel(View view) {
 
         // colorea botones de Nivel de Riesgo { bajo, medio, alto }
 
-
-        String idButton = ((Button) view).getTag().toString();
-
-        Drawable drawableBg = this.getDrawable(R.drawable.textview_border_wk1); // white
-        drawableBg = DrawableCompat.wrap(drawableBg);
-        DrawableCompat.setTintMode(drawableBg, PorterDuff.Mode.ADD);
-        DrawableCompat.setTint(drawableBg, Color.WHITE);
-
-        Button button1 = (Button) findViewById(R.id.radio_lowRisk);
-        button1.setBackground(this.getDrawable(R.drawable.textview_border_white));
-        button1.setTypeface(null, button1.getTypeface().NORMAL);
-        button1.setTextColor(Color.GRAY);
-//        button1.setBackgroundColor(Color.parseColor("#778BC34A")); // ligth green
-
-        Button button2 = (Button) findViewById(R.id.radio_mediumRisk);
-        button2.setBackground(this.getDrawable(R.drawable.textview_border_white));
-        button2.setTypeface(null, button1.getTypeface().NORMAL);
-        button2.setTextColor(Color.GRAY);
-//        button2.setBackgroundColor(Color.parseColor("#75FFBB33")); // light yellow
-
-        Button button3 = (Button) findViewById(R.id.radio_highRisk);
-        button3.setBackground(this.getDrawable(R.drawable.textview_border_white));
-        button3.setTypeface(null, button1.getTypeface().NORMAL);
-        button3.setTextColor(Color.GRAY);
-//        button3.setBackgroundColor(Color.parseColor("#77FF4444")); // light red
-
-        switch (idButton) {
+        String tagButton = ((Button) view).getTag().toString();
+        switch (tagButton) {
             case "btnLowRisk":
-                button1.setTypeface(null, button1.getTypeface().BOLD);
-                button1.setTextColor(Color.WHITE);
-                button1.setBackground(drawableBg);
+                switchButton(btnLowRisk, SWITCH_BUTTON_ON);
+                switchButton(btnMedRisk, SWITCH_BUTTON_OFF);
+                switchButton(btnHighRisk, SWITCH_BUTTON_OFF);
                 break;
             case "btnMedRisk":
-                button2.setTypeface(null, button1.getTypeface().BOLD);
-                button2.setTextColor(Color.WHITE);
-                button2.setBackground(drawableBg);
-                break;
+                switchButton(btnLowRisk, SWITCH_BUTTON_OFF);
+                switchButton(btnMedRisk, SWITCH_BUTTON_ON);
+                switchButton(btnHighRisk, SWITCH_BUTTON_OFF);
+            break;
             case "btnHighRisk":
-                button3.setTypeface(null, button1.getTypeface().BOLD);
-                button3.setTextColor(Color.WHITE);
-                button3.setBackground(drawableBg);
+                switchButton(btnLowRisk, SWITCH_BUTTON_OFF);
+                switchButton(btnMedRisk, SWITCH_BUTTON_OFF);
+                switchButton(btnHighRisk, SWITCH_BUTTON_ON);
                 break;
         }
 
     }
 
+    public void switchButton(Button button, Boolean on_off) {
+        if (on_off == SWITCH_BUTTON_ON) {
+
+            // Switch the button on
+            button.setBackground(this.getDrawable(R.drawable.textview_border_black));
+            button.setTypeface(null, button.getTypeface().BOLD);
+            button.setTextColor(Color.BLACK);
+
+        } else {
+
+            // Switch the button off
+            button.setBackground(this.getDrawable(R.drawable.textview_border_gray));
+            button.setTypeface(null, button.getTypeface().NORMAL);
+//            button.setTextColor(getResources().getColor(R.color.silver));
+            button.setTextColor(Color.GRAY);
+
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+
+        String sTest = (String) parent.getTag();
+        String itemAtPosition = (String) parent.getItemAtPosition(position);
+
+        Context context = getApplicationContext();
+        CharSequence text = "Click SPINNER button: \n" + sTest + "\n" + itemAtPosition;
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+        // Another interface callback
+
+    }
+    
     public void onImgClicked(View v) {
 
         CharSequence text = "Clic imagen... ";   // validar primero
@@ -355,5 +427,8 @@ public class MainFindingsActivity
 
     } // fin permisos
 
+    public void onButtonSaveClicked(View v) {
+        finish();
+    }
 
 } // fin clase

@@ -50,6 +50,7 @@ public class MainActivity
         inspection.setStatusDate("2020-02-14");
         inspection.setStatus("Abierto");
         inspection.setSubStatus("Pendiente de cierre");
+        inspection.setPlan("Planned");
 
         listaInspection.add(inspection);
 
@@ -86,13 +87,15 @@ public class MainActivity
         inspection.setStatusDate("2020-02-05");
         inspection.setStatus("Cerrado");
         inspection.setSubStatus("Resuelto");
+        inspection.setPlan("Not Planned");
+
 
         listaInspection.add(inspection);
 
         inspection = new Inspection();
         inspection.setId(5);
         inspection.setProject("PE-MOPAR");
-        inspection.setInspector("Juan Pérez");
+        inspection.setInspector("Juan García");
         inspection.setSite("SE Moquegua");
         inspection.setContractor("HMZ Ingenieros");
         inspection.setStatusDate("2020-02-22");
@@ -214,6 +217,7 @@ public class MainActivity
         // Y envía ese paquete a la siguiente pantlla...
         Intent intent = new Intent(this, MainInspectionActivity.class);
         intent.putExtra("objetoInspection", bundle);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         String message = "-1";
         intent.putExtra(EXTRA_MESSAGE, message);
