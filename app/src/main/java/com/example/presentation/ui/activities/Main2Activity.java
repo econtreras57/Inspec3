@@ -44,8 +44,11 @@ public class Main2Activity
 
     protected void initialSetup () {
 
+        Integer idNum = listaFindings.size();
+
         findings = new Findings();
-        findings.setId(1);
+        ++idNum;
+        findings.setId(idNum);
         findings.setRiskLevel("HIGH");
         findings.setSubType("Procedure missing");
         findings.setText("No hay procedimiento para esta actividad.");
@@ -56,7 +59,8 @@ public class Main2Activity
         listaFindings.add(findings);
 
         findings = new Findings();
-        findings.setId(2);
+        ++idNum;
+        findings.setId(idNum);
         findings.setRiskLevel("Low");
         findings.setSubType("Procedure missing");
         findings.setText("No hay procedimiento para esta actividad.");
@@ -67,7 +71,8 @@ public class Main2Activity
         listaFindings.add(findings);
 
         findings = new Findings();
-        findings.setId(3);
+        ++idNum;
+        findings.setId(idNum);
         findings.setRiskLevel("Medium");
         findings.setSubType("Procedure missing");
         findings.setText("No hay procedimiento para esta actividad.");
@@ -77,7 +82,8 @@ public class Main2Activity
         listaFindings.add(findings);
 
         findings = new Findings();
-        findings.setId(4);
+        ++idNum;
+        findings.setId(idNum);
         findings.setRiskLevel("Medium");
         findings.setSubType("Procedure missing");
         findings.setText("No hay procedimiento para esta actividad.");
@@ -93,7 +99,7 @@ public class Main2Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        initialSetup();
+        for (int i=0; i<3; i++) initialSetup();
 
         Intent intent = getIntent();
         Bundle intentBundleExtra = intent.getBundleExtra("objetoInspection");

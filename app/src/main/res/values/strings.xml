@@ -22,7 +22,14 @@
     <string name="fotograf_as">Fotografías</string>
     <string name="nivel_de_riesgo">Nivel de Riesgo (*)</string>
     <string name="fecha_estimada_de_cierre">Fecha estimada de cierre (*)</string>
-<!--    <string name="guardar">Guardar</string>-->
+    <string name="subType">Sub-tipo de hallazgo</string>
+    <string name="textFinding">Texto del hallazgo</string>
+    <string name="date">Fecha</string>
+    <string name="status">Status</string>
+    <string name="positionFormat">9999</string>
+    <string name="risklevel">Nivel de Riesgo</string>
+    <string name="idformat">99999</string>
+    <!--    <string name="guardar">Guardar</string>-->
 
     <string-array name="projects_array">
         <item>Sun Star</item>

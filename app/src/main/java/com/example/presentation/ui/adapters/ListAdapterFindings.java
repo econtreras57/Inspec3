@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class ListAdapterFindings
         extends
         RecyclerView.Adapter<ListAdapterFindings.FindingsViewHolder> {
@@ -72,6 +71,7 @@ public class ListAdapterFindings
         Findings findings = items.get(position);    // carga objeto FINDINGS( position )
 
         holder.position.setText(Integer.toString(position+1));     // guarda la posición
+        holder.id.setText(findings.getId().toString());
         holder.risk.setText(findings.getRiskLevel());
         holder.subtype.setText(findings.getSubType());
         holder.text.setText(findings.getText());
@@ -117,6 +117,7 @@ public class ListAdapterFindings
             implements View.OnClickListener {
 
         TextView position;   // para guardar la pos.
+        TextView id;
         TextView risk;
         TextView subtype;
         TextView text;
@@ -128,6 +129,7 @@ public class ListAdapterFindings
             super(v);
 
             position = (TextView) v.findViewById(R.id.tv_position);
+            id = (TextView) v.findViewById(R.id.tv_id);
             risk = (TextView) v.findViewById(R.id.tv_risk);
             subtype = (TextView) v.findViewById(R.id.tv_subtype);
             text = (TextView) v.findViewById(R.id.tv_text);
