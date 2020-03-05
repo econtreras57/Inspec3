@@ -14,6 +14,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -60,8 +61,8 @@ public class MainInspectionActivity
     Spinner spinnerLocType;
     Spinner spinnerSite;
 
-    Button buttonPlaneado;
-    Button buttonNoPlaneado;
+    Button button1;
+    Button button2;
 
     EditText responsible;
 
@@ -93,14 +94,16 @@ public class MainInspectionActivity
         spinnerLocTypeLoad();
         spinnerSitesLoad();
 
-        buttonPlaneado = findViewById(R.id.radio_planned);
-        buttonNoPlaneado = findViewById(R.id.radio_notPlanned);
+
+        button1=findViewById(R.id.button1);
+        button2=findViewById(R.id.button2);
 
         if (inspection.getPlan() == null) inspection.setPlan("");
         if (inspection.getPlan().equalsIgnoreCase("Planned"))
-            switchButton(buttonPlaneado, SWITCH_BUTTON_ON);
+            switchButton(button1, SWITCH_BUTTON_ON);
         if (inspection.getPlan().equalsIgnoreCase("Not Planned"))
-            switchButton(buttonNoPlaneado, SWITCH_BUTTON_ON);
+            switchButton(button2, SWITCH_BUTTON_ON);
+
 
         responsible = findViewById(R.id.et_reponsible);
         if (inspection.getResponsible() == null) inspection.setResponsible("");
@@ -247,50 +250,35 @@ public class MainInspectionActivity
         return null;
     }
 
-    public void onRadioButtonClicked(View view) {
+    public void OnButtonG1Checked (View view) {
 
-        RadioGroup rg = (RadioGroup) ((Button) view).getParent();
-        String rgTag = rg.getTag().toString();
+        switchButton(button1, SWITCH_BUTTON_OFF);
+        switchButton(button2, SWITCH_BUTTON_OFF);
 
-        switch (rgTag) {
-            case "btnGroupPlanned":
-                setBtnGroupPlanned(view);
-                break;
+        switch (view.getId()) {
+            case R.id.button1:
+                switchButton(button1, SWITCH_BUTTON_ON); break;
+            case R.id.button2:
+                switchButton(button2, SWITCH_BUTTON_ON); break;
 
         }
-    }
-
-    public void setBtnGroupPlanned(View view) {
-
-        // colorea botones Planeado, no planeaao
-
-        String tagButton = ((Button) view).getTag().toString();  // tag
-        switch (tagButton) {
-            case "btnPlanned":
-                switchButton(buttonPlaneado, SWITCH_BUTTON_ON);
-                switchButton(buttonNoPlaneado, SWITCH_BUTTON_OFF);
-                break;
-            case "btnNotPlanned":
-                switchButton(buttonPlaneado, SWITCH_BUTTON_OFF);
-                switchButton(buttonNoPlaneado, SWITCH_BUTTON_ON);
-                break;
-        }
-
     }
 
     public void switchButton(Button button, Boolean on_off) {
         if (on_off == SWITCH_BUTTON_ON) {
 
             // Switch the button on
-            button.setBackground(this.getDrawable(R.drawable.textview_border_black));
-            button.setTypeface(null, button.getTypeface().BOLD);
+//            button.setBackground(this.getDrawable(R.drawable.textview_border_black));
+//            button.setTypeface(null, button.getTypeface().BOLD);
+            button.setTypeface(null, Typeface.BOLD);
             button.setTextColor(Color.BLACK);
 
         } else {
 
             // Switch the button off
-            button.setBackground(this.getDrawable(R.drawable.textview_border_gray));
-            button.setTypeface(null, button.getTypeface().NORMAL);
+//            button.setBackground(this.getDrawable(R.drawable.textview_border_gray));
+//            button.setTypeface(null, button.getTypeface().NORMAL);
+            button.setTypeface(null, Typeface.NORMAL);
             button.setTextColor(Color.GRAY);
 
         }

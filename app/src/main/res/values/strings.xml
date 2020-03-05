@@ -19,6 +19,7 @@
     <string name="gesti_n_management">Gestión (management) (*)</string>
     <string name="tipo_de_acto_o_condici_n_subtype">Tipo de acto o condición (subType) (*)</string>
     <string name="descripci_n_text">Descripción (text) (*)</string>
+    <string name="descripci_n_text_">Describa el caso</string>
     <string name="fotograf_as">Fotografías</string>
     <string name="nivel_de_riesgo">Nivel de Riesgo (*)</string>
     <string name="fecha_estimada_de_cierre">Fecha estimada de cierre (*)</string>
@@ -29,6 +30,15 @@
     <string name="positionFormat">9999</string>
     <string name="risklevel">Nivel de Riesgo</string>
     <string name="idformat">99999</string>
+    <string name="low_risk">Low Risk</string>
+    <string name="med_risk">Med. Risk</string>
+    <string name="high_risk">High Risk</string>
+    <string name="acto">Acto</string>
+    <string name="condici_n">Condición</string>
+    <string name="Fecha">Fecha aaaa/mm/dd</string>
+    <string name="hint_ic_user">icono de usuario</string>
+    <string name="statusdate">Fecha del Status</string>
+    <string name="substatus">subStatus</string>
     <!--    <string name="guardar">Guardar</string>-->
 
     <string-array name="projects_array">

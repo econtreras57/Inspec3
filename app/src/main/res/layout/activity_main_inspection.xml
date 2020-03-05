@@ -46,6 +46,7 @@
                 android:background="@drawable/ic_user"
                 android:backgroundTint="@color/gray"
                 android:backgroundTintMode="add"
+                android:contentDescription="@string/hint_ic_user"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_titDocActivity" />
 
@@ -76,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="statusDate"
+                android:text="@string/statusdate"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="@+id/tv_status"
                 app:layout_constraintTop_toBottomOf="@+id/tv_status" />
@@ -89,7 +90,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
-                android:text="subStatus"
+                android:text="@string/substatus"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/tv_statusDate"
@@ -124,43 +125,39 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <RadioGroup
 
-                android:id="@+id/toggleButtonsPlan"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleGroupNP"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:orientation="horizontal"
-                android:tag="btnGroupPlanned"
-                android:weightSum="10"
+                android:weightSum="12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_titTipo"
-                app:layout_constraintTop_toBottomOf="@+id/tv_titTipo">
+                app:layout_constraintTop_toBottomOf="@+id/tv_titTipo"
+                app:singleSelection="true">
 
-                <Button
-                    android:id="@+id/radio_planned"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:background="@drawable/textview_border_gray"
-                    android:onClick="onRadioButtonClicked"
-                    android:tag="btnPlanned"
-                    android:text="@string/planeada"
-                    android:textColor="@color/silver" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button1"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:onClick="OnButtonG1Checked"
+                    android:text="@string/planeada" />
 
-                <Button
-                    android:id="@+id/radio_notPlanned"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:background="@drawable/textview_border_gray"
-                    android:onClick="onRadioButtonClicked"
-                    android:tag="btnNotPlanned"
-                    android:text="@string/no_planeada"
-                    android:textColor="@color/silver" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button2"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:onClick="OnButtonG1Checked"
+                    android:text="@string/no_planeada" />
 
-            </RadioGroup>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
 
             <TextView
                 android:id="@+id/tv_titProject"
@@ -168,8 +165,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/proyecto"
-                app:layout_constraintStart_toStartOf="@+id/toggleButtonsPlan"
-                app:layout_constraintTop_toBottomOf="@+id/toggleButtonsPlan" />
+                app:layout_constraintStart_toStartOf="@+id/tv_titTipo"
+                app:layout_constraintTop_toBottomOf="@+id/toggleGroupNP" />
 
             <Spinner
                 android:id="@+id/spinner_project"
@@ -263,11 +260,13 @@
                 android:layout_marginEnd="16dp"
                 android:autofillHints="@string/Hint_responsible"
                 android:ems="10"
+                android:hint="@string/apellidos_nombres"
                 android:inputType="textPersonName"
                 android:text="@string/apellidos_nombres"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_titResponsible"
-                app:layout_constraintTop_toBottomOf="@+id/tv_titResponsible" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_titResponsible"
+                tools:ignore="LabelFor" />
 
             <View
                 android:id="@+id/divider"

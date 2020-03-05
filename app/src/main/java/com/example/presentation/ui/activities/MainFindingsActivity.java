@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -52,22 +53,29 @@ public class MainFindingsActivity
     ImageView imageView1;
     ImageView imageView2;
 
-    Button btnActo;
-    Button btnCondicion;
-
-    Button btnLowRisk;
-    Button btnMedRisk;
-    Button btnHighRisk;
+//    Button btnActo;
+//    Button btnCondicion;
+//
+//    Button btnLowRisk;
+//    Button btnMedRisk;
+//    Button btnHighRisk;
 
     Spinner spinnerManagement;
     Spinner spinnerSubType;
+
+    Button buttonA;
+    Button buttonC;
+
+    Button button1;
+    Button button2;
+    Button button3;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_finding2);
+        setContentView(R.layout.activity_main_finding3);
 
         // Get the Intent that started this activity and extract incoming data
 
@@ -80,31 +88,34 @@ public class MainFindingsActivity
         int position = Integer.parseInt(message);   // posición del arreglo (o -1 si nuevo)
 
         // Set and load fields on screen (and other objects on screen)
-        btnActo=findViewById(R.id.radio_acto);
-        btnCondicion=findViewById(R.id.radio_condicion);
+
+        buttonA=findViewById(R.id.buttonA);
+        buttonC=findViewById(R.id.buttonC);
+
+        switchButton(buttonA,SWITCH_BUTTON_OFF);
+        switchButton(buttonC,SWITCH_BUTTON_OFF);
 
         if (findings.getType()==null) findings.setType("");
         if (findings.getType().equalsIgnoreCase("Acto"))
-            switchButton(btnActo, SWITCH_BUTTON_ON);
+            switchButton(buttonA, SWITCH_BUTTON_ON);
         if (findings.getType().equalsIgnoreCase("Condición"))
-            switchButton(btnCondicion, SWITCH_BUTTON_ON);
+            switchButton(buttonC, SWITCH_BUTTON_ON);
 
+        button1=findViewById(R.id.button1);
+        button2=findViewById(R.id.button2);
+        button3=findViewById(R.id.button3);
 
-        btnLowRisk=findViewById(R.id.radio_lowRisk);
-        btnMedRisk=findViewById(R.id.radio_mediumRisk);
-        btnHighRisk=findViewById(R.id.radio_highRisk);
-
-        switchButton(btnLowRisk,SWITCH_BUTTON_OFF);
-        switchButton(btnMedRisk,SWITCH_BUTTON_OFF);
-        switchButton(btnHighRisk,SWITCH_BUTTON_OFF);
+        switchButton(button1,SWITCH_BUTTON_OFF);
+        switchButton(button2,SWITCH_BUTTON_OFF);
+        switchButton(button3,SWITCH_BUTTON_OFF);
 
         if (findings.getRiskLevel()==null) findings.setRiskLevel("");
         if (findings.getRiskLevel().equalsIgnoreCase("Low"))
-            switchButton(btnLowRisk,SWITCH_BUTTON_ON);
+            switchButton(button1,SWITCH_BUTTON_ON);
         if (findings.getRiskLevel().equalsIgnoreCase("Medium"))
-            switchButton(btnMedRisk,SWITCH_BUTTON_ON);
+            switchButton(button2,SWITCH_BUTTON_ON);
         if (findings.getRiskLevel().equalsIgnoreCase("High"))
-            switchButton(btnHighRisk,SWITCH_BUTTON_ON);
+            switchButton(button3,SWITCH_BUTTON_ON);
 
 
         // para las fotos
@@ -197,95 +208,50 @@ public class MainFindingsActivity
         return null;
     }
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-//        boolean checked = ((RadioButton) view).isChecked();
-        // Check which radio button was clicked
-//        switch(view.getId()) {
-//            case R.id.radio_lowRisk:
-//                if (checked)
-//                    // Pirates are the best
-//                    break;
-//            case R.id.radio_mediumRisk:
-//                if (checked)
-//                    // Ninjas rule
-//                    break;
-//            case R.id.radio_highRisk:
-//                if (checked)
-//                    // Ninjas rule
-//                    break;
-//        }
+    public void OnButtonG1Checked (View view) {
 
-        RadioGroup rg = (RadioGroup) ((Button) view).getParent();
-        String rgTag = rg.getTag().toString();
+        switchButton(buttonA, SWITCH_BUTTON_OFF);
+        switchButton(buttonC, SWITCH_BUTTON_OFF);
 
-        switch (rgTag) {
-            case "btnGroupTipoAC":
-                setBtnGroupTipoAC(view);
-                break;
-            case "btnGroupRiskLevel":
-                setBtnGroupRiskLevel(view);
-                break;
+        switch (view.getId()) {
+            case R.id.buttonA:
+                switchButton(buttonA, SWITCH_BUTTON_ON); break;
+            case R.id.buttonC:
+                switchButton(buttonC, SWITCH_BUTTON_ON); break;
+
         }
     }
 
-    public void setBtnGroupTipoAC(View view) {
+    public void OnButtonG2Checked (View view) {
 
-        // colorea botones Acto, Condición
+        switchButton(button1, SWITCH_BUTTON_OFF);
+        switchButton(button2, SWITCH_BUTTON_OFF);
+        switchButton(button3, SWITCH_BUTTON_OFF);
 
-        String tagButton = ((Button) view).getTag().toString();
-        switch (tagButton) {
-            case "btnActo":
-                switchButton(btnActo, SWITCH_BUTTON_ON);
-                switchButton(btnCondicion, SWITCH_BUTTON_OFF);
-                break;
-            case "btnCondicion":
-                switchButton(btnActo, SWITCH_BUTTON_OFF);
-                switchButton(btnCondicion, SWITCH_BUTTON_ON);
-                break;
+        switch (view.getId()) {
+            case R.id.button1:
+                 switchButton(button1, SWITCH_BUTTON_ON); break;
+            case R.id.button2:
+                switchButton(button2, SWITCH_BUTTON_ON); break;
+            case R.id.button3:
+                switchButton(button3, SWITCH_BUTTON_ON); break;
+
         }
-
-    }
-
-    public void setBtnGroupRiskLevel(View view) {
-
-        // colorea botones de Nivel de Riesgo { bajo, medio, alto }
-
-        String tagButton = ((Button) view).getTag().toString();
-        switch (tagButton) {
-            case "btnLowRisk":
-                switchButton(btnLowRisk, SWITCH_BUTTON_ON);
-                switchButton(btnMedRisk, SWITCH_BUTTON_OFF);
-                switchButton(btnHighRisk, SWITCH_BUTTON_OFF);
-                break;
-            case "btnMedRisk":
-                switchButton(btnLowRisk, SWITCH_BUTTON_OFF);
-                switchButton(btnMedRisk, SWITCH_BUTTON_ON);
-                switchButton(btnHighRisk, SWITCH_BUTTON_OFF);
-            break;
-            case "btnHighRisk":
-                switchButton(btnLowRisk, SWITCH_BUTTON_OFF);
-                switchButton(btnMedRisk, SWITCH_BUTTON_OFF);
-                switchButton(btnHighRisk, SWITCH_BUTTON_ON);
-                break;
-        }
-
     }
 
     public void switchButton(Button button, Boolean on_off) {
         if (on_off == SWITCH_BUTTON_ON) {
 
             // Switch the button on
-            button.setBackground(this.getDrawable(R.drawable.textview_border_black));
-            button.setTypeface(null, button.getTypeface().BOLD);
+//            button.setTypeface(null, button.getTypeface().BOLD);
+            button.setTypeface(null, Typeface.BOLD);
             button.setTextColor(Color.BLACK);
 
         } else {
 
             // Switch the button off
-            button.setBackground(this.getDrawable(R.drawable.textview_border_gray));
-            button.setTypeface(null, button.getTypeface().NORMAL);
-//            button.setTextColor(getResources().getColor(R.color.silver));
+//            button.setTypeface(null, button.getTypeface().NORMAL);
+            button.setTypeface(null, Typeface.NORMAL);
             button.setTextColor(Color.GRAY);
 
         }

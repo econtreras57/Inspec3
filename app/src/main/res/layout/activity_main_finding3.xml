@@ -55,14 +55,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            android:layout_marginTop="8dp"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayoutHeader"
             tools:context="com.example.presentation.ui.activities.MainFindingsActivity">
-            >
 
             <TextView
                 android:id="@+id/tv_titTipo"
@@ -74,43 +71,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <RadioGroup
-
-                android:id="@+id/toggleButtonsTipo"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleGroupAC"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:orientation="horizontal"
-                android:tag="btnGroupTipoAC"
-                android:weightSum="10"
+                android:weightSum="12"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_titTipo"
-                app:layout_constraintTop_toBottomOf="@+id/tv_titTipo">
+                app:layout_constraintTop_toBottomOf="@+id/tv_titTipo"
+                app:singleSelection="true">
 
-                <Button
-                    android:id="@+id/radio_acto"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:background="@drawable/textview_border_gray"
-                    android:onClick="onRadioButtonClicked"
-                    android:tag="btnActo"
-                    android:text="Acto"
-                    android:textColor="@color/silver" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonA"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:onClick="OnButtonG1Checked"
+                    android:text="@string/acto" />
 
-                <Button
-                    android:id="@+id/radio_condicion"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:background="@drawable/textview_border_gray"
-                    android:onClick="onRadioButtonClicked"
-                    android:tag="btnCondicion"
-                    android:text="Condición"
-                    android:textColor="@color/silver" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonC"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:onClick="OnButtonG1Checked"
+                    android:text="@string/condici_n" />
 
-            </RadioGroup>
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
 
             <TextView
                 android:id="@+id/tv_titManagement"
@@ -118,8 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/gesti_n_management"
-                app:layout_constraintStart_toStartOf="@+id/toggleButtonsTipo"
-                app:layout_constraintTop_toBottomOf="@+id/toggleButtonsTipo" />
+                app:layout_constraintStart_toStartOf="@+id/tv_titTipo"
+                app:layout_constraintTop_toBottomOf="@+id/toggleGroupAC" />
 
             <Spinner
                 android:id="@+id/spinner_management"
@@ -165,9 +157,11 @@
                 android:layout_width="0dp"
                 android:layout_height="144dp"
                 android:layout_marginTop="8dp"
+                android:autofillHints="@string/descripci_n_text"
                 android:background="@drawable/textview_border_gray"
                 android:ems="10"
                 android:gravity="start|top"
+                android:hint="@string/descripci_n_text_"
                 android:inputType="textMultiLine"
                 android:padding="8dp"
                 app:layout_constraintEnd_toEndOf="@+id/spinner_subType"
@@ -193,56 +187,53 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_titPhotos"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-            <RadioGroup
 
-                android:id="@+id/toggleButtonsRiskLevel"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggleGroup"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-
-                android:tag="btnGroupRiskLevel"
                 android:weightSum="12"
                 app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/tv_titRiskLevel"
-                app:layout_constraintTop_toBottomOf="@+id/tv_titRiskLevel">
+                app:layout_constraintTop_toBottomOf="@+id/tv_titRiskLevel"
+                app:singleSelection="true">
 
-                <Button
-                    android:id="@+id/radio_lowRisk"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button1"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+
+                    android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:background="@drawable/textview_border_black"
                     android:backgroundTint="@color/translucent_green"
-                    android:onClick="onRadioButtonClicked"
-                    android:tag="btnLowRisk"
-                    android:text="Low Risk"
-                    android:textColor="@color/gray" />
+                    android:onClick="OnButtonG2Checked"
+                    android:text="@string/low_risk" />
 
-                <Button
-                    android:id="@+id/radio_mediumRisk"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button2"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+
+                    android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:background="@drawable/textview_border_white"
                     android:backgroundTint="@color/translucent_yellow"
-                    android:onClick="onRadioButtonClicked"
-                    android:tag="btnMedRisk"
-                    android:text="Med. Risk"
-                    android:textColor="@color/gray" />
+                    android:onClick="OnButtonG2Checked"
+                    android:text="@string/med_risk" />
 
-                <Button
-                    android:id="@+id/radio_highRisk"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button3"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+
+                    android:layout_height="match_parent"
                     android:layout_weight="4"
-                    android:background="@drawable/textview_border_black"
                     android:backgroundTint="@color/translucent_red"
-                    android:onClick="onRadioButtonClicked"
-                    android:tag="btnHighRisk"
-                    android:text="High Risk"
-                    android:textColor="@color/gray" />
-            </RadioGroup>
+                    android:onClick="OnButtonG2Checked"
+                    android:text="@string/high_risk" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
 
             <TextView
                 android:id="@+id/tv_planedClosureDate"
@@ -250,19 +241,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/fecha_estimada_de_cierre"
-                app:layout_constraintStart_toStartOf="@+id/toggleButtonsRiskLevel"
-                app:layout_constraintTop_toBottomOf="@+id/toggleButtonsRiskLevel" />
+                app:layout_constraintStart_toStartOf="@+id/tv_titRiskLevel"
+                app:layout_constraintTop_toBottomOf="@+id/toggleGroup" />
 
             <EditText
                 android:id="@+id/et_planedClosureDate"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:drawableRight="@android:drawable/ic_menu_today"
+                android:layout_marginEnd="16dp"
+                android:autofillHints="@string/Fecha"
+                android:drawableEnd="@android:drawable/ic_menu_today"
                 android:ems="10"
-                android:hint="2020-02-27"
+                android:hint="@string/Fecha"
                 android:inputType="date"
-                app:layout_constraintEnd_toEndOf="@+id/toggleButtonsRiskLevel"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_planedClosureDate"
                 app:layout_constraintTop_toBottomOf="@+id/tv_planedClosureDate" />
 
@@ -317,8 +310,10 @@
                     android:layout_weight="5"
                     android:background="@drawable/textview_border_gray"
                     android:clickable="true"
+                    android:contentDescription="@string/fotograf_as"
                     android:onClick="onImgClicked"
-                    app:srcCompat="@android:drawable/ic_menu_gallery" />
+                    app:srcCompat="@android:drawable/ic_menu_gallery"
+                    android:focusable="true" />
 
                 <ImageView
                     android:id="@+id/imageView2"
@@ -326,6 +321,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="5"
                     android:background="@drawable/textview_border_gray"
+                    android:contentDescription="@string/fotograf_as"
                     app:srcCompat="@android:drawable/ic_menu_gallery" />
 
             </LinearLayout>
