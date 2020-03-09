@@ -3,7 +3,9 @@
     package="com.example.inspec3">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
 
     <application
@@ -14,18 +16,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeLightBridge">
 
-        <activity android:name="com.example.presentation.ui.activities.MainFindingsActivity"
+        <activity
+            android:name="com.example.presentation.ui.activities.MainFindingsActivity"
             android:screenOrientation="fullSensor" />
 
         <activity android:name="com.example.presentation.ui.activities.MainInspectionActivity" />
         <activity android:name="com.example.presentation.ui.activities.Main2Activity" />
         <activity android:name="com.example.presentation.ui.activities.MainActivity">
+        </activity>
+        <activity android:name="com.example.presentation.ui.activities.Login1Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
