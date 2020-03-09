@@ -95,8 +95,8 @@ public class MainInspectionActivity
         spinnerSitesLoad();
 
 
-        button1=findViewById(R.id.button1);
-        button2=findViewById(R.id.button2);
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
 
         if (inspection.getPlan() == null) inspection.setPlan("");
         if (inspection.getPlan().equalsIgnoreCase("Planned"))
@@ -250,16 +250,18 @@ public class MainInspectionActivity
         return null;
     }
 
-    public void OnButtonG1Checked (View view) {
+    public void OnButtonG1Checked(View view) {
 
         switchButton(button1, SWITCH_BUTTON_OFF);
         switchButton(button2, SWITCH_BUTTON_OFF);
 
         switch (view.getId()) {
             case R.id.button1:
-                switchButton(button1, SWITCH_BUTTON_ON); break;
+                switchButton(button1, SWITCH_BUTTON_ON);
+                break;
             case R.id.button2:
-                switchButton(button2, SWITCH_BUTTON_ON); break;
+                switchButton(button2, SWITCH_BUTTON_ON);
+                break;
 
         }
     }

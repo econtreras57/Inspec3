@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -39,7 +40,8 @@ import static com.example.presentation.utils.Constants.REQUEST_IMAGE_CAPTURE;
 import static com.example.presentation.utils.Constants.SWITCH_BUTTON_OFF;
 import static com.example.presentation.utils.Constants.SWITCH_BUTTON_ON;
 
-/** Datos Registro Hallazgo, con foto
+/**
+ * Datos Registro Hallazgo, con foto
  * 2020-02
  */
 
@@ -53,13 +55,6 @@ public class MainFindingsActivity
     ImageView imageView1;
     ImageView imageView2;
 
-//    Button btnActo;
-//    Button btnCondicion;
-//
-//    Button btnLowRisk;
-//    Button btnMedRisk;
-//    Button btnHighRisk;
-
     Spinner spinnerManagement;
     Spinner spinnerSubType;
 
@@ -69,7 +64,6 @@ public class MainFindingsActivity
     Button button1;
     Button button2;
     Button button3;
-
 
 
     @Override
@@ -82,40 +76,40 @@ public class MainFindingsActivity
         Intent intent = getIntent();
         Bundle bundle = intent.getBundleExtra("objetoFindings");
         this.findings = (Findings) bundle.getSerializable("objetoFindings");
-        if (findings==null) findings = new Findings();
+        if (findings == null) findings = new Findings();
 
         String message = intent.getStringExtra(EXTRA_MESSAGE);
         int position = Integer.parseInt(message);   // posición del arreglo (o -1 si nuevo)
 
         // Set and load fields on screen (and other objects on screen)
 
-        buttonA=findViewById(R.id.buttonA);
-        buttonC=findViewById(R.id.buttonC);
+        buttonA = findViewById(R.id.buttonA);
+        buttonC = findViewById(R.id.buttonC);
 
-        switchButton(buttonA,SWITCH_BUTTON_OFF);
-        switchButton(buttonC,SWITCH_BUTTON_OFF);
+        switchButton(buttonA, SWITCH_BUTTON_OFF);
+        switchButton(buttonC, SWITCH_BUTTON_OFF);
 
-        if (findings.getType()==null) findings.setType("");
+        if (findings.getType() == null) findings.setType("");
         if (findings.getType().equalsIgnoreCase("Acto"))
             switchButton(buttonA, SWITCH_BUTTON_ON);
         if (findings.getType().equalsIgnoreCase("Condición"))
             switchButton(buttonC, SWITCH_BUTTON_ON);
 
-        button1=findViewById(R.id.button1);
-        button2=findViewById(R.id.button2);
-        button3=findViewById(R.id.button3);
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+        button3 = findViewById(R.id.button3);
 
-        switchButton(button1,SWITCH_BUTTON_OFF);
-        switchButton(button2,SWITCH_BUTTON_OFF);
-        switchButton(button3,SWITCH_BUTTON_OFF);
+        switchButton(button1, SWITCH_BUTTON_OFF);
+        switchButton(button2, SWITCH_BUTTON_OFF);
+        switchButton(button3, SWITCH_BUTTON_OFF);
 
-        if (findings.getRiskLevel()==null) findings.setRiskLevel("");
+        if (findings.getRiskLevel() == null) findings.setRiskLevel("");
         if (findings.getRiskLevel().equalsIgnoreCase("Low"))
-            switchButton(button1,SWITCH_BUTTON_ON);
+            switchButton(button1, SWITCH_BUTTON_ON);
         if (findings.getRiskLevel().equalsIgnoreCase("Medium"))
-            switchButton(button2,SWITCH_BUTTON_ON);
+            switchButton(button2, SWITCH_BUTTON_ON);
         if (findings.getRiskLevel().equalsIgnoreCase("High"))
-            switchButton(button3,SWITCH_BUTTON_ON);
+            switchButton(button3, SWITCH_BUTTON_ON);
 
 
         // para las fotos
@@ -128,12 +122,15 @@ public class MainFindingsActivity
         tv_titDocActivity = findViewById(R.id.tv_titDocActivity);
 
 
-        if (findings.getPhoto_1()==null) findings.setPhoto_1("");
-        if (findings.getPhoto_2()==null) findings.setPhoto_2("");
+        if (findings.getPhoto_1() == null) findings.setPhoto_1("");
+        if (findings.getPhoto_2() == null) findings.setPhoto_2("");
 
-        imageView1.setImageBitmap( ImageUtil.convert(findings.getPhoto_1()) );
-        imageView2.setImageBitmap( ImageUtil.convert(findings.getPhoto_2()) );
+        imageView1.setImageBitmap(ImageUtil.convert(findings.getPhoto_1()));
+        imageView2.setImageBitmap(ImageUtil.convert(findings.getPhoto_2()));
 
+        EditText et_text = findViewById(R.id.et_text);
+        et_text.setText(findings.getText());
+        if (et_text.getText()==null) et_text.setText("");
 
         String title_add = getString(nuevo_hallazgo);
         String title_upd = getString(edita_hallazgo, message);
@@ -172,7 +169,7 @@ public class MainFindingsActivity
         spinnerSubType.setSelection(adapterSubType.getPosition(findings.getSubType()));
         spinnerSubType.setOnItemSelectedListener(this);
     }
-    
+
     @Override
     public void findingsCreated(Findings findings) {
 
@@ -208,21 +205,23 @@ public class MainFindingsActivity
         return null;
     }
 
-    public void OnButtonG1Checked (View view) {
+    public void OnButtonG1Checked(View view) {
 
         switchButton(buttonA, SWITCH_BUTTON_OFF);
         switchButton(buttonC, SWITCH_BUTTON_OFF);
 
         switch (view.getId()) {
             case R.id.buttonA:
-                switchButton(buttonA, SWITCH_BUTTON_ON); break;
+                switchButton(buttonA, SWITCH_BUTTON_ON);
+                break;
             case R.id.buttonC:
-                switchButton(buttonC, SWITCH_BUTTON_ON); break;
+                switchButton(buttonC, SWITCH_BUTTON_ON);
+                break;
 
         }
     }
 
-    public void OnButtonG2Checked (View view) {
+    public void OnButtonG2Checked(View view) {
 
         switchButton(button1, SWITCH_BUTTON_OFF);
         switchButton(button2, SWITCH_BUTTON_OFF);
@@ -230,11 +229,14 @@ public class MainFindingsActivity
 
         switch (view.getId()) {
             case R.id.button1:
-                 switchButton(button1, SWITCH_BUTTON_ON); break;
+                switchButton(button1, SWITCH_BUTTON_ON);
+                break;
             case R.id.button2:
-                switchButton(button2, SWITCH_BUTTON_ON); break;
+                switchButton(button2, SWITCH_BUTTON_ON);
+                break;
             case R.id.button3:
-                switchButton(button3, SWITCH_BUTTON_ON); break;
+                switchButton(button3, SWITCH_BUTTON_ON);
+                break;
 
         }
     }
@@ -280,7 +282,7 @@ public class MainFindingsActivity
         // Another interface callback
 
     }
-    
+
     public void onImgClicked(View v) {
 
         CharSequence text = "Clic imagen... ";   // validar primero

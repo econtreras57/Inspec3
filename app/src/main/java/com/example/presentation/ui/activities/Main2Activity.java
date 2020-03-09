@@ -22,7 +22,8 @@ import java.util.List;
 
 import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
 
-/** Muestra Hallazgos de una Inspección
+/**
+ * Muestra Hallazgos de una Inspección
  * 2020-02
  */
 
@@ -30,7 +31,7 @@ public class Main2Activity
         extends BaseActivity
         implements
         FindingsView,
-        ListAdapterFindings.OnItemClickListener  {
+        ListAdapterFindings.OnItemClickListener {
 
     RecyclerView rvFindings;
 
@@ -42,7 +43,7 @@ public class Main2Activity
     private ListAdapterFindings.OnItemClickListener mlistenerFindings;
     private View v;
 
-    protected void initialSetup () {
+    protected void initialSetup() {
 
         Integer idNum = listaFindings.size();
 
@@ -99,11 +100,11 @@ public class Main2Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        for (int i=0; i<3; i++) initialSetup();
+        for (int i = 0; i < 3; i++) initialSetup();
 
         Intent intent = getIntent();
         Bundle intentBundleExtra = intent.getBundleExtra("objetoInspection");
-        if (intentBundleExtra!= null) {
+        if (intentBundleExtra != null) {
             this.inspection = (Inspection) intentBundleExtra.getSerializable("objetoInspection");
         }   // Recibe objeto inspection
 
@@ -116,19 +117,23 @@ public class Main2Activity
         TextView tv_status = findViewById(R.id.tv_status);
         TextView tv_statusDate = findViewById(R.id.tv_statusDate);
 
-        tv_position.setText( inspection.getId().toString() );
-        tv_subStatus.setText( inspection.getSubStatus().toString() );
-        tv_project.setText( inspection.getProject());
-        tv_inspector.setText( inspection.getInspector());
-        tv_site.setText( inspection.getSite());
-        tv_contractor.setText( inspection.getContractor());
-        tv_status.setText( inspection.getStatus());
-        tv_statusDate.setText( inspection.getStatusDate());
+        tv_position.setText(inspection.getId().toString());
+        tv_subStatus.setText(inspection.getSubStatus().toString());
+        tv_project.setText(inspection.getProject());
+        tv_inspector.setText(inspection.getInspector());
+        tv_site.setText(inspection.getSite());
+        tv_contractor.setText(inspection.getContractor());
+        tv_status.setText(inspection.getStatus());
+        tv_statusDate.setText(inspection.getStatusDate());
 
-        if ( !tv_status.getText().equals("Abierto") ) {
+        if (!tv_status.getText().equals("Abierto")) {
             tv_subStatus.setTextColor(Color.BLACK);
             tv_status.setTextColor(Color.BLACK);
-            tv_status.setBackground(this.getDrawable(R.drawable.textview_border_blue));
+            tv_status.setBackground(this.getDrawable(R.drawable.textview_border_accent_off));
+        } else {
+            tv_subStatus.setTextColor(this.getResources().getColor(R.color.colorAccent));
+            tv_status.setTextColor(this.getResources().getColor(R.color.colorAccent));
+            tv_status.setBackground(this.getDrawable(R.drawable.textview_border_accent));
         }
 
         rvFindings = findViewById(R.id.rvFindings);
@@ -209,7 +214,7 @@ public class Main2Activity
         // Y envía el paquete a siguiente pantlla...
         Intent intent = new Intent(this, MainFindingsActivity.class);
         intent.putExtra("objetoFindings", bundle);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY); // <-- anula el retorno de foto
 
         String message = tv_position.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
@@ -221,7 +226,7 @@ public class Main2Activity
     public void onAddClicked(View v) {
 
         Context context = getApplicationContext();
-        CharSequence text = "Click ADD button " ;
+        CharSequence text = "Click ADD button ";
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
@@ -233,7 +238,7 @@ public class Main2Activity
         // Y envía ese paquete a la siguiente pantlla...
         Intent intent = new Intent(this, MainFindingsActivity.class);
         intent.putExtra("objetoFindings", bundle);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY); // <-- anula el retorno de foto
 
         String message = "-1";
         intent.putExtra(EXTRA_MESSAGE, message);
@@ -245,7 +250,7 @@ public class Main2Activity
     public void onHeaderClicked(View v) {
 
         Context context = getApplicationContext();
-        CharSequence text = "Click HEADER button " ;
+        CharSequence text = "Click HEADER button ";
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();

@@ -20,7 +20,8 @@ import java.util.List;
 
 import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
 
-/** Muestra Inspecciones
+/**
+ * Muestra Inspecciones
  * 2020-02
  */
 
@@ -39,7 +40,7 @@ public class MainActivity
     private ListAdapterInspection.OnItemClickListener mlistenerInspection;
     private View v;
 
-    protected void initialSetup () {
+    protected void initialSetup() {
 
         inspection = new Inspection();
         inspection.setId(1);
@@ -205,7 +206,7 @@ public class MainActivity
     public void onAddClicked(View v) {
 
         Context context = getApplicationContext();
-        CharSequence text = "Click ADD button " ;
+        CharSequence text = "Click ADD button ";
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();

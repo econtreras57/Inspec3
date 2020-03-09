@@ -73,7 +73,7 @@ public class ListAdapterInspection
 
         Inspection inspection = items.get(position);    // carga objeto INSPECTION( position )
 
-        holder.position.setText(Integer.toString(position+1));     // guarda la posición
+        holder.position.setText(Integer.toString(position + 1));     // guarda la posición
         holder.project.setText(inspection.getProject());
         holder.inspector.setText(inspection.getInspector());
         holder.site.setText(inspection.getSite());
@@ -82,11 +82,14 @@ public class ListAdapterInspection
         holder.statusDate.setText(inspection.getStatusDate());
         holder.subStatus.setText(inspection.getSubStatus());
 
-        if ( !inspection.getStatus().equals("Abierto") ) {
+        if (!inspection.getStatus().equals("Abierto")) {
             holder.subStatus.setTextColor(Color.BLACK);
             holder.status.setTextColor(Color.BLACK);
-            holder.status.setBackground(this.mContext.getDrawable(R.drawable.textview_border_blue));
-
+            holder.status.setBackground(this.mContext.getDrawable(R.drawable.textview_border_accent_off));
+        } else {
+            holder.subStatus.setTextColor(mContext.getResources().getColor(R.color.colorAccent));
+            holder.status.setTextColor(mContext.getResources().getColor(R.color.colorAccent));
+            holder.status.setBackground(this.mContext.getDrawable(R.drawable.textview_border_accent));
         }
     }
 
@@ -130,7 +133,7 @@ public class ListAdapterInspection
         public void onClick(View v) {
 
             int i = Integer.parseInt(position.getText().toString());
-            Inspection inspection = items.get(i-1);
+            Inspection inspection = items.get(i - 1);
 
             mlistener.onItemClicked(v, inspection);
 

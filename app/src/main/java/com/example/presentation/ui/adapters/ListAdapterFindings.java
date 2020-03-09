@@ -16,6 +16,8 @@ import com.example.inspec3.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.inspec3.R.color.colorAccent;
+
 
 public class ListAdapterFindings
         extends
@@ -70,7 +72,7 @@ public class ListAdapterFindings
 
         Findings findings = items.get(position);    // carga objeto FINDINGS( position )
 
-        holder.position.setText(Integer.toString(position+1));     // guarda la posición
+        holder.position.setText(Integer.toString(position + 1));     // guarda la posición
         holder.id.setText(findings.getId().toString());
         holder.risk.setText(findings.getRiskLevel());
         holder.subtype.setText(findings.getSubType());
@@ -86,22 +88,22 @@ public class ListAdapterFindings
 
         switch (findings.getRiskLevel()) {
             case "HIGH":
-                holder.risk.setBackgroundColor( res.getColor(R.color.translucent_red) );
+                holder.risk.setBackgroundColor(res.getColor(R.color.translucent_red));
                 break;
             case "Medium":
-                holder.risk.setBackgroundColor( res.getColor(R.color.translucent_yellow) );
+                holder.risk.setBackgroundColor(res.getColor(R.color.translucent_yellow));
                 break;
             default:
-                holder.risk.setBackgroundColor( res.getColor(R.color.translucent_green) );
+                holder.risk.setBackgroundColor(res.getColor(R.color.translucent_green));
                 break;
         }
 
-//        if (findings.getStatus() != "Abierto") {
-        if ( !findings.getStatus().equalsIgnoreCase("Abierto") ) {
+        if (!findings.getStatus().equalsIgnoreCase("Abierto")) {
             holder.status.setTextColor(Color.BLACK);
             holder.status.setBackground(null);
-//            holder.status.setBackground(this.mContext.getDrawable(R.drawable.textview_border_blue));
-            // <-- ok para saber
+        } else {
+            holder.status.setTextColor(res.getColor(colorAccent));
+            holder.status.setBackground(mContext.getDrawable(R.drawable.textview_border_accent));
         }
 
     }
@@ -144,7 +146,7 @@ public class ListAdapterFindings
         public void onClick(View v) {
 
             int i = Integer.parseInt(position.getText().toString());
-            Findings findings = items.get(i-1);
+            Findings findings = items.get(i - 1);
 
             mlistener.onItemClicked(v, findings);
 
