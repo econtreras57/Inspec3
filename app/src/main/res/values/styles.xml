@@ -12,7 +12,9 @@
         <!-- Add attributes here -->
     </style>
 
-    <style name="AppThemeLightBridge" parent="Theme.MaterialComponents.Light.Bridge">
+    <style name="AppThemeLightBridge" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+<!--    <style name="AppThemeLightBridge" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">-->
+<!--    <style name="AppThemeLightBridge" parent="Theme.MaterialComponents.Light.Bridge">-->
         <!-- Add attributes here -->
 
         <!--        <item name="colorPrimary">#212121</item>-->

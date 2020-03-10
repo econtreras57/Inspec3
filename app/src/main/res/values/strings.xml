@@ -11,6 +11,8 @@
     <string name="apellidos_nombres">Apellidos, Nombres</string>
     <string name="nueva_inspecci_n">Nueva Inspección</string>
     <string name="edita_inspecci_n">Inspección : %1$s</string>
+    <string name="lista_inspecciones">Inspecciones HSE</string>
+    <string name="lista_hallazgos">Inspección HSE</string>
     <string name="no_planeada">No planeada</string>
     <string name="Hint_responsible">Nombre del responsable</string>
     <string name="nuevo_hallazgo">Nuevo Hallazgo</string>

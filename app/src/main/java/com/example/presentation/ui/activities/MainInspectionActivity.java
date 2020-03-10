@@ -1,37 +1,27 @@
 package com.example.presentation.ui.activities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.appcompat.widget.Toolbar;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.domain.model.Inspection;
 import com.example.inspec3.R;
-import com.example.presentation.utils.ImageUtil;
 import com.example.presentation.view.InspectionView;
 
 import java.util.ArrayList;
@@ -78,6 +68,13 @@ public class MainInspectionActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_inspection);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        // subtítulo del toolbar luego, al final de esta rutina
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Get the Intent that started this activity and extract incoming data
 
@@ -134,7 +131,10 @@ public class MainInspectionActivity
         String title_add = getString(nueva_inspecci_n);
         String title_upd = getString(edita_inspecci_n, message);
         if (position == -1) {
+            this.getSupportActionBar().setSubtitle(title_add);
             tv_titDocActivity.setText(title_add);
+            View header = findViewById(R.id.constraintLayoutHeader);
+            header.setVisibility(View.GONE);
 
             tv_status.setVisibility(View.INVISIBLE);
             tv_statusDate.setVisibility(View.INVISIBLE);
@@ -143,14 +143,17 @@ public class MainInspectionActivity
             ic_user.setVisibility(View.INVISIBLE);
 
         } else {
+            this.getSupportActionBar().setSubtitle("");
             tv_titDocActivity.setText(title_upd);
+//            findViewById(R.id.constraintLayoutHeader).setVisibility(View.VISIBLE);
+            View header = findViewById(R.id.constraintLayoutHeader);
+            header.setVisibility(View.VISIBLE);
 
             tv_status.setVisibility(View.VISIBLE);
             tv_statusDate.setVisibility(View.VISIBLE);
             tv_subStatus.setVisibility(View.VISIBLE);
             tv_inspector.setVisibility(View.VISIBLE);
             ic_user.setVisibility(View.VISIBLE);
-
         }
 
     }
@@ -312,6 +315,16 @@ public class MainInspectionActivity
 
     public void onButtonSaveClicked(View v) {
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 } // fin clase

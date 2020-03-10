@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -70,6 +72,13 @@ public class MainFindingsActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_finding3);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        // subtítulo del toolbar luego, al final de esta rutina
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         // Get the Intent that started this activity and extract incoming data
 
@@ -138,8 +147,16 @@ public class MainFindingsActivity
             findings.setPhoto_1("");
             findings.setPhoto_2("");
             tv_titDocActivity.setText(title_add);
+            this.getSupportActionBar().setSubtitle(title_add);
+            View header = findViewById(R.id.constraintLayoutHeader);
+            header.setVisibility(View.GONE);
+
         } else {
             tv_titDocActivity.setText(title_upd);
+            this.getSupportActionBar().setSubtitle("");
+            View header = findViewById(R.id.constraintLayoutHeader);
+            header.setVisibility(View.VISIBLE);
+
         }
 
     }
@@ -397,6 +414,16 @@ public class MainFindingsActivity
 
     public void onButtonSaveClicked(View v) {
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle arrow click here
+        if (item.getItemId() == android.R.id.home) {
+            finish(); // close this activity and return to preview activity (if there is any)
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 } // fin clase
