@@ -1,59 +1,35 @@
-package com.example.domain.model;
+package com.example.data.datasource.db.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-@Entity(tableName = "Findings")
-public class Findings
-        implements Serializable {
+@Entity(tableName = "DbFindings")
+public class DbFindings implements Serializable {
+
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     @SerializedName("id")
     private Integer id;
 
-    @SerializedName("inspectionId")
-    private String inspectionId;    // header record is inspection
-    @SerializedName("type")
-    private String type;    // tipo {act, condition}
-    @SerializedName("subType")
-    private String subType;    // ... {acto: no usar x, condición: no tiene procedimiento, falta x}
-    @SerializedName("management")
-    private String management;    // gestión
-    @SerializedName("text")
-    private String text;    // descripción del caso
-    @SerializedName("photo_1")
-    private String photo_1;   //
-    @SerializedName("photo_2")
-    private String photo_2;   //
-    @SerializedName("riskLevel")
-    private String riskLevel;   //
-    @SerializedName("date")
-    private String date;   // date of finding
-    @SerializedName("statusDate")
-    private String statusDate;   // date of last status
-    @SerializedName("planedClosureDate")
-    private String plannedClosureDate;   // estimated date of closure
-    @SerializedName("status")
-    private String status;   // estimated date of closure
+    private String inspectionId;
+    private String type;
+    private String subType;
+    private String management;
+    private String text;
+    private String photo_1;
+    private String photo_2;
+    private String riskLevel;
+    private String date;
+    private String statusDate;
+    private String plannedClosureDate;
+    private String status;
 
-
-    @Ignore
-    public Findings(Integer id) {
-        this.id = id;
-    }
-
-    public Findings() {
-//        this.id = id;
-    }
-
-    @Ignore
-    public Findings(Integer id, String inspectionId, String type, String subType, String management, String text, String photo_1, String photo_2, String riskLevel, String date, String statusDate, String plannedClosureDate, String status) {
+    public DbFindings(Integer id, String inspectionId, String type, String subType, String management, String text, String photo_1, String photo_2, String riskLevel, String date, String statusDate, String plannedClosureDate, String status) {
         this.id = id;
         this.inspectionId = inspectionId;
         this.type = type;
@@ -73,8 +49,16 @@ public class Findings
         return id;
     }
 
-    public void setId(Integer _id) {
-        this.id = _id;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getInspectionId() {
+        return inspectionId;
+    }
+
+    public void setInspectionId(String inspectionId) {
+        this.inspectionId = inspectionId;
     }
 
     public String getType() {
@@ -163,13 +147,5 @@ public class Findings
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getInspectionId() {
-        return inspectionId;
-    }
-
-    public void setInspectionId(String inspectionId) {
-        this.inspectionId = inspectionId;
     }
 }

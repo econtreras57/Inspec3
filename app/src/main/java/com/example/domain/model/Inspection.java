@@ -31,8 +31,8 @@ public class Inspection
     private String subStatus;   // sub-estado inspección {pendiente de X}
 
 
-    @SerializedName("plan")
-    private String plan;    // tipo {planned, not planned}
+    @SerializedName("planned")
+    private String planned;    // tipo {planned, not planned}
 
     @SerializedName("project")
     private String project;    // proyecto
@@ -54,6 +54,22 @@ public class Inspection
 //        this.id = id;
     }
 
+    @Ignore
+    public Inspection(Integer id, String inspector, String date, String statusDate, String status, String subStatusDate, String subStatus, String planned, String project, String contractor, String locType, String site, String responsible) {
+        this.id = id;
+        this.inspector = inspector;
+        this.date = date;
+        this.statusDate = statusDate;
+        this.status = status;
+        this.subStatusDate = subStatusDate;
+        this.subStatus = subStatus;
+        this.planned = planned;
+        this.project = project;
+        this.contractor = contractor;
+        this.locType = locType;
+        this.site = site;
+        this.responsible = responsible;
+    }
 
     public String getInspector() {
         return inspector;
@@ -63,12 +79,12 @@ public class Inspection
         this.inspector = inspector;
     }
 
-    public String getPlan() {
-        return plan;
+    public String getPlanned() {
+        return planned;
     }
 
-    public void setPlan(String plan) {
-        this.plan = plan;
+    public void setPlanned(String planned) {
+        this.planned = planned;
     }
 
     public String getProject() {

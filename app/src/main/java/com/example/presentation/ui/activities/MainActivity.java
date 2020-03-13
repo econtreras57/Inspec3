@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -54,7 +53,7 @@ public class MainActivity
         inspection.setStatusDate("2020-02-14");
         inspection.setStatus("Abierto");
         inspection.setSubStatus("Pendiente de cierre");
-        inspection.setPlan("Planned");
+        inspection.setPlanned("Planned");
 
         listaInspection.add(inspection);
 
@@ -91,7 +90,7 @@ public class MainActivity
         inspection.setStatusDate("2020-02-05");
         inspection.setStatus("Cerrado");
         inspection.setSubStatus("Resuelto");
-        inspection.setPlan("Not Planned");
+        inspection.setPlanned("Not Planned");
 
 
         listaInspection.add(inspection);

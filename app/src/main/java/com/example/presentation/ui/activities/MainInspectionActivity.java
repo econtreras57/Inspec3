@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -95,10 +93,10 @@ public class MainInspectionActivity
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
 
-        if (inspection.getPlan() == null) inspection.setPlan("");
-        if (inspection.getPlan().equalsIgnoreCase("Planned"))
+        if (inspection.getPlanned() == null) inspection.setPlanned("");
+        if (inspection.getPlanned().equalsIgnoreCase("Planned"))
             switchButton(button1, SWITCH_BUTTON_ON);
-        if (inspection.getPlan().equalsIgnoreCase("Not Planned"))
+        if (inspection.getPlanned().equalsIgnoreCase("Not Planned"))
             switchButton(button2, SWITCH_BUTTON_ON);
 
 
