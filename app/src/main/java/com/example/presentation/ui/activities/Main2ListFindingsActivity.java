@@ -29,7 +29,7 @@ import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
  * 2020-02
  */
 
-public class Main2Activity
+public class Main2ListFindingsActivity
         extends BaseActivity
         implements
         FindingsView,
@@ -100,7 +100,7 @@ public class Main2Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main2_list_findings);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);

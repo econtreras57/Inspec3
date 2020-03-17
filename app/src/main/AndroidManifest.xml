@@ -22,10 +22,11 @@
             android:screenOrientation="fullSensor" />
 
         <activity android:name="com.example.presentation.ui.activities.MainInspectionActivity" />
-        <activity android:name="com.example.presentation.ui.activities.Main2Activity" />
-        <activity android:name="com.example.presentation.ui.activities.MainActivity">
+        <activity android:name="com.example.presentation.ui.activities.Main2ListFindingsActivity" />
+        <activity android:name="com.example.presentation.ui.activities.Main1ListInspectionsActivity">
         </activity>
-        <activity android:name="com.example.presentation.ui.activities.Login1Activity">
+        <activity android:name="com.example.presentation.ui.activities.Login1Activity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -15,8 +15,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.inspec3.R;
 
-import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
-
 
 public class Login1Activity extends AppCompatActivity {
 
@@ -48,15 +46,15 @@ public class Login1Activity extends AppCompatActivity {
         loginButton.setEnabled(true);
 
         // auto click
-//        onClick(findViewById(android.R.id.content)); // finishes this activity if isOK
-//
-//        et_username.setError(null);
-//        et_password.setError(null);
-//
-//        et_username.setText("");
-//        et_password.setText("");
-//
-//        et_username.requestFocus();
+        onClick(findViewById(android.R.id.content)); // finishes this activity if isOK
+
+        et_username.setError(null);
+        et_password.setError(null);
+
+        et_username.setText("");
+        et_password.setText("");
+
+        et_username.requestFocus();
 
     }
 
@@ -72,7 +70,7 @@ public class Login1Activity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 
 //            finish();   // or next activity
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, Main1ListInspectionsActivity.class);
             startActivity(intent);      // intent
 
         } else {

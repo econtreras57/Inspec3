@@ -180,14 +180,18 @@
             <Spinner
                 android:id="@+id/spinner_project"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:background="@android:drawable/btn_dropdown"
+                style="@style/spinner_style"
                 android:tag="spinner_project"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_titProject"
                 app:layout_constraintTop_toBottomOf="@+id/tv_titProject" />
+            android:background="@android:drawable/btn_dropdown"
+            <!--            android:background="@android:drawable/btn_dropdown"-->
+            <!--            style="?attr/materialButtonOutlinedStyle"-->
+            <!--                app:icon="ic"-->
 
             <TextView
                 android:id="@+id/tv_titContractor"
@@ -195,20 +199,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/contratista"
-                app:layout_constraintStart_toStartOf="@+id/spinner_project"
+                app:layout_constraintStart_toStartOf="@+id/tv_titProject"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_project" />
 
             <Spinner
                 android:id="@+id/spinner_contractor"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:background="@android:drawable/btn_dropdown"
+                style="@style/spinner_style"
                 android:tag="spinner_contractor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_titContractor"
                 app:layout_constraintTop_toBottomOf="@+id/tv_titContractor" />
+            <!--                android:background="@android:drawable/btn_dropdown"-->
 
             <TextView
                 android:id="@+id/tv_titLocType"
@@ -216,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/tipo_de_ubicaci_n"
-                app:layout_constraintStart_toStartOf="@+id/spinner_contractor"
+                app:layout_constraintStart_toStartOf="@+id/tv_titContractor"
                 app:layout_constraintTop_toBottomOf="@+id/spinner_contractor" />
 
             <Spinner
@@ -283,11 +288,10 @@
                 android:layout_height="1dp"
                 android:layout_marginTop="24dp"
                 android:background="?android:attr/listDivider"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_reponsible"
                 app:layout_constraintHorizontal_bias="0.0"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_reponsible" />
 
             <Button
                 android:id="@+id/button"

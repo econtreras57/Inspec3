@@ -1,5 +1,19 @@
 <resources>
 
+    <!-- 2020-03-16 ecv: Para alterar el estilo del spinner -->
+    <style name="spinner_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/gradient_spinner</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:popupBackground">#DFFFFFFF</item>
+    </style>
+    <!--<item name="android:layout_margin">8dp</item> -->
+
+
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -13,26 +27,27 @@
     </style>
 
     <style name="AppThemeLightBridge" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
-<!--    <style name="AppThemeLightBridge" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">-->
-<!--    <style name="AppThemeLightBridge" parent="Theme.MaterialComponents.Light.Bridge">-->
+        <!-- 2020-03-16 ECV: Activado en Manifest hace días, pero ahora veremos m_spinner_style -->
+        <!--    <style name="AppThemeLightBridge" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">-->
+        <!--    <style name="AppThemeLightBridge" parent="Theme.MaterialComponents.Light.Bridge">-->
         <!-- Add attributes here -->
 
         <!--        <item name="colorPrimary">#212121</item>-->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">#000000</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorOnPrimary">@color/white</item>
 
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="colorSecondary">#2962FF</item>
         <item name="colorSecondaryVariant">#0039CB</item>
-        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorOnSecondary">@color/white</item>
 
         <item name="colorError">#F44336</item>
-        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorOnError">@color/white</item>
 
-        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorSurface">@color/white</item>
         <item name="colorOnSurface">#212121</item>
 
         <item name="android:colorBackground">@color/background</item>

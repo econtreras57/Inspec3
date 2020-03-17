@@ -27,7 +27,7 @@ import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
  * 2020-02
  */
 
-public class MainActivity
+public class Main1ListInspectionsActivity
         extends BaseActivity
         implements
         InspectionView,
@@ -112,7 +112,7 @@ public class MainActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main1_list_inspections);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -205,7 +205,7 @@ public class MainActivity
         bundle.putSerializable("objetoInspection", inspection);
 
         // Y envía el paquete a siguiente pantlla...
-        Intent intent = new Intent(this, Main2Activity.class);
+        Intent intent = new Intent(this, Main2ListFindingsActivity.class);
         intent.putExtra("objetoInspection", bundle);
 
         String message = tv_position.getText().toString();
