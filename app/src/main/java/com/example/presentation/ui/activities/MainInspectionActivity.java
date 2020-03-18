@@ -221,11 +221,11 @@ public class MainInspectionActivity
 
     }
 
-    @Override
-    public void inspectionCreatedList(List<Inspection> inspectionList) {
-
-    }
-
+//    @Override
+//    public void inspectionCreatedList(List<Inspection> inspectionList) {
+//
+//    }
+//
     @Override
     public void inspectionUpdated(Inspection inspection) {
 
@@ -236,11 +236,11 @@ public class MainInspectionActivity
 
     }
 
-    @Override
-    public void inspectionsListLoaded(ArrayList<Inspection> inspections) {
-
-    }
-
+//    @Override
+//    public void inspectionsListLoaded(ArrayList<Inspection> inspections) {
+//
+//    }
+//
     @Override
     public void showErrorMessage(String message) {
 

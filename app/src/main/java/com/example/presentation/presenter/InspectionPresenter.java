@@ -18,11 +18,11 @@ import java.util.List;
 
 public class InspectionPresenter implements
         Presenter<InspectionView>,
+//        InspectionListCreatedCallback,
+//        InspectionListCallback,
         InspectionCreatedCallback,
-        InspectionListCreatedCallback,
         InspectionUpdatedCallback,
-        InspectionDeletedCallback,
-        InspectionListCallback {
+        InspectionDeletedCallback {
 
     private InspectionView inspectionView;
     private InspectionInteractor inspectionInteractor;
@@ -30,13 +30,6 @@ public class InspectionPresenter implements
     public void createInspection(Inspection inspection, int inspectionDataLocation) {
         inspectionInteractor.createInspection(
                 inspection,
-                inspectionDataLocation,
-                this);
-    }
-
-    public void createInspectionList(List<Inspection> inspectionList, int inspectionDataLocation) {
-        inspectionInteractor.createInspectionList(
-                inspectionList,
                 inspectionDataLocation,
                 this);
     }
@@ -56,12 +49,19 @@ public class InspectionPresenter implements
                 this);
     }
 
-    public void loadInspections(int inspectionDataLocation) {
-        inspectionInteractor.loadInspections(
-                inspectionDataLocation,
-                this);
-    }
-
+    //    public void createInspectionList(List<Inspection> inspectionList, int inspectionDataLocation) {
+//        inspectionInteractor.createInspectionList(
+//                inspectionList,
+//                inspectionDataLocation,
+//                this);
+//    }
+//
+    //    public void loadInspections(int inspectionDataLocation) {
+//        inspectionInteractor.loadInspections(
+//                inspectionDataLocation,
+//                this);
+//    }
+//
     @Override
     public void addView(InspectionView view) {
         this.inspectionView = view;
@@ -107,24 +107,24 @@ public class InspectionPresenter implements
 
     }
 
-    @Override
-    public void onInspectionListSuccess(ArrayList<Inspection> inspectionList) {
-        inspectionView.inspectionsListLoaded((ArrayList<Inspection>) inspectionList);
-    }
-
-    @Override
-    public void onInspectionListError(String message) {
-
-    }
-
-    @Override
-    public void onInspectionListCreatedSuccess(List<Inspection> inspectionList) {
-        inspectionView.inspectionCreatedList(inspectionList);
-
-    }
-
-    @Override
-    public void onInspectionListCreatedError(String message) {
-
-    }
+////    @Override
+////    public void onInspectionListSuccess(ArrayList<Inspection> inspectionList) {
+////        inspectionView.inspectionsListLoaded((ArrayList<Inspection>) inspectionList);
+////    }
+////
+//    @Override
+//    public void onInspectionListError(String message) {
+//
+//    }
+//
+//    @Override
+//    public void onInspectionListCreatedSuccess(List<Inspection> inspectionList) {
+//        inspectionView.inspectionCreatedList(inspectionList);
+//
+//    }
+//
+//    @Override
+//    public void onInspectionListCreatedError(String message) {
+//
+//    }
 }

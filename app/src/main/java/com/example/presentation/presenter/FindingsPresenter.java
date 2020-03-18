@@ -15,14 +15,13 @@ import com.example.presentation.view.FindingsView;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class FindingsPresenter implements
         Presenter<FindingsView>,
+//        FindingsListCallback,
+//        FindingsListCreatedCallback,
         FindingsCreatedCallback,
-        FindingsListCreatedCallback,
         FindingsUpdatedCallback,
-        FindingsDeletedCallback,
-        FindingsListCallback {
+        FindingsDeletedCallback {
 
     private FindingsView findingsView;
     private FindingsInteractor findingsInteractor;
@@ -34,13 +33,13 @@ public class FindingsPresenter implements
                 this);
     }
 
-    public void createFindingsList(List<Findings> findingsList, int findingsDataLocation) {
-        findingsInteractor.createFindingsList(
-                findingsList,
-                findingsDataLocation,
-                this);
-    }
-
+    //    public void createFindingsList(List<Findings> findingsList, int findingsDataLocation) {
+//        findingsInteractor.createFindingsList(
+//                findingsList,
+//                findingsDataLocation,
+//                this);
+//    }
+//
     public void updateFindings(Findings findings, int findingsDataLocation) {
         findingsInteractor.updateFindings(
                 findings,
@@ -56,12 +55,12 @@ public class FindingsPresenter implements
                 this);
     }
 
-    public void loadFindingss(int findingsDataLocation) {
-        findingsInteractor.loadFindingss(
-                findingsDataLocation,
-                this);
-    }
-
+    //    public void loadFindingss(int findingsDataLocation) {
+//        findingsInteractor.loadFindingss(
+//                findingsDataLocation,
+//                this);
+//    }
+//
     @Override
     public void addView(FindingsView view) {
         this.findingsView = view;
@@ -107,25 +106,25 @@ public class FindingsPresenter implements
 
     }
 
-    @Override
-    public void onFindingsListSuccess(ArrayList<Findings> findingsList) {
-        findingsView.findingssListLoaded((ArrayList<Findings>) findingsList);
-    }
-
-    @Override
-    public void onFindingsListError(String message) {
-
-    }
-
-    @Override
-    public void onFindingsListCreatedSuccess(List<Findings> findingsList) {
-        findingsView.findingsCreatedList(findingsList);
-
-    }
-
-    @Override
-    public void onFindingsListCreatedError(String message) {
-
-    }
+//    @Override
+//    public void onFindingsListSuccess(ArrayList<Findings> findingsList) {
+//        findingsView.findingssListLoaded((ArrayList<Findings>) findingsList);
+//    }
+//
+//    @Override
+//    public void onFindingsListError(String message) {
+//
+//    }
+//
+//    @Override
+//    public void onFindingsListCreatedSuccess(List<Findings> findingsList) {
+//        findingsView.findingsCreatedList(findingsList);
+//
+//    }
+//
+//    @Override
+//    public void onFindingsListCreatedError(String message) {
+//
+//    }
 }
 

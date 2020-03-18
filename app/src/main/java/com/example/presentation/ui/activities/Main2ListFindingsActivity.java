@@ -18,6 +18,7 @@ import com.example.domain.model.Inspection;
 import com.example.inspec3.R;
 import com.example.presentation.ui.adapters.ListAdapterFindings;
 import com.example.presentation.view.FindingsView;
+import com.example.presentation.view.ListFindingsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
 public class Main2ListFindingsActivity
         extends BaseActivity
         implements
-        FindingsView,
+        ListFindingsView,
         ListAdapterFindings.OnItemClickListener {
 
     RecyclerView rvFindings;
@@ -170,22 +171,7 @@ public class Main2ListFindingsActivity
     }
 
     @Override
-    public void findingsCreated(Findings findings) {
-
-    }
-
-    @Override
     public void findingsCreatedList(List<Findings> findingsList) {
-
-    }
-
-    @Override
-    public void findingsUpdated(Findings findings) {
-
-    }
-
-    @Override
-    public void findingsDeleted(Findings findings) {
 
     }
 

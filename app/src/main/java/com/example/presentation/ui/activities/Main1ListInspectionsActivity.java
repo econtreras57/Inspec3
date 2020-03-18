@@ -16,6 +16,7 @@ import com.example.domain.model.Inspection;
 import com.example.inspec3.R;
 import com.example.presentation.ui.adapters.ListAdapterInspection;
 import com.example.presentation.view.InspectionView;
+import com.example.presentation.view.ListInspectionsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
 public class Main1ListInspectionsActivity
         extends BaseActivity
         implements
-        InspectionView,
+        ListInspectionsView,
         ListAdapterInspection.OnItemClickListener {
 
     RecyclerView rvInspection;
@@ -147,22 +148,7 @@ public class Main1ListInspectionsActivity
     }
 
     @Override
-    public void inspectionCreated(Inspection inspection) {
-
-    }
-
-    @Override
     public void inspectionCreatedList(List<Inspection> inspectionList) {
-
-    }
-
-    @Override
-    public void inspectionUpdated(Inspection inspection) {
-
-    }
-
-    @Override
-    public void inspectionDeleted(Inspection inspection) {
 
     }
 

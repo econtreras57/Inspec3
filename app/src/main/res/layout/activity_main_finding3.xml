@@ -124,10 +124,10 @@
             <Spinner
                 android:id="@+id/spinner_management"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:background="@android:drawable/btn_dropdown"
+                style="@style/spinner_style"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_titManagement"
                 app:layout_constraintTop_toBottomOf="@+id/tv_titManagement" />

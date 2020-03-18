@@ -192,11 +192,11 @@ public class MainFindingsActivity
 
     }
 
-    @Override
-    public void findingsCreatedList(List<Findings> findingsList) {
-
-    }
-
+//    @Override
+//    public void findingsCreatedList(List<Findings> findingsList) {
+//
+//    }
+//
     @Override
     public void findingsUpdated(Findings findings) {
 
@@ -207,11 +207,11 @@ public class MainFindingsActivity
 
     }
 
-    @Override
-    public void findingssListLoaded(ArrayList<Findings> findingss) {
-
-    }
-
+//    @Override
+//    public void findingssListLoaded(ArrayList<Findings> findingss) {
+//
+//    }
+//
     @Override
     public void showErrorMessage(String message) {
 
