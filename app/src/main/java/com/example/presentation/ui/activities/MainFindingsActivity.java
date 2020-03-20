@@ -49,7 +49,8 @@ import static com.example.presentation.utils.Constants.SWITCH_BUTTON_ON;
 
 public class MainFindingsActivity
         extends BaseActivity
-        implements FindingsView, AdapterView.OnItemSelectedListener {
+        implements FindingsView,
+        AdapterView.OnItemSelectedListener {
 
     Findings findings;
     TextView tv_titDocActivity;
@@ -139,7 +140,7 @@ public class MainFindingsActivity
 
         EditText et_text = findViewById(R.id.et_text);
         et_text.setText(findings.getText());
-        if (et_text.getText()==null) et_text.setText("");
+        if (et_text.getText() == null) et_text.setText("");
 
         String title_add = getString(nuevo_hallazgo);
         String title_upd = getString(edita_hallazgo, message);
@@ -192,7 +193,7 @@ public class MainFindingsActivity
 
     }
 
-//    @Override
+    //    @Override
 //    public void findingsCreatedList(List<Findings> findingsList) {
 //
 //    }
@@ -207,7 +208,7 @@ public class MainFindingsActivity
 
     }
 
-//    @Override
+    //    @Override
 //    public void findingssListLoaded(ArrayList<Findings> findingss) {
 //
 //    }
@@ -286,7 +287,7 @@ public class MainFindingsActivity
         String itemAtPosition = (String) parent.getItemAtPosition(position);
 
         Context context = getApplicationContext();
-        CharSequence text = "Click SPINNER button: \n" + sTest + "\n" + itemAtPosition;
+        CharSequence text = "_Findings_ SPINNER: \n" + sTest + "\n" + itemAtPosition;
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
@@ -343,7 +344,6 @@ public class MainFindingsActivity
                 // app-defined int constant. The callback method gets the
                 // result of the request.
             }
-
 
         }
 

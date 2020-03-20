@@ -297,7 +297,7 @@ public class MainInspectionActivity
         String itemAtPosition = (String) parent.getItemAtPosition(position);
 
         Context context = getApplicationContext();
-        CharSequence text = "Click SPINNER button: \n" + sTest + "\n" + itemAtPosition;
+        CharSequence text = "_Inspection_ SPINNER: \n" + sTest + "\n" + itemAtPosition;
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
