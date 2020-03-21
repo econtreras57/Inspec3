@@ -73,6 +73,8 @@ public class Login1Activity extends AppCompatActivity {
             Intent intent = new Intent(this, Main1ListInspectionsActivity.class);
             startActivity(intent);      // intent
 
+            finish();   // 2020-03-20
+
         } else {
             // sino, queda, pero anula datos
             setSharedPreferences("Name", "");
