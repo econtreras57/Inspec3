@@ -203,7 +203,7 @@ public class Main2ListFindingsActivity
                 "Click pos.: " + tv_position.getText().toString();
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+//        toast.show();
         //endregion
 
         // Empaqueta objeto "lost" recibido...
@@ -228,8 +228,8 @@ public class Main2ListFindingsActivity
         CharSequence text = "Click ADD button ";
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
+//        toast.show();
+//
         // Empaqueta objeto _nuevo_...
         Bundle bundle = new Bundle();
         bundle.putSerializable("objetoFindings", new Findings());

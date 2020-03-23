@@ -22,7 +22,7 @@
     <string name="tipo_de_acto_o_condici_n_subtype">Tipo de acto o condición (subType) (*)</string>
     <string name="descripci_n_text">Descripción (text) (*)</string>
     <string name="descripci_n_text_">Describa el caso</string>
-    <string name="fotograf_as">Fotografías</string>
+    <string name="fotograf_as">Fotografías (clic a foto para cambiarla)</string>
     <string name="nivel_de_riesgo">Nivel de Riesgo (*)</string>
     <string name="fecha_estimada_de_cierre">Fecha estimada de cierre (*)</string>
     <string name="subType">Sub-tipo de hallazgo</string>

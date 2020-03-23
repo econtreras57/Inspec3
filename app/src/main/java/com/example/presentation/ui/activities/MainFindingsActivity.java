@@ -61,6 +61,9 @@ public class MainFindingsActivity
     Spinner spinnerManagement;
     Spinner spinnerSubType;
 
+    Boolean spinnerManagement_1st=true;
+    Boolean spinnerSubType_1st=true;
+
     Button buttonA;
     Button buttonC;
 
@@ -290,7 +293,24 @@ public class MainFindingsActivity
         CharSequence text = "_Findings_ SPINNER: \n" + sTest + "\n" + itemAtPosition;
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+//        toast.show();
+
+        switch (sTest) {
+            case "spinner_management":
+                if (spinnerManagement_1st) {
+                    spinnerManagement_1st=false;
+                } else {
+//                    toast.show();
+                }
+                break;
+            case "spinner_subType":
+                if (spinnerSubType_1st) {
+                    spinnerSubType_1st=false;
+                } else {
+//                    toast.show();
+                }
+                break;
+        }
 
     }
 

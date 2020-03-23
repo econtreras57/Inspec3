@@ -27,6 +27,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="9999"
+        android:textColor="@color/background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,14 +36,13 @@
         android:id="@+id/tv_project"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/tv_subStatus"
-        app:layout_constraintStart_toEndOf="@+id/tv_position"
+        app:layout_constraintStart_toStartOf="@+id/tv_inspector"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

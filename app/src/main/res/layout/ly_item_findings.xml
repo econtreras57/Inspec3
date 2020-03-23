@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/positionFormat"
+        android:textColor="@color/silver"
         app:layout_constraintStart_toStartOf="@+id/tv_risk"
         app:layout_constraintTop_toBottomOf="@+id/tv_risk" />
 
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/idformat"
+        android:textColor="@color/background"
         app:layout_constraintStart_toStartOf="@+id/tv_position"
         app:layout_constraintTop_toBottomOf="@+id/tv_position" />
 

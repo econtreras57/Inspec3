@@ -180,7 +180,7 @@ public class Main1ListInspectionsActivity
                 "Click pos.: " + tv_position.getText().toString();
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+//        toast.show();
 
         // toast
 
@@ -207,7 +207,7 @@ public class Main1ListInspectionsActivity
         CharSequence text = "Click ADD button ";
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+//        toast.show();
 
         // Empaqueta objeto _nuevo_...
         Bundle bundle = new Bundle();

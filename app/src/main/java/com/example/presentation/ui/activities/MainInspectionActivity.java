@@ -49,6 +49,11 @@ public class MainInspectionActivity
     Spinner spinnerLocType;
     Spinner spinnerSite;
 
+    Boolean spinnerProject_1st=true;
+    Boolean spinnerContractor_1st=true;
+    Boolean spinnerLocType_1st=true;
+    Boolean spinnerSite_1st=true;
+
     Button button1;
     Button button2;
 
@@ -300,7 +305,39 @@ public class MainInspectionActivity
         CharSequence text = "_Inspection_ SPINNER: \n" + sTest + "\n" + itemAtPosition;
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+//        toast.show();
+
+        switch (sTest) {
+            case "spinner_project":
+                if (spinnerProject_1st) {
+                    spinnerProject_1st=false;
+                } else {
+//                    toast.show();
+                }
+                break;
+            case "spinner_contractor":
+                if (spinnerContractor_1st) {
+                    spinnerContractor_1st=false;
+                } else {
+//                    toast.show();
+                }
+                break;
+            case "spinner_locType":
+                if (spinnerLocType_1st) {
+                    spinnerLocType_1st=false;
+                } else {
+//                    toast.show();
+                }
+                break;
+            case "spinner_site":
+                if (spinnerSite_1st) {
+                    spinnerSite_1st=false;
+                } else {
+//                    toast.show();
+                }
+                break;
+
+        }
 
     }
 
