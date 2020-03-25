@@ -57,5 +57,104 @@
 
     <color name="background">#FAFAFA</color>
 
+    <!-- region font styles -->
+
+    <!-- Light -->
+
+    <style name="TextTitleLight">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_title</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
+    <style name="TextLabelLight">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_label</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
+    <style name="TextBoxLight">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_box</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
+    <style name="TextNoteLight">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_note</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
+    <style name="TextButtonLight">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_button</item>
+        <item name="android:fontFamily">@font/open_sans_light</item>
+    </style>
+
+    <!-- Regular -->
+
+    <style name="TextTitleRegular">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_title</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+    </style>
+
+    <style name="TextLabelRegular">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_label</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+    </style>
+
+    <style name="TextBoxRegular">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_box</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+    </style>
+
+    <style name="TextNoteRegular">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_note</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+    </style>
+
+    <style name="TextButtonRegular">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_button</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+    </style>
+
+    <!-- Bold -->
+
+    <style name="TextTitleBold">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_title</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+    </style>
+
+    <style name="TextLabelBold">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_label</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+    </style>
+
+    <style name="TextBoxBold">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_box</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+    </style>
+
+    <style name="TextNoteBold">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_note</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+    </style>
+
+    <style name="TextButtonBold">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_button</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+    </style>
+
+    <!-- endregion -->
 
 </resources>
