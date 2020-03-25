@@ -21,6 +21,8 @@ public class Login1Activity extends AppCompatActivity {
     EditText et_username;
     EditText et_password;
 
+    Integer iLifeCount = 0, iLifeCountMax = 2;
+
     private View v;
 
     @Override
@@ -31,10 +33,8 @@ public class Login1Activity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        // chk stored userid
-        // if valid go to next Activity
+        // chk stored userid... if valid go to next Activity
 
-        // connect fields
         et_username = findViewById(R.id.username);
         et_password = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
@@ -43,29 +43,33 @@ public class Login1Activity extends AppCompatActivity {
         // setup
         et_username.setText(getSharedPreferences("Name"));
         et_password.setText(getSharedPreferences("Password"));
+        iLifeCount = Integer.parseInt("0" + getSharedPreferences("LifeCount"));
+
         loginButton.setEnabled(true);
 
         // auto click
         onClick(findViewById(android.R.id.content)); // finishes this activity if isOK
 
-        et_username.setError(null);
-        et_password.setError(null);
-
-        et_username.setText("");
+//        et_username.setError(null);
+//        et_password.setError(null);
+//        et_username.setText("");
         et_password.setText("");
 
-        et_username.requestFocus();
+        if (et_password.getError() != null) et_password.requestFocus();
+        if (et_username.getError() != null) et_username.requestFocus();
 
     }
 
     public void onClick(View v) {
 
+
         // si ok, saluda, graba y termina
         if (validInput()) {
             setSharedPreferences("Name", et_username.getText().toString());
             setSharedPreferences("Password", et_password.getText().toString());
+            setSharedPreferences("LifeCount", String.valueOf(++iLifeCount));
 
-            String welcome = getString(R.string.welcome2) + " user";
+            String welcome = getString(R.string.welcome2) + " user\n" + "Session num." + iLifeCount;
             // TODO : initiate successful logged in experience
             Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
 
@@ -91,6 +95,15 @@ public class Login1Activity extends AppCompatActivity {
 
         // validar
         Boolean isOK = true;
+
+// LifeCount vencido
+        Integer count = iLifeCount;
+        if (count >= iLifeCountMax) {
+            et_username.setError(getString(R.string.invalid_session, String.valueOf(count)));
+            et_username.requestFocus();
+            iLifeCount = 0;   // reset
+            isOK = false;
+        }
 
         // password debe tener 6 char mínimo
         String password = et_password.getText().toString();

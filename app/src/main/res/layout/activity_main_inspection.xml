@@ -295,22 +295,23 @@
 
             <Button
                 android:id="@+id/button"
+                style="@style/TextButtonRegular"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="32dp"
-                android:background="@drawable/textview_border_blue"
-                android:backgroundTint="#3F51B5"
-                android:fontFamily="sans-serif-light"
+                android:background="@drawable/general_button_border"
                 android:onClick="onButtonSaveClicked"
                 android:text="@string/guardar"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
+                android:textColor="@color/design_default_color_surface"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/et_reponsible"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
+<!--            android:fontFamily="sans-serif-light"-->
+<!--            android:textSize="24sp"-->
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

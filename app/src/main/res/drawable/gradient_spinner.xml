@@ -15,7 +15,7 @@
                 </shape>
             </item>
             <item>
-                <bitmap android:filter="true" android:gravity="right|clip_vertical" android:src="@drawable/ic_triangle_down_3b" />
+                <bitmap android:filter="true" android:gravity="right|clip_vertical" android:src="@drawable/ic_triangle_down_3c" />
             </item>
         </layer-list>
     </item>

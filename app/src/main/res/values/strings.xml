@@ -51,6 +51,7 @@
     <string name="welcome">"Welcome !"</string>
     <string name="welcome2">"Welcome! "</string>
     <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_session">Session count: %1$s. Please revalidate.</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
