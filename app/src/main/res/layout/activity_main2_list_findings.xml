@@ -55,16 +55,17 @@
 
         <TextView
             android:id="@+id/tv_project"
+            style="@style/TextLabelRegular"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="32dp"
             android:ems="10"
-            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/tv_subStatus"
             app:layout_constraintStart_toStartOf="@+id/tv_inspector"
             app:layout_constraintTop_toTopOf="parent" />
+        <!--        android:textSize="24sp"-->
 
         <TextView
             android:id="@+id/tv_inspector"

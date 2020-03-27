@@ -35,16 +35,18 @@
 
             <TextView
                 android:id="@+id/tv_titDocActivity"
+                style="@style/TextTitleRegular"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/nueva_inspecci_n"
                 android:textColor="@color/white"
-                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <!--                android:textSize="30sp"-->
 
             <ImageView
                 android:id="@+id/ic_user"
@@ -179,11 +181,11 @@
 
             <Spinner
                 android:id="@+id/spinner_project"
+                style="@style/spinner_style"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                style="@style/spinner_style"
                 android:tag="spinner_project"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_titProject"
@@ -204,11 +206,11 @@
 
             <Spinner
                 android:id="@+id/spinner_contractor"
+                style="@style/spinner_style"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                style="@style/spinner_style"
                 android:tag="spinner_contractor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_titContractor"
@@ -226,11 +228,11 @@
 
             <Spinner
                 android:id="@+id/spinner_locType"
+                style="@style/spinner_style"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                style="@style/spinner_style"
                 android:tag="spinner_locType"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_titLocType"
@@ -247,11 +249,11 @@
 
             <Spinner
                 android:id="@+id/spinner_site"
+                style="@style/spinner_style"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                style="@style/spinner_style"
                 android:tag="spinner_site"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_titSite"
@@ -268,6 +270,7 @@
 
             <EditText
                 android:id="@+id/et_reponsible"
+                style="@style/TextBoxRegular"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -309,8 +312,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/et_reponsible"
                 app:layout_constraintTop_toBottomOf="@+id/divider" />
-<!--            android:fontFamily="sans-serif-light"-->
-<!--            android:textSize="24sp"-->
+            <!--            android:fontFamily="sans-serif-light"-->
+            <!--            android:textSize="24sp"-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

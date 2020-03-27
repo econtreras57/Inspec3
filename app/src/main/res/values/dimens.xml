@@ -3,10 +3,18 @@
     <dimen name="activity_horizontal_margin">0dp</dimen>
     <dimen name="activity_vertical_margin">0dp</dimen>
 
-    <dimen name="font_title">20sp</dimen>
-    <dimen name="font_label">16sp</dimen>
+    <!--    2020-03-26 Forma original alcanzada por Yrving-->
+    <!--    <dimen name="font_title">20sp</dimen>-->
+    <!--    <dimen name="font_label">16sp</dimen>-->
+    <!--    <dimen name="font_box">16.5sp</dimen>-->
+    <!--    <dimen name="font_note">14sp</dimen>-->
+    <!--    <dimen name="font_button">18sp</dimen>-->
+
+    <dimen name="font_title">30sp</dimen>
+    <dimen name="font_label">24sp</dimen>
     <dimen name="font_box">16.5sp</dimen>
     <dimen name="font_note">14sp</dimen>
     <dimen name="font_button">18sp</dimen>
+
 
 </resources>

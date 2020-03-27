@@ -53,6 +53,12 @@
         <item name="android:colorBackground">@color/background</item>
         <item name="colorOnBackground">#212121</item>
 
+<!--    <style name="TextBoxRegular">-->
+<!--        2020-03-26 ecv: Copiamos TextBoxRegular para que se aplique a todos por omisión -->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/font_box</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+
     </style>
 
     <color name="background">#FAFAFA</color>
@@ -109,6 +115,7 @@
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/font_box</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>
+        <!--        <item name="android:textCursorDrawable">@color/colorAccentOff</item>-->
     </style>
 
     <style name="TextNoteRegular">

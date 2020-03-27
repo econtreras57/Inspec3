@@ -32,6 +32,8 @@
 
             <TextView
                 android:id="@+id/tv_titDocActivity"
+                style="@style/TextTitleRegular"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -39,11 +41,12 @@
                 android:layout_marginBottom="8dp"
                 android:text="@string/nuevo_hallazgo"
                 android:textColor="@color/white"
-                android:textSize="30sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/divider2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            <!--                android:textSize="30sp"-->
+
 
             <View
                 android:id="@+id/divider2"
@@ -164,6 +167,8 @@
 
             <EditText
                 android:id="@+id/et_text"
+                style="@style/TextBoxRegular"
+
                 android:layout_width="0dp"
                 android:layout_height="144dp"
                 android:layout_marginTop="8dp"
@@ -256,6 +261,8 @@
 
             <EditText
                 android:id="@+id/et_planedClosureDate"
+                style="@style/TextBoxRegular"
+
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
