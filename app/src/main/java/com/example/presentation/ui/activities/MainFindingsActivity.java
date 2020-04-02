@@ -1,13 +1,19 @@
 package com.example.presentation.ui.activities;
 
 import android.Manifest;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,34 +22,37 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.example.domain.model.Findings;
 import com.example.inspec3.R;
 import com.example.presentation.utils.ImageUtil;
 import com.example.presentation.view.FindingsView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static com.example.inspec3.R.string.edita_hallazgo;
 import static com.example.inspec3.R.string.nuevo_hallazgo;
 import static com.example.presentation.utils.Constants.EXTRA_MESSAGE;
 import static com.example.presentation.utils.Constants.MY_PERMISSIONS_REQUEST_CAMERA;
 import static com.example.presentation.utils.Constants.REQUEST_IMAGE_CAPTURE;
+import static com.example.presentation.utils.Constants.REQUEST_TAKE_PHOTO;
 import static com.example.presentation.utils.Constants.SWITCH_BUTTON_OFF;
 import static com.example.presentation.utils.Constants.SWITCH_BUTTON_ON;
 
 /**
- * Datos Registro Hallazgo, con foto
+ * Registro Hallazgo, con foto
  * 2020-02
  */
 
@@ -61,8 +70,8 @@ public class MainFindingsActivity
     Spinner spinnerManagement;
     Spinner spinnerSubType;
 
-    Boolean spinnerManagement_1st=true;
-    Boolean spinnerSubType_1st=true;
+    Boolean spinnerManagement_1st = true;
+    Boolean spinnerSubType_1st = true;
 
     Button buttonA;
     Button buttonC;
@@ -71,6 +80,8 @@ public class MainFindingsActivity
     Button button2;
     Button button3;
 
+    public static String currentPhotoPath;
+    public static String defaultPhotoFileName = "Inspec3_";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -298,14 +309,14 @@ public class MainFindingsActivity
         switch (sTest) {
             case "spinner_management":
                 if (spinnerManagement_1st) {
-                    spinnerManagement_1st=false;
+                    spinnerManagement_1st = false;
                 } else {
 //                    toast.show();
                 }
                 break;
             case "spinner_subType":
                 if (spinnerSubType_1st) {
-                    spinnerSubType_1st=false;
+                    spinnerSubType_1st = false;
                 } else {
 //                    toast.show();
                 }
@@ -327,7 +338,7 @@ public class MainFindingsActivity
         Context thisActivity = this;
 
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
-            text = text + "cámara no disponible... ";
+            text = text + "cámara no disponible... ";   // ojo, el Toast viene más abajo
         }
 
         if (ContextCompat.checkSelfPermission(
@@ -382,7 +393,23 @@ public class MainFindingsActivity
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+//            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+//            ...
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(thisActivity,
+                        "com.example.inspec3.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
         }
 
     } // on clic
@@ -396,6 +423,20 @@ public class MainFindingsActivity
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageView1.setImageBitmap(imageBitmap);
 //            tv32petImage.setText(ImageUtil.convert(imageBitmap));
+
+        } else if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
+//            Bundle extras = data.getExtras();
+//            Bitmap imageBitmap = (Bitmap) extras.get("data");  // nop con REQUEST_TAKE_PHOTO
+//            imageView2.setImageBitmap(imageBitmap);
+
+            File imgFile = new  File(currentPhotoPath);
+            if(imgFile.exists()){
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+//                ImageView myImage = (ImageView) findViewById(R.id.imageviewTest);
+                imageView2.setImageBitmap(myBitmap);
+
+            }
+
         }
     }
 
@@ -445,5 +486,52 @@ public class MainFindingsActivity
 
         return super.onOptionsItemSelected(item);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private File createImageFile() throws IOException {
+        // Create an image file name
+//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+//        String imageFileName = "Inspec3_" + timeStamp + "_";
+//        String imageFileName = "Inspec3_";
+        String imageFileName = defaultPhotoFileName;
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,          /* prefix */
+                ".jpg",          /* suffix */
+                storageDir              /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
+// ---------
+//    public Uri galleryAddPic(File imgFile) {
+
+        // Una opción, pero descontinuada (deprecated)
+//        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+//        File f = new File(currentPhotoPath);
+//        Uri contentUri = Uri.fromFile(f);
+//        mediaScanIntent.setData(contentUri);
+//        this.sendBroadcast(mediaScanIntent);
+
+
+        // Otra opción, pero no me ha funcionado
+
+//        ContentResolver cr = this.getContentResolver();
+//
+//        ContentValues values = new ContentValues();
+//        values.put(MediaStore.Images.Media.TITLE, "Inspec3");
+//        values.put(MediaStore.Images.Media.DISPLAY_NAME, "Inspec3");
+//        values.put(MediaStore.Images.Media.DESCRIPTION, "Inspec3 photo");
+//        values.put(MediaStore.Images.Media.MIME_TYPE, "image/" + "jpg");
+//        values.put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis());
+//        values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+////        values.put(MediaStore.Images.Media.DATA, currentPhotoPath.toString());
+//
+//        return cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+//    }  // galleryAddPic ()
 
 } // fin clase

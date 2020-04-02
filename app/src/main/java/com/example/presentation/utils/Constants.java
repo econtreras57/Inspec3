@@ -9,7 +9,8 @@ public class Constants {
     public static final String EXTRA_MESSAGE =
             "com.example.presentation.utils";
 
-    public static final int REQUEST_IMAGE_CAPTURE = 128;     // 2020-02-19 ecv: para la foto
+    public static final int REQUEST_IMAGE_CAPTURE = 128;    // 2020-02-19 ecv: para la foto
+    public static final int REQUEST_TAKE_PHOTO = 135;       // 2020-03-30 ecv: para la foto
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 64;    // 2020-02-19 ecv: permiso...
 
     public static final Boolean SWITCH_BUTTON_ON = true;
