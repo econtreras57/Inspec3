@@ -1,13 +1,13 @@
 package com.example.data.mapper;
 
-import com.example.data.datasource.db.model.SessionDbEntity;
+import com.example.data.datasource.db.model.DbSessionEntity;
 import com.example.domain.model.Session;
 
 public class SessionDataMapper {
 
-    public SessionDbEntity transformToDb(Session session)
+    public DbSessionEntity transformToDb(Session session)
     {
-        SessionDbEntity sessionDbEntity= new SessionDbEntity(
+        DbSessionEntity dbSessionEntity = new DbSessionEntity(
                 session.getId(),
                 session.getUsername(),
                 session.getMail(),
@@ -25,27 +25,27 @@ public class SessionDataMapper {
                 session.getIdInventoryCountingWarehouse()
 
                 );
-        return sessionDbEntity;
+        return dbSessionEntity;
     }
 
-    public Session transformFromDb(SessionDbEntity sessionDbEntity)
+    public Session transformFromDb(DbSessionEntity dbSessionEntity)
     {
         Session session = new Session(
-                sessionDbEntity.getId(),
-                sessionDbEntity.getUsername(),
-                sessionDbEntity.getMail(),
-                sessionDbEntity.getName(),
-                sessionDbEntity.getLastName(),
-                sessionDbEntity.getFullName(),
-                sessionDbEntity.getAuthDate(),
-                sessionDbEntity.getLastAuthDate(),
-                sessionDbEntity.getLastSyncDatePush(),
-                sessionDbEntity.getLastSyncDatePull(),
-                sessionDbEntity.getToken(),
-                sessionDbEntity.getIdWarehouse(),
-                sessionDbEntity.getIdCounting(),
-                sessionDbEntity.getIdInventory(),
-                sessionDbEntity.getIdInventoryCountingWarehouse()
+                dbSessionEntity.getId(),
+                dbSessionEntity.getUsername(),
+                dbSessionEntity.getMail(),
+                dbSessionEntity.getName(),
+                dbSessionEntity.getLastName(),
+                dbSessionEntity.getFullName(),
+                dbSessionEntity.getAuthDate(),
+                dbSessionEntity.getLastAuthDate(),
+                dbSessionEntity.getLastSyncDatePush(),
+                dbSessionEntity.getLastSyncDatePull(),
+                dbSessionEntity.getToken(),
+                dbSessionEntity.getIdWarehouse(),
+                dbSessionEntity.getIdCounting(),
+                dbSessionEntity.getIdInventory(),
+                dbSessionEntity.getIdInventoryCountingWarehouse()
 
                 );
         return session;

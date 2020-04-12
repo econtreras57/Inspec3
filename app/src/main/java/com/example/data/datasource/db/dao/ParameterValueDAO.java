@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.data.datasource.db.model.ParameterValueDbEntity;
+import com.example.data.datasource.db.model.DbParameterValueEntity;
 
 import java.util.List;
 
@@ -14,20 +14,20 @@ import java.util.List;
 public interface ParameterValueDAO {
 
     @Insert
-    Long InsertOnlyOne(ParameterValueDbEntity parameterValueDbEntity);
+    Long InsertOnlyOne(DbParameterValueEntity dbParameterValueEntity);
 
     @Insert
-    void InsertMultiple(List<ParameterValueDbEntity> parameterValueDbEntityList);
+    void InsertMultiple(List<DbParameterValueEntity> dbParameterValueEntityList);
 
     @Update
-    void Update(ParameterValueDbEntity parameterValueDbEntity);
+    void Update(DbParameterValueEntity dbParameterValueEntity);
 
     @Delete
-    void Delete(ParameterValueDbEntity parameterValueDbEntity);
+    void Delete(DbParameterValueEntity dbParameterValueEntity);
 
     // Method 2 for DELETE by query
     @Query(
-            "DELETE from ParameterValueDbEntity " +
+            "DELETE from DbParameterValueEntity " +
                     "WHERE id = :id "
     )
     void deleteById(
@@ -35,7 +35,7 @@ public interface ParameterValueDAO {
     );
 
     // Method *ALL, DELETE all rows
-    @Query("DELETE from ParameterValueDbEntity")
+    @Query("DELETE from DbParameterValueEntity")
     public void deleteAll();
 
     // Method... List *all
@@ -43,13 +43,13 @@ public interface ParameterValueDAO {
     //    <-- https://www.vogella.com/tutorials/AndroidSQLite/article.html
     //    @Query("SELECT * FROM DbPet WHERE :sWhere") <-- No funcionó con "true" en sWhere
     //
-    @Query("SELECT * FROM ParameterValueDbEntity")
-    List<ParameterValueDbEntity> listAllQ();
+    @Query("SELECT * FROM DbParameterValueEntity")
+    List<DbParameterValueEntity> listAllQ();
 
 
     // Method 2: Update by Id
     @Query(
-            "UPDATE ParameterValueDbEntity " +
+            "UPDATE DbParameterValueEntity " +
                     "SET " +
 
                     "id = :id, " +

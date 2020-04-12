@@ -2,7 +2,7 @@ package com.example.data.datasource.datastore;
 
 import android.content.Context;
 
-import com.example.data.datasource.db.store.ParameterValueDbEntityDataStore;
+import com.example.data.datasource.db.store.DbParameterValueEntityDataStore;
 
 public class ParameterValueDataStoreFactory {
 
@@ -29,7 +29,7 @@ public class ParameterValueDataStoreFactory {
 //                parameterValueDataStore = createCloudDataStore(db);
                 break;
             case DB:
-                parameterValueDataStore = new ParameterValueDbEntityDataStore(context);
+                parameterValueDataStore = new DbParameterValueEntityDataStore(context);
                 break;
         }
         return parameterValueDataStore;

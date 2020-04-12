@@ -3,7 +3,7 @@ package com.example.data.datasource.db.store;
 import android.content.Context;
 
 import com.example.data.datasource.datastore.FindingsDataStore;
-import com.example.data.datasource.db.Inspec3Db;
+import com.example.data.datasource.db.DbInspec3Instance;
 import com.example.data.datasource.db.dao.FindingsDAO;
 import com.example.data.datasource.db.model.DbFindings;
 import com.example.data.mapper.FindingsDataMapper;
@@ -19,7 +19,7 @@ public class DbFindingsDataStore implements FindingsDataStore {
 
 
     public DbFindingsDataStore(Context context) {
-        findingsDAO = Inspec3Db.getDatabase(context).findingsDAO();
+        findingsDAO = DbInspec3Instance.getDatabase(context).findingsDAO();
     }
 
     @Override

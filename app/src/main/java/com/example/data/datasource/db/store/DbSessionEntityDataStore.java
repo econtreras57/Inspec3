@@ -3,9 +3,9 @@ package com.example.data.datasource.db.store;
 import android.content.Context;
 
 import com.example.data.datasource.datastore.SessionDataStore;
-import com.example.data.datasource.db.Inspec3Db;
+import com.example.data.datasource.db.DbInspec3Instance;
 import com.example.data.datasource.db.dao.SessionDAO;
-import com.example.data.datasource.db.model.SessionDbEntity;
+import com.example.data.datasource.db.model.DbSessionEntity;
 import com.example.data.mapper.SessionDataMapper;
 import com.example.domain.model.Session;
 import com.example.domain.repository.RepositoryCallback;
@@ -13,25 +13,25 @@ import com.example.domain.repository.RepositoryCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SessionDbEntityDataStore implements SessionDataStore {
+public class DbSessionEntityDataStore implements SessionDataStore {
 
     SessionDAO sessionDAO;
 
-    public SessionDbEntityDataStore(Context context) {
-        sessionDAO = Inspec3Db.getDatabase(context).sessionDAO();
+    public DbSessionEntityDataStore(Context context) {
+        sessionDAO = DbInspec3Instance.getDatabase(context).sessionDAO();
     }
 
     @Override
     public void createSession(Session session, RepositoryCallback repositoryCallback) {
 
         SessionDataMapper sessionDataMapper = new SessionDataMapper();
-        SessionDbEntity sessionDbEntity = sessionDataMapper.transformToDb(session);
+        DbSessionEntity dbSessionEntity = sessionDataMapper.transformToDb(session);
 
-        sessionDbEntity.setId(null);      // para que autogenere la clave ¿cierto?
+        dbSessionEntity.setId(null);      // para que autogenere la clave ¿cierto?
 
         try {
             session.setId(
-                    sessionDAO.InsertOnlyOne(sessionDbEntity).toString()
+                    sessionDAO.InsertOnlyOne(dbSessionEntity).toString()
             );
             repositoryCallback.onSuccess(session);
         } catch (Exception e) {
@@ -49,18 +49,18 @@ public class SessionDbEntityDataStore implements SessionDataStore {
         SessionDataMapper sessionDataMapper = new SessionDataMapper();
 //        SessionDbEntity sessionDbEntity=sessionDataMapper.transformToDb(session);
 
-        List<SessionDbEntity> sessionDbEntityList = new ArrayList<>();
+        List<DbSessionEntity> dbSessionEntityList = new ArrayList<>();
         for (int i = 0; i < sessionList.size(); i++) {
             Session wrkSession = sessionList.get(i);
-            SessionDbEntity wrkSessionDbEntity = sessionDataMapper.transformToDb(wrkSession);
-            wrkSessionDbEntity.setId(null);     // para que se creen automáticamente
-            sessionDbEntityList.add(wrkSessionDbEntity);
+            DbSessionEntity wrkDbSessionEntity = sessionDataMapper.transformToDb(wrkSession);
+            wrkDbSessionEntity.setId(null);     // para que se creen automáticamente
+            dbSessionEntityList.add(wrkDbSessionEntity);
         }
 
 //        sessionDbEntity.setId( 0 ); // o null?
 
         try {
-            sessionDAO.InsertMultiple(sessionDbEntityList);     // tipos... ver domain/model/session
+            sessionDAO.InsertMultiple(dbSessionEntityList);     // tipos... ver domain/model/session
             repositoryCallback.onSuccess(sessionList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,27 +73,27 @@ public class SessionDbEntityDataStore implements SessionDataStore {
     public void updateSession(Session session, RepositoryCallback repositoryCallback) {
 
         SessionDataMapper sessionDataMapper = new SessionDataMapper();
-        SessionDbEntity sessionDbEntity = sessionDataMapper.transformToDb(session);
+        DbSessionEntity dbSessionEntity = sessionDataMapper.transformToDb(session);
 
-        sessionDbEntity.setId(session.getId()); // ojo, verificar si null
+        dbSessionEntity.setId(session.getId()); // ojo, verificar si null
 
         try {
             sessionDAO.updateById(
-                    sessionDbEntity.getId(),
-                    sessionDbEntity.getUsername(),
-                    sessionDbEntity.getMail(),
-                    sessionDbEntity.getName(),
-                    sessionDbEntity.getLastName(),
-                    sessionDbEntity.getFullName(),
-                    sessionDbEntity.getAuthDate().toString(),
-                    sessionDbEntity.getLastAuthDate().toString(),
-                    sessionDbEntity.getLastSyncDatePush().toString(),
-                    sessionDbEntity.getLastSyncDatePull().toString(),
-                    sessionDbEntity.getToken(),
-                    sessionDbEntity.getIdWarehouse(),
-                    sessionDbEntity.getIdCounting(),
-                    sessionDbEntity.getIdInventory(),
-                    sessionDbEntity.getIdInventoryCountingWarehouse()
+                    dbSessionEntity.getId(),
+                    dbSessionEntity.getUsername(),
+                    dbSessionEntity.getMail(),
+                    dbSessionEntity.getName(),
+                    dbSessionEntity.getLastName(),
+                    dbSessionEntity.getFullName(),
+                    dbSessionEntity.getAuthDate().toString(),
+                    dbSessionEntity.getLastAuthDate().toString(),
+                    dbSessionEntity.getLastSyncDatePush().toString(),
+                    dbSessionEntity.getLastSyncDatePull().toString(),
+                    dbSessionEntity.getToken(),
+                    dbSessionEntity.getIdWarehouse(),
+                    dbSessionEntity.getIdCounting(),
+                    dbSessionEntity.getIdInventory(),
+                    dbSessionEntity.getIdInventoryCountingWarehouse()
 
                     );
             repositoryCallback.onSuccess(session);
@@ -108,13 +108,13 @@ public class SessionDbEntityDataStore implements SessionDataStore {
     public void deleteSession(Session session, RepositoryCallback repositoryCallback) {
 
         SessionDataMapper sessionDataMapper = new SessionDataMapper();
-        SessionDbEntity sessionDbEntity = sessionDataMapper.transformToDb(session);
+        DbSessionEntity dbSessionEntity = sessionDataMapper.transformToDb(session);
 
         try {
-            if (sessionDbEntity.getName().equalsIgnoreCase("delete*ALL")) {
+            if (dbSessionEntity.getName().equalsIgnoreCase("delete*ALL")) {
                 sessionDAO.deleteAll();
             } else {
-                sessionDAO.deleteById(sessionDbEntity.getId().toString());
+                sessionDAO.deleteById(dbSessionEntity.getId().toString());
             }
             repositoryCallback.onSuccess(session);
         } catch (Exception e) {
@@ -131,14 +131,14 @@ public class SessionDbEntityDataStore implements SessionDataStore {
 
         List<Session> sessions = new ArrayList<>();
         Session session;
-        SessionDbEntity sessionDbEntity;
+        DbSessionEntity dbSessionEntity;
 
         try {
-            List<SessionDbEntity> sessionDbEntitys = sessionDAO.listAllQ();
+            List<DbSessionEntity> dbSessionEntities = sessionDAO.listAllQ();
 
-            for (int i = 0; i < sessionDbEntitys.size(); i++) {
-                sessionDbEntity = sessionDbEntitys.get(i);
-                session = sessionDataMapper.transformFromDb(sessionDbEntity);
+            for (int i = 0; i < dbSessionEntities.size(); i++) {
+                dbSessionEntity = dbSessionEntities.get(i);
+                session = sessionDataMapper.transformFromDb(dbSessionEntity);
                 sessions.add(session);
             }
             repositoryCallback.onSuccess(sessions);

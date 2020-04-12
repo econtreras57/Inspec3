@@ -2,7 +2,7 @@ package com.example.data.datasource.datastore;
 
 import android.content.Context;
 
-import com.example.data.datasource.db.store.SessionDbEntityDataStore;
+import com.example.data.datasource.db.store.DbSessionEntityDataStore;
 
 public class SessionDataStoreFactory {
 
@@ -29,7 +29,7 @@ public class SessionDataStoreFactory {
 //                sessionDataStore = createCloudDataStore(db);
                 break;
             case DB:
-                sessionDataStore = new SessionDbEntityDataStore(context);
+                sessionDataStore = new DbSessionEntityDataStore(context);
                 break;
         }
         return sessionDataStore;

@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.data.datasource.db.model.SessionDbEntity;
+import com.example.data.datasource.db.model.DbSessionEntity;
 
 import java.util.List;
 
@@ -14,20 +14,20 @@ import java.util.List;
 public interface SessionDAO {
 
     @Insert
-    Long InsertOnlyOne(SessionDbEntity sessionDbEntity);
+    Long InsertOnlyOne(DbSessionEntity dbSessionEntity);
 
     @Insert
-    void InsertMultiple(List<SessionDbEntity> sessionDbEntityList);
+    void InsertMultiple(List<DbSessionEntity> dbSessionEntityList);
 
     @Update
-    void Update(SessionDbEntity sessionDbEntity);
+    void Update(DbSessionEntity dbSessionEntity);
 
     @Delete
-    void Delete(SessionDbEntity sessionDbEntity);
+    void Delete(DbSessionEntity dbSessionEntity);
 
     // Method 2 for DELETE by query
     @Query(
-            "DELETE from SessionDbEntity " +
+            "DELETE from DbSessionEntity " +
                     "WHERE id = :id "
     )
     void deleteById(
@@ -35,7 +35,7 @@ public interface SessionDAO {
     );
 
     // Method *ALL, DELETE all rows
-    @Query("DELETE from SessionDbEntity")
+    @Query("DELETE from DbSessionEntity")
     public void deleteAll();
 
     // Method... List *all
@@ -43,13 +43,13 @@ public interface SessionDAO {
     //    <-- https://www.vogella.com/tutorials/AndroidSQLite/article.html
     //    @Query("SELECT * FROM DbPet WHERE :sWhere") <-- No funcionó con "true" en sWhere
     //
-    @Query("SELECT * FROM SessionDbEntity")
-    List<SessionDbEntity> listAllQ();
+    @Query("SELECT * FROM DbSessionEntity")
+    List<DbSessionEntity> listAllQ();
 
 
     // Method 2: Update by Id
     @Query(
-            "UPDATE SessionDbEntity " +
+            "UPDATE DbSessionEntity " +
                     "SET " +
 
                     "id = :id, " +

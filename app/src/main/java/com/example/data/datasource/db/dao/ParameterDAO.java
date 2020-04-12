@@ -6,50 +6,44 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.data.datasource.db.model.ParameterDbEntity;
+import com.example.data.datasource.db.model.DbParameterEntity;
 
 import java.util.List;
 
 @Dao
 public interface ParameterDAO {
 
+    // Create one
     @Insert
-    Long InsertOnlyOne(ParameterDbEntity parameterDbEntity);
+    Long InsertOnlyOne(DbParameterEntity dbParameterEntity);
 
+    // Create batch
     @Insert
-    void InsertMultiple(List<ParameterDbEntity> parameterDbEntityList);
+    void InsertMultiple(List<DbParameterEntity> dbParameterEntityList);
 
-    @Update
-    void Update(ParameterDbEntity parameterDbEntity);
-
-    @Delete
-    void Delete(ParameterDbEntity parameterDbEntity);
-
-    // Method 2 for DELETE by query
-    @Query(
-            "DELETE from ParameterDbEntity " +
-                    "WHERE id = :id "
-    )
-    void deleteById(
+    // Read one
+    @Query("SELECT * FROM DbParameterEntity " +
+            "WHERE id = :id ")
+    DbParameterEntity readOnlyOne(
             String id
     );
 
-    // Method *ALL, DELETE all rows
-    @Query("DELETE from ParameterDbEntity")
-    public void deleteAll();
-
+    // Read all
     // Method... List *all
     //    public List<User> getAllUser();
     //    <-- https://www.vogella.com/tutorials/AndroidSQLite/article.html
     //    @Query("SELECT * FROM DbPet WHERE :sWhere") <-- No funcionó con "true" en sWhere
     //
-    @Query("SELECT * FROM ParameterDbEntity")
-    List<ParameterDbEntity> listAllQ();
+    @Query("SELECT * FROM DbParameterEntity")
+    List<DbParameterEntity> listAllQ();
 
+    // Update one
+    @Update
+    void Update(DbParameterEntity dbParameterEntity);
 
-    // Method 2: Update by Id
+    // Udate one; Method 2: Update by Id
     @Query(
-            "UPDATE ParameterDbEntity " +
+            "UPDATE DbParameterEntity " +
                     "SET " +
 
                     "id = :id, " +
@@ -86,5 +80,21 @@ public interface ParameterDAO {
             //</editor-fold>
     );
 
+    // Delete one
+    @Delete
+    void Delete(DbParameterEntity dbParameterEntity);
+
+    // Delete one. Method 2 for DELETE by query
+    @Query(
+            "DELETE from DbParameterEntity " +
+                    "WHERE id = :id "
+    )
+    void deleteById(
+            String id
+    );
+
+    // Delete *ALL. Method *ALL, DELETE all rows
+    @Query("DELETE from DbParameterEntity")
+    public void deleteAll();
 
 }

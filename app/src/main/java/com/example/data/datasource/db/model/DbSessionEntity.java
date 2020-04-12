@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "SessionDbEntity")
-public class SessionDbEntity {
+@Entity(tableName = "DbSessionEntity")
+public class DbSessionEntity {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
@@ -44,7 +44,7 @@ public class SessionDbEntity {
     @ColumnInfo(name = "idInventoryCountingWarehouse")
     public String idInventoryCountingWarehouse;
 
-    public SessionDbEntity(@NonNull String id, @NonNull String username, String mail, String name,
+    public DbSessionEntity(@NonNull String id, @NonNull String username, String mail, String name,
                            String lastName, String fullName, Date authDate, Date lastAuthDate,
                            Date lastSyncDatePush, Date lastSyncDatePull, @NonNull String token,
                            String idWarehouse, String idCounting, String idInventory,

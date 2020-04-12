@@ -1,15 +1,13 @@
 package com.example.data.mapper;
 
-import com.example.data.datasource.db.model.ParameterDbEntity;
-import com.example.data.datasource.db.model.ParameterValueDbEntity;
-import com.example.domain.model.Parameter;
+import com.example.data.datasource.db.model.DbParameterValueEntity;
 import com.example.domain.model.ParameterValue;
 
 public class ParameterValueDataMapper {
 
-    public ParameterValueDbEntity transformToDb(ParameterValue parameterValue)
+    public DbParameterValueEntity transformToDb(ParameterValue parameterValue)
     {
-        ParameterValueDbEntity parameterValueDbEntity= new ParameterValueDbEntity(
+        DbParameterValueEntity dbParameterValueEntity = new DbParameterValueEntity(
                 parameterValue.getId(),
                 parameterValue.getIdParameter(),
                 parameterValue.getIdParameterValueSuperior(),
@@ -28,28 +26,28 @@ public class ParameterValueDataMapper {
                 parameterValue.isDeleted()
 
                 );
-        return parameterValueDbEntity;
+        return dbParameterValueEntity;
     }
 
-    public ParameterValue transformFromDb(ParameterValueDbEntity parameterValueDbEntity)
+    public ParameterValue transformFromDb(DbParameterValueEntity dbParameterValueEntity)
     {
         ParameterValue parameterValue = new ParameterValue(
-                parameterValueDbEntity.getId(),
-                parameterValueDbEntity.getIdParameter(),
-                parameterValueDbEntity.getIdParameterValueSuperior(),
-                parameterValueDbEntity.getName(),
-                parameterValueDbEntity.getValue(),
-                parameterValueDbEntity.getValueFull(),
-                parameterValueDbEntity.getValueAdditional1(),
-                parameterValueDbEntity.getValueAdditional2(),
-                parameterValueDbEntity.getValueAdditional3(),
-                parameterValueDbEntity.getOrder(),
-                parameterValueDbEntity.isEnable(),
-                parameterValueDbEntity.getIdUserRegister(),
-                parameterValueDbEntity.getIdUserModify(),
-                parameterValueDbEntity.getDateRegister(),
-                parameterValueDbEntity.getDateModify(),
-                parameterValueDbEntity.isDeleted()
+                dbParameterValueEntity.getId(),
+                dbParameterValueEntity.getIdParameter(),
+                dbParameterValueEntity.getIdParameterValueSuperior(),
+                dbParameterValueEntity.getName(),
+                dbParameterValueEntity.getValue(),
+                dbParameterValueEntity.getValueFull(),
+                dbParameterValueEntity.getValueAdditional1(),
+                dbParameterValueEntity.getValueAdditional2(),
+                dbParameterValueEntity.getValueAdditional3(),
+                dbParameterValueEntity.getOrder(),
+                dbParameterValueEntity.isEnable(),
+                dbParameterValueEntity.getIdUserRegister(),
+                dbParameterValueEntity.getIdUserModify(),
+                dbParameterValueEntity.getDateRegister(),
+                dbParameterValueEntity.getDateModify(),
+                dbParameterValueEntity.isDeleted()
 
                 );
         return parameterValue;

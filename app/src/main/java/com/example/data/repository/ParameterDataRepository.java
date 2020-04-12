@@ -86,6 +86,16 @@ public class ParameterDataRepository implements ParameterRepository {
     }
 
     @Override
+    public void getParameter(
+            Parameter parameter,
+            int parameterDataLocation,
+            final ParameterListCallback requestListCallback) {
+
+        // ToDo
+
+    }
+
+    @Override
     public void updateParameter(
             Parameter parameter,
             int parameterDataLocation,

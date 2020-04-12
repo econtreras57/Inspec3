@@ -3,7 +3,7 @@ package com.example.data.datasource.db.store;
 import android.content.Context;
 
 import com.example.data.datasource.datastore.UserDataStore;
-import com.example.data.datasource.db.Inspec3Db;
+import com.example.data.datasource.db.DbInspec3Instance;
 import com.example.data.datasource.db.dao.UserDAO;
 import com.example.data.datasource.db.model.DbUser;
 import com.example.data.mapper.UserDataMapper;
@@ -18,7 +18,7 @@ public class DbUserDataStore implements UserDataStore {
     UserDAO userDAO;
 
     public DbUserDataStore(Context context) {
-        userDAO = Inspec3Db.getDatabase(context).userDAO();
+        userDAO = DbInspec3Instance.getDatabase(context).userDAO();
     }
 
     @Override

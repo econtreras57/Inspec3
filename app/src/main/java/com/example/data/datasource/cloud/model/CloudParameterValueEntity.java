@@ -1,5 +1,4 @@
-package com.example.domain.model;
-
+package com.example.data.datasource.cloud.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -12,14 +11,14 @@ import com.example.data.datasource.db.model.DbParameterEntity;
 
 import java.util.Date;
 
-@Entity(tableName = "ParameterValue",
+@Entity(tableName = "ParameterValueCloudEntity",
         foreignKeys = {
                 @ForeignKey(entity = DbParameterEntity.class, parentColumns = "id",
                         childColumns = "idParameter"),
         },
         indices = {@Index("idParameter")})
 
-public class ParameterValue {
+public class CloudParameterValueEntity {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
@@ -61,13 +60,13 @@ public class ParameterValue {
     @ColumnInfo(name = "deleted")
     public boolean deleted;
 
-    public ParameterValue(@NonNull String id, @NonNull String idParameter,
-                          String idParameterValueSuperior, @NonNull String name,
-                          @NonNull String value, String valueFull, String valueAdditional1,
-                          String valueAdditional2, String valueAdditional3, int order,
-                          @NonNull boolean enable, String idUserRegister,
-                          String idUserModify, Date dateRegister, Date dateModify,
-                          @NonNull boolean deleted) {
+    public CloudParameterValueEntity(@NonNull String id, @NonNull String idParameter,
+                                     String idParameterValueSuperior, @NonNull String name,
+                                     @NonNull String value, String valueFull, String valueAdditional1,
+                                     String valueAdditional2, String valueAdditional3, int order,
+                                     @NonNull boolean enable, String idUserRegister,
+                                     String idUserModify, Date dateRegister, Date dateModify,
+                                     @NonNull boolean deleted) {
         this.id = id;
         this.idParameter = idParameter;
         this.idParameterValueSuperior = idParameterValueSuperior;
@@ -219,5 +218,8 @@ public class ParameterValue {
         this.deleted = deleted;
     }
 }
+
+
+
 
 

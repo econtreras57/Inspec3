@@ -8,16 +8,19 @@ import java.util.List;
 public interface ParameterDataStore {
 
     void createParameter(Parameter parameter,
-                    RepositoryCallback repositoryCallback);
+                         RepositoryCallback repositoryCallback);
 
     void createParameterList(List<Parameter> parameterList,
-                        RepositoryCallback repositoryCallback);
+                             RepositoryCallback repositoryCallback);
+
+    void getParameter(Parameter parameter,
+                         RepositoryCallback repositoryCallback);
 
     void updateParameter(Parameter parameter,
-                    RepositoryCallback repositoryCallback);
+                         RepositoryCallback repositoryCallback);
 
     void deleteParameter(Parameter parameter,
-                    RepositoryCallback repositoryCallback);
+                         RepositoryCallback repositoryCallback);
 
     void parametersList(RepositoryCallback repositoryCallback);
 

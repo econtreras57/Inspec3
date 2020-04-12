@@ -9,14 +9,14 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "ParameterValueDbEntity",
+@Entity(tableName = "DbParameterValueEntity",
         foreignKeys = {
-                @ForeignKey(entity = ParameterDbEntity.class, parentColumns = "id",
+                @ForeignKey(entity = DbParameterEntity.class, parentColumns = "id",
                         childColumns = "idParameter"),
         },
         indices = {@Index("idParameter")})
 
-public class ParameterValueDbEntity {
+public class DbParameterValueEntity {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
@@ -58,7 +58,7 @@ public class ParameterValueDbEntity {
     @ColumnInfo(name = "deleted")
     public boolean deleted;
 
-    public ParameterValueDbEntity(@NonNull String id, @NonNull String idParameter,
+    public DbParameterValueEntity(@NonNull String id, @NonNull String idParameter,
                                   String idParameterValueSuperior, @NonNull String name,
                                   @NonNull String value, String valueFull, String valueAdditional1,
                                   String valueAdditional2, String valueAdditional3, int order,

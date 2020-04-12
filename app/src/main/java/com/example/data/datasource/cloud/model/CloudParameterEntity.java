@@ -1,12 +1,12 @@
-package com.example.data.datasource.db.model;
+package com.example.data.datasource.cloud.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "ParameterDbEntity")
-public class ParameterDbEntity {
+@Entity(tableName = "CloudParameterEntity")
+public class CloudParameterEntity {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
@@ -41,7 +41,7 @@ public class ParameterDbEntity {
     @ColumnInfo(name = "deleted")
     public boolean deleted;
 
-    public ParameterDbEntity(
+    public CloudParameterEntity(
             @NonNull String id, @NonNull String name, String idParameterSuperior,
             @NonNull boolean canShow, @NonNull boolean canAdd, @NonNull boolean canDisabled,
             @NonNull boolean canEdit, @NonNull boolean canDeleted,
