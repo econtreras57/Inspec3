@@ -1,7 +1,9 @@
 package com.example.data.repository;
 
+import com.example.data.datasource.cloud.model.CloudParameterEntity;
 import com.example.data.datasource.datastore.ParameterDataStore;
 import com.example.data.datasource.datastore.ParameterDataStoreFactory;
+import com.example.data.mapper.ParameterDataMapper;
 import com.example.domain.model.Parameter;
 import com.example.domain.repository.RepositoryCallback;
 import com.example.domain.repository.ParameterRepository;
@@ -17,10 +19,11 @@ import java.util.List;
 public class ParameterDataRepository implements ParameterRepository {
 
     private final ParameterDataStoreFactory parameterDataStoreFactory;
+    private final ParameterDataMapper parameterDataMapper;
 
-    public ParameterDataRepository(
-            ParameterDataStoreFactory parameterDataStoreFactory) {
+    public ParameterDataRepository(ParameterDataStoreFactory parameterDataStoreFactory) {
         this.parameterDataStoreFactory = parameterDataStoreFactory;
+        this.parameterDataMapper = new ParameterDataMapper();
     }
 
     @Override
@@ -161,15 +164,9 @@ public class ParameterDataRepository implements ParameterRepository {
     }
 
     @Override
-    public void loadParameters(
-            int parameterDataLocation,
-            final ParameterListCallback requestListCallback) {
+    public void loadParameters(final ParameterListCallback requestListCallback) {
 
-        final ParameterDataStore parameterDataStore = parameterDataStoreFactory.create(
-//                parameterDataStoreFactory.CLOUD, FirebaseFirestore.getInstance());
-                parameterDataLocation
-//                FirebaseFirestore.getInstance()
-        );
+        final ParameterDataStore parameterDataStore = parameterDataStoreFactory.create(ParameterDataStoreFactory.CLOUD);
 
         parameterDataStore.parametersList(new RepositoryCallback() {
             @Override
@@ -183,9 +180,9 @@ public class ParameterDataRepository implements ParameterRepository {
 
             @Override
             public void onSuccess(Object object) {
-
-                ArrayList<Parameter> parameterArrayList = (ArrayList<Parameter>) object;
-                requestListCallback.onParameterListSuccess(parameterArrayList);
+                List<CloudParameterEntity> dbResponse = ((List<CloudParameterEntity>) (object));
+                List<Parameter> _list = parameterDataMapper.transformListCloud(dbResponse);
+                requestListCallback.onParameterListSuccess(_list);
             }
         });
 

@@ -13,10 +13,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.domain.model.Parameter;
 import com.example.inspec3.R;
+import com.example.presentation.presenter.LoginPresenter;
+import com.example.presentation.view.LoginView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class Login1Activity extends AppCompatActivity {
+public class Login1Activity extends AppCompatActivity
+        implements LoginView {
 
     EditText et_username;
     EditText et_password;
@@ -24,6 +31,9 @@ public class Login1Activity extends AppCompatActivity {
     Integer iLifeCount = 0, iLifeCountMax = 2;
 
     private View v;
+
+    public LoginPresenter loginPresenter;
+    public List<Parameter> parameterList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +57,7 @@ public class Login1Activity extends AppCompatActivity {
 
         loginButton.setEnabled(true);
 
+        loadView();
         // auto click
         onClick(findViewById(android.R.id.content)); // finishes this activity if isOK
 
@@ -63,6 +74,7 @@ public class Login1Activity extends AppCompatActivity {
     public void onClick(View v) {
 
 
+        this.loginPresenter.getAllParameter();
         // si ok, saluda, graba y termina
         if (validInput()) {
             setSharedPreferences("Name", et_username.getText().toString());
@@ -133,13 +145,38 @@ public class Login1Activity extends AppCompatActivity {
     }
 
     protected void setSharedPreferences(String key, String value) {
-
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString(key, value);
         editor.commit();
-
-
     }
+
+    // region loginView
+
+    @Override
+    public void showErrorMessage(String message) {
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
+
+    // endregion
+
+    // region presenter
+
+    private void loadView() {
+        this.loginPresenter = new LoginPresenter();
+        this.loginPresenter.addView(this);
+    }
+
+    @Override
+    public void parameterListSuccess(List<Parameter> parameters) {
+        this.parameterList = parameters;
+    }
+
+    // endregion
 
 }

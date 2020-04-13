@@ -1,4 +1,4 @@
-package com.example.data.datasource.cloud.dao;
+package com.example.data.datasource.cloud;
 
 import androidx.room.Dao;
 
@@ -15,32 +15,32 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 @Dao
-public interface ParameterCloudDAO {
+public interface ApiClientInterface {
 
     // Create one
-    @POST("parameter/new")
+    @POST("/parameter/new")
     Call<CloudParameterEntity> createParameter(@Body CloudParameterEntity cloudParameterEntity);
 
     // Create batch // ToDo <-- por validar
-    @POST("parameter/new")
+    @POST("/parameter/new")
     Call<List<CloudParameterEntity>>
     createParameterList(@Body List<CloudParameterEntity> cloudParameterEntityList);
 
     // Read one
-    @GET("parameter/{parameter}")
+    @GET("/parameter/{parameter}")
     Call<CloudParameterEntity> getParameter(@Path("parameter") String parameterId);
 
     // Read batch
-    @GET("parameter")
+    @GET("/parameter")
     Call<List<CloudParameterEntity>> loadParameters();
 
     // Update one   <-- ToDo ¿y el "body"?
-    @PUT("parameter/{parameter}")
+    @PUT("/parameter/{parameter}")
     Call<CloudParameterEntity> updateParameter(@Path("parameter") String parameterId,
                                                @Body CloudParameterEntity cloudParameterEntity);
 
     // Delete one
-    @DELETE("parameter/{parameter}")
+    @DELETE("/parameter/{parameter}")
     Call<Void> deleteParameter(@Path("parameter") String parameterId);
 
 }

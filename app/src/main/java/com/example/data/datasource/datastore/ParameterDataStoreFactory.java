@@ -2,6 +2,7 @@ package com.example.data.datasource.datastore;
 
 import android.content.Context;
 
+import com.example.data.datasource.cloud.store.CloudParameterEntityDataStore;
 import com.example.data.datasource.db.store.DbParameterEntityDataStore;
 
 public class ParameterDataStoreFactory {
@@ -18,15 +19,13 @@ public class ParameterDataStoreFactory {
         this.context = context.getApplicationContext();
     }
 
-    public ParameterDataStore create(
-//            int dataSource, FirebaseFirestore db) {
-            int dataSource) {
+    public ParameterDataStore create(int dataSource) {
 
         ParameterDataStore parameterDataStore = null;
 
         switch (dataSource) {
             case CLOUD:
-//                parameterDataStore = createCloudDataStore(db);
+                parameterDataStore = createCloudDataStore();
                 break;
             case DB:
                 parameterDataStore = new DbParameterEntityDataStore(context);
@@ -35,9 +34,8 @@ public class ParameterDataStoreFactory {
         return parameterDataStore;
     }
 
-//    private ParameterDataStore createCloudDataStore(
-//            FirebaseFirestore db) {
-//        return new CloudParameterDataStore(db);
-//    }
+    private ParameterDataStore createCloudDataStore() {
+        return new CloudParameterEntityDataStore();
+    }
 
 }

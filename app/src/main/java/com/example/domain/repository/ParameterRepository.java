@@ -30,9 +30,7 @@ public interface ParameterRepository {
             final ParameterListCallback requestListCallback);
 
     // Read all
-    void loadParameters(
-            int parameterDataLocation,
-            final ParameterListCallback requestListCallback);
+    void loadParameters(final ParameterListCallback requestListCallback);
 
     // Update one
     void updateParameter(

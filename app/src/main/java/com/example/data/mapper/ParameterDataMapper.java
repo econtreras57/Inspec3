@@ -4,6 +4,9 @@ import com.example.data.datasource.cloud.model.CloudParameterEntity;
 import com.example.data.datasource.db.model.DbParameterEntity;
 import com.example.domain.model.Parameter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParameterDataMapper {
 
     public DbParameterEntity transformToDb(Parameter parameter) {
@@ -81,6 +84,15 @@ public class ParameterDataMapper {
                 cloudParameterEntity.isDeleted()
         );
         return parameter;
+    }
+
+    public List<Parameter> transformListCloud(List<CloudParameterEntity> cloudParameterEntities) {
+        List<Parameter> list = new ArrayList<>();
+        if (cloudParameterEntities == null) return list;
+        for (CloudParameterEntity wsEntity : cloudParameterEntities) {
+            list.add(transformFromCloud(wsEntity));
+        }
+        return list;
     }
 
 }

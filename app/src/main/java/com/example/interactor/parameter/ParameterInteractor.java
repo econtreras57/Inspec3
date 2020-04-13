@@ -62,12 +62,8 @@ public class ParameterInteractor {
                 parameterDeletedCallback);
     }
 
-    public void loadParameters(
-            int parameterDataLocation,
-            ParameterListCallback parameterListCallback) {
-        parameterRepository.loadParameters(
-                parameterDataLocation,
-                parameterListCallback);
+    public void loadParameters(ParameterListCallback parameterListCallback) {
+        parameterRepository.loadParameters(parameterListCallback);
     }
 
 }
