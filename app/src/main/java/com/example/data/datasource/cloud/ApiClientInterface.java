@@ -3,6 +3,7 @@ package com.example.data.datasource.cloud;
 import androidx.room.Dao;
 
 import com.example.data.datasource.cloud.model.CloudParameterEntity;
+import com.example.data.datasource.cloud.model.CloudParameterValueEntity;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import retrofit2.http.Path;
 @Dao
 public interface ApiClientInterface {
 
+    // region parameter CRUD functions
     // Create one
     @POST("/parameter/new")
     Call<CloudParameterEntity> createParameter(@Body CloudParameterEntity cloudParameterEntity);
@@ -42,5 +44,39 @@ public interface ApiClientInterface {
     // Delete one
     @DELETE("/parameter/{parameter}")
     Call<Void> deleteParameter(@Path("parameter") String parameterId);
+
+    // endregion
+
+    // region parameter_value CRUD functions
+    // Create one
+    @POST("parameter_value/new")
+    Call<CloudParameterValueEntity> createParameterValue(
+            @Body CloudParameterValueEntity cloudParameterValueEntity);
+
+    // Create batch // ToDo <-- por validar
+    @POST("parameter_value/new")
+    Call<List<CloudParameterValueEntity>>
+    createParameterValueList(@Body List<CloudParameterValueEntity> cloudParameterValueEntityList);
+
+    // Read one
+    @GET("parameter_value/{id}")
+    Call<CloudParameterValueEntity> getParameterValue(
+            @Path("id") String parameterValueId);
+
+    // Read batch; example: http://localhost:3000/parameter_value/?idParameter=TPIN
+    @GET("parameter_value/?idParameter={groupId}")
+    Call<List<CloudParameterValueEntity>> getListParameterValues(
+            @Path("groupId") String parameterId);
+
+    // Update one
+    @PUT("parameter_value/{parameter}")
+    Call<CloudParameterValueEntity> updateParameterValue(
+            @Path("parameter") String parameterValueId, CloudParameterValueEntity cloudParameterValueEntity);
+
+    // Delete one
+    @DELETE("parameter_value/{parameter}")
+    Call<Void> deleteParameterValue(@Path("parameter") String parameterValueId);
+
+    // endregion
 
 }

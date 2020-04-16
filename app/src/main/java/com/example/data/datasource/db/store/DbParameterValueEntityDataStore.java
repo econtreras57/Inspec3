@@ -125,7 +125,9 @@ public class DbParameterValueEntityDataStore implements ParameterValueDataStore 
     }
 
     @Override
-    public void parameterValuesList(RepositoryCallback repositoryCallback) {
+    public void parameterValuesList(
+            String parameterId,
+            RepositoryCallback repositoryCallback) {
 
         ParameterValueDataMapper parameterValueDataMapper = new ParameterValueDataMapper();
 //        ParameterValueDbEntity parameterValueDbEntity = parameterValueDataMapper.transformToDb(parameterValue);
@@ -135,7 +137,8 @@ public class DbParameterValueEntityDataStore implements ParameterValueDataStore 
         DbParameterValueEntity dbParameterValueEntity;
 
         try {
-            List<DbParameterValueEntity> dbParameterValueEntities = parameterValueDAO.listAllQ();
+            List<DbParameterValueEntity> dbParameterValueEntities =
+                    parameterValueDAO.listAllQ();
 
             for (int i = 0; i < dbParameterValueEntities.size(); i++) {
 //                System.out.println(crunchifyList.get(i));

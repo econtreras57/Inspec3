@@ -19,7 +19,12 @@ public class LoginPresenter implements
     @Override
     public void addView(LoginView view) {
         this.loginView = view;
-        parameterInteractor = new ParameterInteractor(new ParameterDataRepository(new ParameterDataStoreFactory(this.loginView.getContext())));
+        parameterInteractor =
+                new ParameterInteractor(
+                        new ParameterDataRepository(
+                                new ParameterDataStoreFactory(
+                                        this.loginView.getContext()
+                                )));
     }
 
     @Override

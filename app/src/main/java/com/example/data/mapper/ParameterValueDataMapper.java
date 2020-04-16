@@ -1,5 +1,6 @@
 package com.example.data.mapper;
 
+import com.example.data.datasource.cloud.model.CloudParameterValueEntity;
 import com.example.data.datasource.db.model.DbParameterValueEntity;
 import com.example.domain.model.ParameterValue;
 
@@ -52,5 +53,55 @@ public class ParameterValueDataMapper {
                 );
         return parameterValue;
     }
-    
+
+    public CloudParameterValueEntity transformToCloud(ParameterValue parameterValue)
+    {
+        CloudParameterValueEntity cloudParameterValueEntity = 
+                new CloudParameterValueEntity(
+                parameterValue.getId(),
+                parameterValue.getIdParameter(),
+                parameterValue.getIdParameterValueSuperior(),
+                parameterValue.getName(),
+                parameterValue.getValue(),
+                parameterValue.getValueFull(),
+                parameterValue.getValueAdditional1(),
+                parameterValue.getValueAdditional2(),
+                parameterValue.getValueAdditional3(),
+                parameterValue.getOrder(),
+                parameterValue.isDeleted(),
+                parameterValue.getIdUserRegister(),
+                parameterValue.getIdUserModify(),
+                parameterValue.getDateRegister(),
+                parameterValue.getDateModify(),
+                parameterValue.isDeleted()
+
+        );
+        return cloudParameterValueEntity;
+    }
+
+    public ParameterValue transformFromCloud(
+            CloudParameterValueEntity cloudParameterValueEntity)
+    {
+        ParameterValue parameterValue = new ParameterValue(
+                cloudParameterValueEntity.getId(),
+                cloudParameterValueEntity.getIdParameter(),
+                cloudParameterValueEntity.getIdParameterValueSuperior(),
+                cloudParameterValueEntity.getName(),
+                cloudParameterValueEntity.getValue(),
+                cloudParameterValueEntity.getValueFull(),
+                cloudParameterValueEntity.getValueAdditional1(),
+                cloudParameterValueEntity.getValueAdditional2(),
+                cloudParameterValueEntity.getValueAdditional3(),
+                cloudParameterValueEntity.getOrder(),
+                cloudParameterValueEntity.isEnable(),
+                cloudParameterValueEntity.getIdUserRegister(),
+                cloudParameterValueEntity.getIdUserModify(),
+                cloudParameterValueEntity.getDateRegister(),
+                cloudParameterValueEntity.getDateModify(),
+                cloudParameterValueEntity.isDeleted()
+
+        );
+        return parameterValue;
+    }
+
 }

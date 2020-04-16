@@ -19,7 +19,8 @@ public interface ParameterValueDataStore {
     void deleteParameterValue(ParameterValue parameterValue,
                     RepositoryCallback repositoryCallback);
 
-    void parameterValuesList(RepositoryCallback repositoryCallback);
+    void parameterValuesList(String parameterId,
+            RepositoryCallback repositoryCallback);
 
 
 }

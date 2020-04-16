@@ -161,7 +161,9 @@ public class ParameterValueDataRepository implements ParameterValueRepository {
 //                FirebaseFirestore.getInstance()
         );
 
-        parameterValueDataStore.parameterValuesList(new RepositoryCallback() {
+        // ToDo <-- recibir o definir parameterId
+
+        parameterValueDataStore.parameterValuesList("", new RepositoryCallback() {
             @Override
             public void onError(Object object) {
                 String message = "";

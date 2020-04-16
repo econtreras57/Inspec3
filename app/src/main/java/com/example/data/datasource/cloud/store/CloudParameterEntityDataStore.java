@@ -19,7 +19,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CloudParameterEntityDataStore implements ParameterDataStore {
+public class CloudParameterEntityDataStore
+        implements ParameterDataStore {
 
     private static final String TAG = "CloudParameterEntityDat";
     ApiClientInterface apiClientInterface;
@@ -29,10 +30,13 @@ public class CloudParameterEntityDataStore implements ParameterDataStore {
     }
 
     @Override
-    public void createParameter(Parameter parameter, RepositoryCallback repositoryCallback) {
+    public void createParameter(
+            Parameter parameter,
+            RepositoryCallback repositoryCallback) {
 
         ParameterDataMapper parameterDataMapper = new ParameterDataMapper();
-        CloudParameterEntity cloudParameterEntity = parameterDataMapper.transformToCloud(parameter);
+        CloudParameterEntity cloudParameterEntity =
+                parameterDataMapper.transformToCloud(parameter);
 
         cloudParameterEntity.setId(null);      // para que autogenere la clave ¿cierto?
 
@@ -86,7 +90,9 @@ public class CloudParameterEntityDataStore implements ParameterDataStore {
     }
 
     @Override
-    public void updateParameter(Parameter parameter, RepositoryCallback repositoryCallback) {
+    public void updateParameter(
+            Parameter parameter,
+            RepositoryCallback repositoryCallback) {
 
         ParameterDataMapper parameterDataMapper = new ParameterDataMapper();
         CloudParameterEntity cloudParameterEntity = parameterDataMapper.transformToCloud(parameter);
@@ -107,10 +113,14 @@ public class CloudParameterEntityDataStore implements ParameterDataStore {
     }
 
     @Override
-    public void deleteParameter(Parameter parameter, RepositoryCallback repositoryCallback) {
+    public void deleteParameter(
+            Parameter parameter,
+            RepositoryCallback repositoryCallback) {
 
-        ParameterDataMapper parameterDataMapper = new ParameterDataMapper();
-        CloudParameterEntity cloudParameterEntity = parameterDataMapper.transformToCloud(parameter);
+        ParameterDataMapper parameterDataMapper =
+                new ParameterDataMapper();
+        CloudParameterEntity cloudParameterEntity =
+                parameterDataMapper.transformToCloud(parameter);
 
         try {
             apiClientInterface.deleteParameter(cloudParameterEntity.getId().toString());
@@ -125,12 +135,16 @@ public class CloudParameterEntityDataStore implements ParameterDataStore {
     public void parametersList(final RepositoryCallback repositoryCallback) {
 
         try {
-            Call<List<CloudParameterEntity>> call = apiClientInterface.loadParameters();
+            Call<List<CloudParameterEntity>> call =
+                    apiClientInterface.loadParameters();
             call.enqueue(new Callback<List<CloudParameterEntity>>() {
                 @Override
-                public void onResponse(Call<List<CloudParameterEntity>> call, Response<List<CloudParameterEntity>> response) {
+                public void onResponse(
+                        Call<List<CloudParameterEntity>> call,
+                        Response<List<CloudParameterEntity>> response) {
                     if (response.isSuccessful()) {
-                        List<CloudParameterEntity> bodyResponse = response.body();
+                        List<CloudParameterEntity> bodyResponse =
+                                response.body();
                         repositoryCallback.onSuccess(bodyResponse);
                     } else {
                         ErrorWs error = Helper.getWsErrorResponse(response);
@@ -139,7 +153,9 @@ public class CloudParameterEntityDataStore implements ParameterDataStore {
                 }
 
                 @Override
-                public void onFailure(Call<List<CloudParameterEntity>> call, Throwable t) {
+                public void onFailure(
+                        Call<List<CloudParameterEntity>> call,
+                        Throwable t) {
                     String message = "";
                     if (t != null) {
                         message = t.getMessage();

@@ -1,37 +1,54 @@
 package com.example.data.datasource.cloud.store;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.example.common.Helper;
+import com.example.data.datasource.cloud.ApiClientInterface;
+import com.example.data.datasource.cloud.CloudInspec3Instance;
+import com.example.data.datasource.cloud.model.CloudParameterEntity;
+import com.example.data.datasource.cloud.model.CloudParameterValueEntity;
+import com.example.data.datasource.cloud.model.ErrorWs;
 import com.example.data.datasource.datastore.ParameterValueDataStore;
 import com.example.data.datasource.db.DbInspec3Instance;
 import com.example.data.datasource.db.dao.ParameterValueDAO;
-import com.example.data.datasource.db.model.DbParameterValueEntity;
 import com.example.data.mapper.ParameterValueDataMapper;
+import com.example.domain.model.Parameter;
 import com.example.domain.model.ParameterValue;
 import com.example.domain.repository.RepositoryCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CloudParameterValueEntityDataStore implements ParameterValueDataStore {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    ParameterValueDAO parameterValueDAO;
+public class CloudParameterValueEntityDataStore
+        implements ParameterValueDataStore {
+
+    private static final String TAG = "CloudParameterValueEntityDat";
+    ApiClientInterface apiClientInterface;
 
     public CloudParameterValueEntityDataStore(Context context) {
-        parameterValueDAO = DbInspec3Instance.getDatabase(context).parameterValueDAO();
+        apiClientInterface = CloudInspec3Instance.getApiClient();
     }
 
     @Override
-    public void createParameterValue(ParameterValue parameterValue, RepositoryCallback repositoryCallback) {
+    public void createParameterValue(
+            ParameterValue parameterValue,
+            RepositoryCallback repositoryCallback) {
 
-        ParameterValueDataMapper parameterValueDataMapper = new ParameterValueDataMapper();
-        DbParameterValueEntity dbParameterValueEntity = parameterValueDataMapper.transformToDb(parameterValue);
+        ParameterValueDataMapper parameterValueDataMapper =
+                new ParameterValueDataMapper();
+        CloudParameterValueEntity cloudParameterValueEntity =
+                parameterValueDataMapper.transformToCloud(parameterValue);
 
-        dbParameterValueEntity.setId(null);      // para que autogenere la clave ¿cierto?
+        cloudParameterValueEntity.setId(null);      // para que autogenere la clave ¿cierto?
 
         try {
             parameterValue.setId(
-                    parameterValueDAO.InsertOnlyOne(dbParameterValueEntity).toString()
+                    apiClientInterface.createParameterValue(cloudParameterValueEntity).toString()
             );
             repositoryCallback.onSuccess(parameterValue);
         } catch (Exception e) {
@@ -49,18 +66,18 @@ public class CloudParameterValueEntityDataStore implements ParameterValueDataSto
         ParameterValueDataMapper parameterValueDataMapper = new ParameterValueDataMapper();
 //        ParameterValueDbEntity parameterValueDbEntity=parameterValueDataMapper.transformToDb(parameterValue);
 
-        List<DbParameterValueEntity> dbParameterValueEntityList = new ArrayList<>();
+        List<CloudParameterValueEntity> cloudParameterValueEntityList = new ArrayList<>();
         for (int i = 0; i < parameterValueList.size(); i++) {
             ParameterValue wrkParameterValue = parameterValueList.get(i);
-            DbParameterValueEntity wrkDbParameterValueEntity = parameterValueDataMapper.transformToDb(wrkParameterValue);
-            wrkDbParameterValueEntity.setId(null);     // para que se creen automáticamente
-            dbParameterValueEntityList.add(wrkDbParameterValueEntity);
+            CloudParameterValueEntity wrkCloudParameterValueEntity = parameterValueDataMapper.transformToCloud(wrkParameterValue);
+            wrkCloudParameterValueEntity.setId(null);     // para que se creen automáticamente
+            cloudParameterValueEntityList.add(wrkCloudParameterValueEntity);
         }
 
 //        parameterValueDbEntity.setId( 0 ); // o null?
 
         try {
-            parameterValueDAO.InsertMultiple(dbParameterValueEntityList);     // tipos... ver domain/model/parameterValue
+            apiClientInterface.createParameterValueList(cloudParameterValueEntityList);     // tipos... ver domain/model/parameterValue
             repositoryCallback.onSuccess(parameterValueList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -70,33 +87,21 @@ public class CloudParameterValueEntityDataStore implements ParameterValueDataSto
     }
 
     @Override
-    public void updateParameterValue(ParameterValue parameterValue, RepositoryCallback repositoryCallback) {
+    public void updateParameterValue(
+            ParameterValue parameterValue,
+            RepositoryCallback repositoryCallback) {
 
         ParameterValueDataMapper parameterValueDataMapper = new ParameterValueDataMapper();
-        DbParameterValueEntity dbParameterValueEntity = parameterValueDataMapper.transformToDb(parameterValue);
+        CloudParameterValueEntity cloudParameterValueEntity =
+                parameterValueDataMapper.transformToCloud(parameterValue);
 
-        dbParameterValueEntity.setId(parameterValue.getId()); // ojo, verificar si null
+        cloudParameterValueEntity.setId(parameterValue.getId()); // ojo, verificar si null
 
         try {
-            parameterValueDAO.updateById(
-                    dbParameterValueEntity.getId(),
-                    dbParameterValueEntity.getIdParameter(),
-                    dbParameterValueEntity.getIdParameterValueSuperior(),
-                    dbParameterValueEntity.getName(),
-                    dbParameterValueEntity.getValue(),
-                    dbParameterValueEntity.getValueFull(),
-                    dbParameterValueEntity.getValueAdditional1(),
-                    dbParameterValueEntity.getValueAdditional2(),
-                    dbParameterValueEntity.getValueAdditional3(),
-                    Integer.toString(dbParameterValueEntity.getOrder()),
-                    Boolean.toString(dbParameterValueEntity.isEnable()),
-                    dbParameterValueEntity.getIdUserRegister(),
-                    dbParameterValueEntity.getIdUserModify(),
-                    dbParameterValueEntity.getDateRegister().toString(),
-                    dbParameterValueEntity.getDateModify().toString(),
-                    Boolean.toString(dbParameterValueEntity.isDeleted())
-
-                    );
+            apiClientInterface.updateParameterValue(
+                    cloudParameterValueEntity.getId(),
+                    cloudParameterValueEntity
+            );
             repositoryCallback.onSuccess(parameterValue);
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,17 +111,17 @@ public class CloudParameterValueEntityDataStore implements ParameterValueDataSto
     }
 
     @Override
-    public void deleteParameterValue(ParameterValue parameterValue, RepositoryCallback repositoryCallback) {
+    public void deleteParameterValue(
+            ParameterValue parameterValue,
+            RepositoryCallback repositoryCallback) {
 
-        ParameterValueDataMapper parameterValueDataMapper = new ParameterValueDataMapper();
-        DbParameterValueEntity dbParameterValueEntity = parameterValueDataMapper.transformToDb(parameterValue);
+        ParameterValueDataMapper parameterValueDataMapper =
+                new ParameterValueDataMapper();
+        CloudParameterValueEntity cloudParameterValueEntity =
+                parameterValueDataMapper.transformToCloud(parameterValue);
 
         try {
-            if (dbParameterValueEntity.getName().equalsIgnoreCase("delete*ALL")) {
-                parameterValueDAO.deleteAll();
-            } else {
-                parameterValueDAO.deleteById(dbParameterValueEntity.getId().toString());
-            }
+            apiClientInterface.deleteParameterValue(cloudParameterValueEntity.getId().toString());
             repositoryCallback.onSuccess(parameterValue);
         } catch (Exception e) {
             e.printStackTrace();
@@ -125,31 +130,45 @@ public class CloudParameterValueEntityDataStore implements ParameterValueDataSto
     }
 
     @Override
-    public void parameterValuesList(RepositoryCallback repositoryCallback) {
-
-        ParameterValueDataMapper parameterValueDataMapper = new ParameterValueDataMapper();
-//        ParameterValueDbEntity parameterValueDbEntity = parameterValueDataMapper.transformToDb(parameterValue);
-
-        List<ParameterValue> parameterValues = new ArrayList<>();
-        ParameterValue parameterValue;
-        DbParameterValueEntity dbParameterValueEntity;
+    public void parameterValuesList(
+            String parameterId,
+            RepositoryCallback repositoryCallback) {
 
         try {
-            List<DbParameterValueEntity> dbParameterValueEntities = parameterValueDAO.listAllQ();
+            Call<List<CloudParameterValueEntity>> call =
+                    apiClientInterface.getListParameterValues(parameterId);
+            call.enqueue(new Callback<List<CloudParameterValueEntity>>() {
+                @Override
+                public void onResponse(
+                        Call<List<CloudParameterValueEntity>> call,
+                        Response<List<CloudParameterValueEntity>> response) {
+                    if (response.isSuccessful()) {
+                        List<CloudParameterValueEntity> bodyResponse =
+                                response.body();
+                        repositoryCallback.onSuccess(bodyResponse);
+                    } else {
+                        ErrorWs error = Helper.getWsErrorResponse(response);
+                        repositoryCallback.onError(error.getMessage());
+                    }
+                }
 
-            for (int i = 0; i < dbParameterValueEntities.size(); i++) {
-//                System.out.println(crunchifyList.get(i));
-                dbParameterValueEntity = dbParameterValueEntities.get(i);
-                parameterValue = parameterValueDataMapper.transformFromDb(dbParameterValueEntity);
-                parameterValues.add(parameterValue);
-            }
-            repositoryCallback.onSuccess(parameterValues);
+                @Override
+                public void onFailure(
+                        Call<List<CloudParameterValueEntity>> call,
+                        Throwable t) {
+                    String message = "";
+                    if (t != null) {
+                        message = t.getMessage();
+                    }
+                    Log.i(TAG, "error " + message);
+                    repositoryCallback.onError(message);
+                }
+            });
 
         } catch (Exception e) {
             e.printStackTrace();
             repositoryCallback.onError(e);
         }
     }
-
 
 }
