@@ -63,9 +63,12 @@ public class ParameterValueInteractor {
     }
 
     public void loadParameterValues(
+            String parameterId,
             int parameterValueDataLocation,
             ParameterValueListCallback parameterValueListCallback) {
+
         parameterValueRepository.loadParameterValues(
+                parameterId,
                 parameterValueDataLocation,
                 parameterValueListCallback);
     }

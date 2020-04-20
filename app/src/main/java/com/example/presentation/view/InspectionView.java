@@ -1,12 +1,15 @@
 package com.example.presentation.view;
 
 import com.example.domain.model.Inspection;
+import com.example.domain.model.ParameterValue;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public interface InspectionView extends BaseView {
+
+    void parameterValueListSuccess(List<ParameterValue> parameterValues);
 
     void inspectionCreated(Inspection inspection);
 

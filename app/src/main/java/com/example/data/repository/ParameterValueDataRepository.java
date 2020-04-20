@@ -152,6 +152,7 @@ public class ParameterValueDataRepository implements ParameterValueRepository {
 
     @Override
     public void loadParameterValues(
+            String parameterId,
             int parameterValueDataLocation,
             final ParameterValueListCallback requestListCallback) {
 
@@ -161,9 +162,9 @@ public class ParameterValueDataRepository implements ParameterValueRepository {
 //                FirebaseFirestore.getInstance()
         );
 
-        // ToDo <-- recibir o definir parameterId
+        // 2020-04-17 recibir parameterId
 
-        parameterValueDataStore.parameterValuesList("", new RepositoryCallback() {
+        parameterValueDataStore.parameterValuesList(parameterId, new RepositoryCallback() {
             @Override
             public void onError(Object object) {
                 String message = "";

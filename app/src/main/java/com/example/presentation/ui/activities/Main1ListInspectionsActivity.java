@@ -164,7 +164,7 @@ public class Main1ListInspectionsActivity
 
     @Override
     public Context getContext() {
-        return null;
+        return this;    // null antes??
     }
 
     @Override

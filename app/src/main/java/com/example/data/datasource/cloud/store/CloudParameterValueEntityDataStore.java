@@ -30,7 +30,7 @@ public class CloudParameterValueEntityDataStore
     private static final String TAG = "CloudParameterValueEntityDat";
     ApiClientInterface apiClientInterface;
 
-    public CloudParameterValueEntityDataStore(Context context) {
+    public CloudParameterValueEntityDataStore() {
         apiClientInterface = CloudInspec3Instance.getApiClient();
     }
 

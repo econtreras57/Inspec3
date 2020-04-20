@@ -31,6 +31,7 @@ public interface ParameterValueRepository {
             ParameterValueDeletedCallback parameterValueDeletedCallback);
 
     void loadParameterValues(
+            String parameterId,
             int parameterValueDataLocation,
             final ParameterValueListCallback requestListCallback);
 

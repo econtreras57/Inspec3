@@ -14,6 +14,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 @Dao
 public interface ApiClientInterface {
@@ -63,10 +64,22 @@ public interface ApiClientInterface {
     Call<CloudParameterValueEntity> getParameterValue(
             @Path("id") String parameterValueId);
 
-    // Read batch; example: http://localhost:3000/parameter_value/?idParameter=TPIN
-    @GET("parameter_value/?idParameter={groupId}")
+// region Read batch; example: http://localhost:3000/parameter_value/?idParameter=TPIN
+//
+//    @GET("Search") //i.e https://api.test.com/Search?
+//    Call<Products> getProducts(@Query("one") String one, @Query("two") String two,
+//                               @Query("key") String key)
+//
+//    @GET("parameter_value/?idParameter={groupId}")    // funciona en navegador, pero no aquí
+//    Call<List<CloudParameterValueEntity>> getListParameterValues(
+//            @Path("groupId") String parameterId);
+// endregion
+
+    @GET("parameter_value/")    // parameter_value/?
     Call<List<CloudParameterValueEntity>> getListParameterValues(
-            @Path("groupId") String parameterId);
+            @Query("idParameter") String parameterId
+    );
+
 
     // Update one
     @PUT("parameter_value/{parameter}")

@@ -19,9 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.domain.model.Inspection;
+import com.example.domain.model.ParameterValue;
 import com.example.inspec3.R;
+import com.example.presentation.presenter.InspectionPresenter;
 import com.example.presentation.view.InspectionView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +44,8 @@ public class MainInspectionActivity
         implements InspectionView,
         AdapterView.OnItemSelectedListener {
 
+    InspectionPresenter inspectionPresenter;
+
     Inspection inspection;
     TextView tv_titDocActivity;
 
@@ -49,10 +54,17 @@ public class MainInspectionActivity
     Spinner spinnerLocType;
     Spinner spinnerSite;
 
-    Boolean spinnerProject_1st=true;
-    Boolean spinnerContractor_1st=true;
-    Boolean spinnerLocType_1st=true;
-    Boolean spinnerSite_1st=true;
+    Boolean spinnerProject_1st = true;
+    Boolean spinnerContractor_1st = true;
+    Boolean spinnerLocType_1st = true;
+    Boolean spinnerSite_1st = true;
+
+    String[] spinnerProject_array;
+    String[] spinnerContractor_array;
+    String[] spinnerLocType_array;
+    String[] spinnerSite_array;
+
+    String[] parameterValues_array;
 
     Button button1;
     Button button2;
@@ -79,6 +91,9 @@ public class MainInspectionActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        inspectionPresenter = new InspectionPresenter();
+        inspectionPresenter.addView(this);
+
         // Get the Intent that started this activity and extract incoming data
 
         Intent intent = getIntent();
@@ -89,6 +104,16 @@ public class MainInspectionActivity
         int position = Integer.parseInt(message);   // posición del arreglo (o -1 si nuevo)
 
         // Set and load fields on screen (and states of button-groups)
+//        spinnerProject_array;       // id PRYC
+//        spinnerContractor_array;    // id CNTR
+//        spinnerLocType_array;       // id TPBC
+//        spinnerSite_array;          // id LGRS
+
+        inspectionPresenter.readParameterValueList("PRYC");
+        inspectionPresenter.readParameterValueList("CNTR");
+        inspectionPresenter.readParameterValueList("TPBC");
+        inspectionPresenter.readParameterValueList("LGRS");
+
         spinnerProjectLoad();
         spinnerContractorLoad();
         spinnerLocTypeLoad();
@@ -165,8 +190,10 @@ public class MainInspectionActivity
 //        Spinner spinnerProject = (Spinner) findViewById(R.id.spinner_project);
         spinnerProject = (Spinner) findViewById(R.id.spinner_project);
 // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapterProject = ArrayAdapter.createFromResource(this,
-                R.array.projects_array, android.R.layout.simple_spinner_item);
+//        ArrayAdapter<CharSequence> adapterProject = ArrayAdapter.createFromResource(this,
+//                R.array.projects_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterProject = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, spinnerProject_array);
 // Specify the layout to use when the list of choices appears
         adapterProject.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
@@ -180,8 +207,10 @@ public class MainInspectionActivity
 //        Spinner spinnerContractor = (Spinner) findViewById(R.id.spinner_contractor);
         spinnerContractor = (Spinner) findViewById(R.id.spinner_contractor);
 // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapterContractor = ArrayAdapter.createFromResource(this,
-                R.array.contractors_array, android.R.layout.simple_spinner_item);
+//        ArrayAdapter<CharSequence> adapterContractor = ArrayAdapter.createFromResource(this,
+//                R.array.contractors_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterContractor = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, spinnerContractor_array);
 // Specify the layout to use when the list of choices appears
         adapterContractor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
@@ -195,8 +224,10 @@ public class MainInspectionActivity
 //        Spinner spinnerLocType = (Spinner) findViewById(R.id.spinner_locType);
         spinnerLocType = (Spinner) findViewById(R.id.spinner_locType);
 // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapterLocType = ArrayAdapter.createFromResource(this,
-                R.array.locType_array, android.R.layout.simple_spinner_item);
+//        ArrayAdapter<CharSequence> adapterLocType = ArrayAdapter.createFromResource(this,
+//                R.array.locType_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterLocType = new ArrayAdapter(this,
+                android.R.layout.simple_spinner_item, spinnerLocType_array);
 // Specify the layout to use when the list of choices appears
         adapterLocType.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
@@ -222,11 +253,38 @@ public class MainInspectionActivity
     }
 
     @Override
+    public void parameterValueListSuccess(List<ParameterValue> parameterValues) {
+
+        if (parameterValues == null) return;
+        parameterValues.toArray(parameterValues_array);
+
+//        spinnerProject_array;       // id PRYC
+//        spinnerContractor_array;    // id CNTR
+//        spinnerLocType_array;       // id TPBC
+//        spinnerSite_array;          // id LGRS
+
+        switch (parameterValues.get(0).idParameter) {
+            case "PRYC":
+                spinnerProject_array = parameterValues_array;
+                break;
+            case "CNTR":
+                spinnerContractor_array = parameterValues_array;
+                break;
+            case "TPBC":
+                spinnerLocType_array = parameterValues_array;
+                break;
+            case "LGRS":
+                spinnerSite_array = parameterValues_array;
+                break;
+        }
+    }
+
+    @Override
     public void inspectionCreated(Inspection inspection) {
 
     }
 
-//    @Override
+    //    @Override
 //    public void inspectionCreatedList(List<Inspection> inspectionList) {
 //
 //    }
@@ -241,7 +299,7 @@ public class MainInspectionActivity
 
     }
 
-//    @Override
+    //    @Override
 //    public void inspectionsListLoaded(ArrayList<Inspection> inspections) {
 //
 //    }
@@ -253,7 +311,7 @@ public class MainInspectionActivity
 
     @Override
     public Context getContext() {
-        return null;
+        return this;    // null antes ??
     }
 
     public void OnButtonG1Checked(View view) {
@@ -310,28 +368,28 @@ public class MainInspectionActivity
         switch (sTest) {
             case "spinner_project":
                 if (spinnerProject_1st) {
-                    spinnerProject_1st=false;
+                    spinnerProject_1st = false;
                 } else {
 //                    toast.show();
                 }
                 break;
             case "spinner_contractor":
                 if (spinnerContractor_1st) {
-                    spinnerContractor_1st=false;
+                    spinnerContractor_1st = false;
                 } else {
 //                    toast.show();
                 }
                 break;
             case "spinner_locType":
                 if (spinnerLocType_1st) {
-                    spinnerLocType_1st=false;
+                    spinnerLocType_1st = false;
                 } else {
 //                    toast.show();
                 }
                 break;
             case "spinner_site":
                 if (spinnerSite_1st) {
-                    spinnerSite_1st=false;
+                    spinnerSite_1st = false;
                 } else {
 //                    toast.show();
                 }

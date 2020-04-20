@@ -1,19 +1,30 @@
 package com.example.presentation.presenter;
 
 import com.example.data.datasource.datastore.InspectionDataStoreFactory;
+import com.example.data.datasource.datastore.ParameterValueDataStoreFactory;
 import com.example.data.repository.InspectionDataRepository;
+import com.example.data.repository.ParameterValueDataRepository;
 import com.example.domain.model.Inspection;
+import com.example.domain.model.Parameter;
+import com.example.domain.model.ParameterValue;
 import com.example.domain.repository.InspectionRepository;
+import com.example.domain.repository.ParameterValueRepository;
 import com.example.interactor.inspection.InspectionCreatedCallback;
 import com.example.interactor.inspection.InspectionDeletedCallback;
 import com.example.interactor.inspection.InspectionInteractor;
 import com.example.interactor.inspection.InspectionListCallback;
 import com.example.interactor.inspection.InspectionListCreatedCallback;
 import com.example.interactor.inspection.InspectionUpdatedCallback;
+import com.example.interactor.parameter.ParameterInteractor;
+import com.example.interactor.parameter.ParameterListCallback;
+import com.example.interactor.parametervalue.ParameterValueInteractor;
+import com.example.interactor.parametervalue.ParameterValueListCallback;
 import com.example.presentation.view.InspectionView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.data.datasource.datastore.ParameterValueDataStoreFactory.CLOUD;
 
 
 public class InspectionPresenter implements
@@ -22,10 +33,14 @@ public class InspectionPresenter implements
 //        InspectionListCallback,
         InspectionCreatedCallback,
         InspectionUpdatedCallback,
-        InspectionDeletedCallback {
+        InspectionDeletedCallback,
+        ParameterListCallback,
+        ParameterValueListCallback {
 
     private InspectionView inspectionView;
     private InspectionInteractor inspectionInteractor;
+    private ParameterInteractor parameterInteractor;
+    private ParameterValueInteractor parameterValueInteractor;
 
     public void createInspection(Inspection inspection, int inspectionDataLocation) {
         inspectionInteractor.createInspection(
@@ -49,27 +64,42 @@ public class InspectionPresenter implements
                 this);
     }
 
-    //    public void createInspectionList(List<Inspection> inspectionList, int inspectionDataLocation) {
-//        inspectionInteractor.createInspectionList(
-//                inspectionList,
-//                inspectionDataLocation,
-//                this);
-//    }
-//
-    //    public void loadInspections(int inspectionDataLocation) {
-//        inspectionInteractor.loadInspections(
-//                inspectionDataLocation,
-//                this);
-//    }
-//
+    public void readParameterValueList(String parameterId) {
+
+        // Dónde se decide si se trae de CLOUD o LOCAL?
+        int parameterValueDataLocation = CLOUD;
+
+        parameterValueInteractor.loadParameterValues(
+                parameterId,
+                parameterValueDataLocation,
+                this);
+    }
+
     @Override
     public void addView(InspectionView view) {
         this.inspectionView = view;
+
         InspectionRepository requestRepository =
                 new InspectionDataRepository(
                         new InspectionDataStoreFactory(this.inspectionView.getContext())
                 );
         inspectionInteractor = new InspectionInteractor(requestRepository);
+
+//        parameterValueInteractor =
+//                new ParameterValueInteractor(
+//                        new ParameterValueDataRepository(
+//                                new ParameterValueDataStoreFactory(
+//                                        this.inspectionView.getContext()
+//                                )));
+
+        ParameterValueRepository parameterValueRepository =
+                new ParameterValueDataRepository(
+                        new ParameterValueDataStoreFactory(
+                                this.inspectionView.getContext()
+                        )
+                );
+        parameterValueInteractor = new ParameterValueInteractor(parameterValueRepository);
+
     }
 
     @Override
@@ -104,6 +134,26 @@ public class InspectionPresenter implements
 
     @Override
     public void onInspectionDeletedError(String message) {
+
+    }
+
+    @Override
+    public void onParameterListSuccess(List<Parameter> parameterList) {
+
+    }
+
+    @Override
+    public void onParameterListError(String message) {
+
+    }
+
+    @Override
+    public void onParameterValueListSuccess(ArrayList<ParameterValue> parameterValueList) {
+        inspectionView.parameterValueListSuccess(parameterValueList);
+    }
+
+    @Override
+    public void onParameterValueListError(String message) {
 
     }
 

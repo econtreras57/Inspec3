@@ -22,5 +22,4 @@ public interface ParameterValueDataStore {
     void parameterValuesList(String parameterId,
             RepositoryCallback repositoryCallback);
 
-
 }
