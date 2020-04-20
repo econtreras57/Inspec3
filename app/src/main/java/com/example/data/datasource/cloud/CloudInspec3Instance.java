@@ -24,7 +24,7 @@ public abstract class CloudInspec3Instance {
 //    private static final String BASE_URL = "http://192.168.0.6:3000"; // cambiar según configuración ip local
 //    private static final String BASE_URL = "http://localhost:3000";
 //    private static final String BASE_URL = "http://192.168.2.24:3000";
-    private static final String BASE_URL = "https://my-json-server.typicode.com/econtreras57/";
+    private static final String BASE_URL = "https://my-json-server.typicode.com/econtreras57/jsonsrvtst01/";
 //
 //    public static Retrofit getRetrofitInstance() {
 //        if (retrofit == null) {

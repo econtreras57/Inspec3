@@ -132,7 +132,7 @@ public class CloudParameterEntityDataStore
     }
 
     @Override
-    public void parametersList(final RepositoryCallback repositoryCallback) {
+    public void parametersList(RepositoryCallback repositoryCallback) {
 
         try {
             Call<List<CloudParameterEntity>> call =

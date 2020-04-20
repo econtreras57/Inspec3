@@ -21,29 +21,29 @@ public interface ApiClientInterface {
 
     // region parameter CRUD functions
     // Create one
-    @POST("/parameter/new")
+    @POST("parameter/new")
     Call<CloudParameterEntity> createParameter(@Body CloudParameterEntity cloudParameterEntity);
 
     // Create batch // ToDo <-- por validar
-    @POST("/parameter/new")
+    @POST("parameter/new")
     Call<List<CloudParameterEntity>>
     createParameterList(@Body List<CloudParameterEntity> cloudParameterEntityList);
 
     // Read one
-    @GET("/parameter/{parameter}")
+    @GET("parameter/{parameter}")
     Call<CloudParameterEntity> getParameter(@Path("parameter") String parameterId);
 
     // Read batch
-    @GET("/parameter")
+    @GET("parameter")
     Call<List<CloudParameterEntity>> loadParameters();
 
     // Update one   <-- ToDo ¿y el "body"?
-    @PUT("/parameter/{parameter}")
+    @PUT("parameter/{parameter}")
     Call<CloudParameterEntity> updateParameter(@Path("parameter") String parameterId,
                                                @Body CloudParameterEntity cloudParameterEntity);
 
     // Delete one
-    @DELETE("/parameter/{parameter}")
+    @DELETE("parameter/{parameter}")
     Call<Void> deleteParameter(@Path("parameter") String parameterId);
 
     // endregion
@@ -57,7 +57,8 @@ public interface ApiClientInterface {
     // Create batch // ToDo <-- por validar
     @POST("parameter_value/new")
     Call<List<CloudParameterValueEntity>>
-    createParameterValueList(@Body List<CloudParameterValueEntity> cloudParameterValueEntityList);
+    createParameterValueList(
+            @Body List<CloudParameterValueEntity> cloudParameterValueEntityList);
 
     // Read one
     @GET("parameter_value/{id}")
@@ -75,16 +76,17 @@ public interface ApiClientInterface {
 //            @Path("groupId") String parameterId);
 // endregion
 
-    @GET("parameter_value/")    // parameter_value/?
+    @GET("parameter_value/")
+        // parameter_value/?
     Call<List<CloudParameterValueEntity>> getListParameterValues(
             @Query("idParameter") String parameterId
     );
 
-
     // Update one
     @PUT("parameter_value/{parameter}")
     Call<CloudParameterValueEntity> updateParameterValue(
-            @Path("parameter") String parameterValueId, CloudParameterValueEntity cloudParameterValueEntity);
+            @Path("parameter") String parameterValueId,
+            CloudParameterValueEntity cloudParameterValueEntity);
 
     // Delete one
     @DELETE("parameter_value/{parameter}")

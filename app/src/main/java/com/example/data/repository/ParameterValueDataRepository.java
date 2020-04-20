@@ -156,11 +156,10 @@ public class ParameterValueDataRepository implements ParameterValueRepository {
             int parameterValueDataLocation,
             final ParameterValueListCallback requestListCallback) {
 
-        final ParameterValueDataStore parameterValueDataStore = parameterValueDataStoreFactory.create(
-//                parameterValueDataStoreFactory.CLOUD, FirebaseFirestore.getInstance());
-                parameterValueDataLocation
-//                FirebaseFirestore.getInstance()
-        );
+        final ParameterValueDataStore parameterValueDataStore =
+                parameterValueDataStoreFactory.create(
+                        parameterValueDataLocation
+                );
 
         // 2020-04-17 recibir parameterId
 

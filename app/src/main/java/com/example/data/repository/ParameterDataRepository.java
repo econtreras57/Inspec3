@@ -164,9 +164,12 @@ public class ParameterDataRepository implements ParameterRepository {
     }
 
     @Override
-    public void loadParameters(final ParameterListCallback requestListCallback) {
+    public void loadParameters(
+            final ParameterListCallback requestListCallback) {
 
-        final ParameterDataStore parameterDataStore = parameterDataStoreFactory.create(ParameterDataStoreFactory.CLOUD);
+        final ParameterDataStore parameterDataStore =
+                parameterDataStoreFactory.create(
+                        ParameterDataStoreFactory.CLOUD);
 
         parameterDataStore.parametersList(new RepositoryCallback() {
             @Override
