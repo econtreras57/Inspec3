@@ -69,7 +69,7 @@ public class InspectionPresenter implements
         // Dónde se decide si se trae de CLOUD o LOCAL?
         int parameterValueDataLocation = CLOUD;
 
-        parameterValueInteractor.loadParameterValues(
+        this.parameterValueInteractor.loadParameterValues(
                 parameterId,
                 parameterValueDataLocation,
                 this);

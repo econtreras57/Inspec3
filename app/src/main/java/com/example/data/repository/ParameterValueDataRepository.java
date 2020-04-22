@@ -154,7 +154,7 @@ public class ParameterValueDataRepository implements ParameterValueRepository {
     public void loadParameterValues(
             String parameterId,
             int parameterValueDataLocation,
-            final ParameterValueListCallback requestListCallback) {
+            final ParameterValueListCallback requestValueListCallback) {
 
         final ParameterValueDataStore parameterValueDataStore =
                 parameterValueDataStoreFactory.create(
@@ -170,14 +170,14 @@ public class ParameterValueDataRepository implements ParameterValueRepository {
                 if (object != null) {
                     message = object.toString();
                 }
-                requestListCallback.onParameterValueListError(message);
+                requestValueListCallback.onParameterValueListError(message);
             }
 
             @Override
             public void onSuccess(Object object) {
 
                 ArrayList<ParameterValue> parameterValueArrayList = (ArrayList<ParameterValue>) object;
-                requestListCallback.onParameterValueListSuccess(parameterValueArrayList);
+                requestValueListCallback.onParameterValueListSuccess(parameterValueArrayList);
             }
         });
 

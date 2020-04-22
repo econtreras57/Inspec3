@@ -64,6 +64,11 @@ public class MainInspectionActivity
     String[] spinnerLocType_array;
     String[] spinnerSite_array;
 
+    Boolean spinnerProject_array_ready = false;
+    Boolean spinnerContractor_array_ready = false;
+    Boolean spinnerLocType_array_ready = false;
+    Boolean spinnerSite_array_ready = false;
+
     String[] parameterValues_array;
 
     Button button1;
@@ -113,6 +118,19 @@ public class MainInspectionActivity
         inspectionPresenter.readParameterValueList("CNTR");
         inspectionPresenter.readParameterValueList("TPBC");
         inspectionPresenter.readParameterValueList("LGRS");
+
+        int i=14;
+        while (!(spinnerSite_array_ready &&
+                spinnerLocType_array_ready &&
+                spinnerContractor_array_ready &&
+                spinnerProject_array_ready)) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            i-=1; if(i<1) break;
+        }
 
         spinnerProjectLoad();
         spinnerContractorLoad();
@@ -266,15 +284,19 @@ public class MainInspectionActivity
         switch (parameterValues.get(0).idParameter) {
             case "PRYC":
                 spinnerProject_array = parameterValues_array;
+                spinnerProject_array_ready = true;
                 break;
             case "CNTR":
                 spinnerContractor_array = parameterValues_array;
+                spinnerContractor_array_ready = true;
                 break;
             case "TPBC":
                 spinnerLocType_array = parameterValues_array;
+                spinnerLocType_array_ready = true;
                 break;
             case "LGRS":
                 spinnerSite_array = parameterValues_array;
+                spinnerSite_array_ready = true;
                 break;
         }
     }

@@ -18,36 +18,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @TypeConverters({Converters.class}) // 2020-03-13 ecv: Según manual, para manejo type Date
 
-public abstract class CloudInspec3Instance {
+//public abstract class CloudInspec3Instance {
+public class CloudInspec3Instance {
 
     //    private static Retrofit retrofit;
 //    private static final String BASE_URL = "http://192.168.0.6:3000"; // cambiar según configuración ip local
-//    private static final String BASE_URL = "http://localhost:3000";
 //    private static final String BASE_URL = "http://192.168.2.24:3000";
     private static final String BASE_URL = "https://my-json-server.typicode.com/econtreras57/jsonsrvtst01/";
-//
-//    public static Retrofit getRetrofitInstance() {
-//        if (retrofit == null) {
-//            retrofit = new retrofit2.Retrofit.Builder()
-//                    .baseUrl(BASE_URL)
-//                    .addConverterFactory(GsonConverterFactory.create())
-//                    .build();
-//        }
-//        return retrofit;
-//    }
-//
-//    public abstract ParameterCloudDAO parameterDAO();
-//
-//    public abstract ParameterValueCloudDAO parameterValueDAO();
-
-    // region
-
     private static ApiClientInterface apiClientInterface;
 
     public static ApiClientInterface getApiClient() {
 
         Gson gson = new GsonBuilder().serializeNulls().create();
-
 
         if (apiClientInterface == null) {
             Retrofit retrofit = new Retrofit.Builder()
@@ -66,8 +48,8 @@ public abstract class CloudInspec3Instance {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(10, TimeUnit.MINUTES)
-                .readTimeout(10, TimeUnit.MINUTES)
+                .connectTimeout(1, TimeUnit.MINUTES)    // decía 10
+                .readTimeout(1, TimeUnit.MINUTES)       // decía 10
                 .addInterceptor(logging)
 //                .addNetworkInterceptor(new StethoInterceptor())
                 .build();

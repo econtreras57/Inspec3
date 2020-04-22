@@ -76,7 +76,7 @@ public interface ApiClientInterface {
 //            @Path("groupId") String parameterId);
 // endregion
 
-    @GET("parameter_value/")
+    @GET("parameter_value")
         // parameter_value/?
     Call<List<CloudParameterValueEntity>> getListParameterValues(
             @Query("idParameter") String parameterId
