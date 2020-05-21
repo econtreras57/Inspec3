@@ -33,6 +33,7 @@ public interface ParameterValueRepository {
     void loadParameterValues(
             String parameterId,
             int parameterValueDataLocation,
-            final ParameterValueListCallback requestListCallback);
+            ParameterValueListCallback requestListCallback);
+//            final ParameterValueListCallback requestListCallback);
 
 }

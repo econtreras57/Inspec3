@@ -119,17 +119,18 @@ public class MainInspectionActivity
         inspectionPresenter.readParameterValueList("TPBC");
         inspectionPresenter.readParameterValueList("LGRS");
 
-        int i=14;
+        int i = 4;
         while (!(spinnerSite_array_ready &&
                 spinnerLocType_array_ready &&
                 spinnerContractor_array_ready &&
                 spinnerProject_array_ready)) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(700);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            i-=1; if(i<1) break;
+            i -= 1;
+            if (i < 1) break;
         }
 
         spinnerProjectLoad();
@@ -328,7 +329,7 @@ public class MainInspectionActivity
 //
     @Override
     public void showErrorMessage(String message) {
-
+        Toast.makeText(this.getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override

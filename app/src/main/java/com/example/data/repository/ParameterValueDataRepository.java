@@ -154,9 +154,11 @@ public class ParameterValueDataRepository implements ParameterValueRepository {
     public void loadParameterValues(
             String parameterId,
             int parameterValueDataLocation,
-            final ParameterValueListCallback requestValueListCallback) {
+//            final ParameterValueListCallback requestValueListCallback) {
+            ParameterValueListCallback requestValueListCallback) {
 
-        final ParameterValueDataStore parameterValueDataStore =
+//        final ParameterValueDataStore parameterValueDataStore =
+        ParameterValueDataStore parameterValueDataStore =
                 parameterValueDataStoreFactory.create(
                         parameterValueDataLocation
                 );
@@ -164,6 +166,7 @@ public class ParameterValueDataRepository implements ParameterValueRepository {
         // 2020-04-17 recibir parameterId
 
         parameterValueDataStore.parameterValuesList(parameterId, new RepositoryCallback() {
+
             @Override
             public void onError(Object object) {
                 String message = "";

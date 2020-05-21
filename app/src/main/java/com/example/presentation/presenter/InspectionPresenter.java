@@ -149,32 +149,12 @@ public class InspectionPresenter implements
 
     @Override
     public void onParameterValueListSuccess(ArrayList<ParameterValue> parameterValueList) {
-        inspectionView.parameterValueListSuccess(parameterValueList);
+        this.inspectionView.parameterValueListSuccess(parameterValueList);
     }
 
     @Override
     public void onParameterValueListError(String message) {
-
+        this.inspectionView.showErrorMessage(message);
     }
 
-////    @Override
-////    public void onInspectionListSuccess(ArrayList<Inspection> inspectionList) {
-////        inspectionView.inspectionsListLoaded((ArrayList<Inspection>) inspectionList);
-////    }
-////
-//    @Override
-//    public void onInspectionListError(String message) {
-//
-//    }
-//
-//    @Override
-//    public void onInspectionListCreatedSuccess(List<Inspection> inspectionList) {
-//        inspectionView.inspectionCreatedList(inspectionList);
-//
-//    }
-//
-//    @Override
-//    public void onInspectionListCreatedError(String message) {
-//
-//    }
 }

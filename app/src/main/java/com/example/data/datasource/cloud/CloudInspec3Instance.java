@@ -8,9 +8,17 @@ import com.example.presentation.utils.Converters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.CipherSuite;
+import okhttp3.ConnectionSpec;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.TlsVersion;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -47,11 +55,24 @@ public class CloudInspec3Instance {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
+        ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
+                .tlsVersions(TlsVersion.TLS_1_2)
+                .cipherSuites(
+                        CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+                        CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                        CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256)
+                .build();
+
         OkHttpClient client = new OkHttpClient.Builder()
+//                .addNetworkInterceptor(new StethoInterceptor())   // estaba comentado
+                .addInterceptor(logging)
+
                 .connectTimeout(1, TimeUnit.MINUTES)    // decía 10
                 .readTimeout(1, TimeUnit.MINUTES)       // decía 10
-                .addInterceptor(logging)
-//                .addNetworkInterceptor(new StethoInterceptor())
+                .writeTimeout(1, TimeUnit.MINUTES)
+
+                .connectionSpecs(Collections.singletonList(spec))
+
                 .build();
         return client;
     }

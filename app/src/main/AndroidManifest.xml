@@ -19,6 +19,9 @@
         android:theme="@style/AppThemeLightBridge"
         android:usesCleartextTraffic="true">
 
+<!--        https://stackoverflow.com/questions/56321448/retrofit2-call-enqueuenew-callbackserverresponse-is-not-working-in-android-->
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.inspec3.fileprovider"

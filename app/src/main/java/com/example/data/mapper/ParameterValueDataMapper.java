@@ -4,6 +4,8 @@ import com.example.data.datasource.cloud.model.CloudParameterValueEntity;
 import com.example.data.datasource.db.model.DbParameterValueEntity;
 import com.example.domain.model.ParameterValue;
 
+import java.sql.Date;
+
 public class ParameterValueDataMapper {
 
     public DbParameterValueEntity transformToDb(ParameterValue parameterValue)
@@ -67,12 +69,12 @@ public class ParameterValueDataMapper {
                 parameterValue.getValueAdditional1(),
                 parameterValue.getValueAdditional2(),
                 parameterValue.getValueAdditional3(),
-                parameterValue.getOrder(),
-                parameterValue.isDeleted(),
+                Integer.toString(parameterValue.getOrder()),
+                Boolean.toString(parameterValue.isEnable()),
                 parameterValue.getIdUserRegister(),
                 parameterValue.getIdUserModify(),
-                parameterValue.getDateRegister(),
-                parameterValue.getDateModify(),
+                parameterValue.getDateRegister().toString(),
+                parameterValue.getDateModify().toString(),
                 parameterValue.isDeleted()
 
         );
@@ -92,12 +94,12 @@ public class ParameterValueDataMapper {
                 cloudParameterValueEntity.getValueAdditional1(),
                 cloudParameterValueEntity.getValueAdditional2(),
                 cloudParameterValueEntity.getValueAdditional3(),
-                cloudParameterValueEntity.getOrder(),
-                cloudParameterValueEntity.isEnable(),
+                Integer.parseInt(cloudParameterValueEntity.getOrder()),
+                Boolean.getBoolean(cloudParameterValueEntity.isEnable()),
                 cloudParameterValueEntity.getIdUserRegister(),
                 cloudParameterValueEntity.getIdUserModify(),
-                cloudParameterValueEntity.getDateRegister(),
-                cloudParameterValueEntity.getDateModify(),
+                Date.valueOf(cloudParameterValueEntity.getDateRegister()),
+                Date.valueOf(cloudParameterValueEntity.getDateModify().toString()),
                 cloudParameterValueEntity.isDeleted()
 
         );

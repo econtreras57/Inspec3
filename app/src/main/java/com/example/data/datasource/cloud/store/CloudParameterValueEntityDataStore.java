@@ -2,6 +2,7 @@ package com.example.data.datasource.cloud.store;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.common.Helper;
 import com.example.data.datasource.cloud.ApiClientInterface;
@@ -27,7 +28,7 @@ import retrofit2.Response;
 public class CloudParameterValueEntityDataStore
         implements ParameterValueDataStore {
 
-    private static final String TAG = "CloudParameterValueEntityDat";
+    private static final String TAG = "CloudParameterValueEntityDataStore";
     ApiClientInterface apiClientInterface;
 
     public CloudParameterValueEntityDataStore() {
@@ -134,36 +135,48 @@ public class CloudParameterValueEntityDataStore
             String parameterId,
             RepositoryCallback repositoryCallback) {
 
-        try {
-            Call<List<CloudParameterValueEntity>> call =
-                    apiClientInterface.getListParameterValues(parameterId);
-            call.enqueue(new Callback<List<CloudParameterValueEntity>>() {
-                @Override
-                public void onResponse(
-                        Call<List<CloudParameterValueEntity>> call,
-                        Response<List<CloudParameterValueEntity>> response) {
-                    if (response.isSuccessful()) {
-                        List<CloudParameterValueEntity> bodyResponse =
-                                response.body();
-                        repositoryCallback.onSuccess(bodyResponse);
-                    } else {
-                        ErrorWs error = Helper.getWsErrorResponse(response);
-                        repositoryCallback.onError(error.getMessage());
-                    }
-                }
+        Call<List<CloudParameterValueEntity>> call =
+                apiClientInterface.getListParameterValues(parameterId);
 
-                @Override
-                public void onFailure(
-                        Call<List<CloudParameterValueEntity>> call,
-                        Throwable t) {
-                    String message = "";
-                    if (t != null) {
-                        message = t.getMessage();
+        Callback<List<CloudParameterValueEntity>> listCallback =
+                new Callback<List<CloudParameterValueEntity>>() {
+
+                    @Override
+                    public void onResponse(Call<List<CloudParameterValueEntity>> call,
+                                           Response<List<CloudParameterValueEntity>> response) {
+                        if (response.isSuccessful()) {
+                            List<CloudParameterValueEntity> bodyResponse = response.body();
+                            repositoryCallback.onSuccess(bodyResponse);
+                        } else {
+                            ErrorWs error = Helper.getWsErrorResponse(response);
+                            repositoryCallback.onError(error.getMessage());
+                        }
+                        Log.i(TAG, "onResponse isSuccessful? " +
+                                String.valueOf(response.isSuccessful()) +
+                                response.toString()
+                        );   // onResponse?
                     }
-                    Log.i(TAG, "error " + message);
-                    repositoryCallback.onError(message);
-                }
-            });
+
+                    @Override
+                    public void onFailure(Call<List<CloudParameterValueEntity>> call,
+                                          Throwable t) {
+                        String message = "";
+                        if (t != null) {
+                            message = t.getMessage();
+                        }
+                        Log.i(TAG, "onFailure: " + message);
+                        repositoryCallback.onError(message);
+
+                    }
+                };
+
+        Call<List<CloudParameterValueEntity>> callClone = call.clone();
+        try {
+            callClone.enqueue(listCallback);
+// 2020-05-13 Probemos por ahora una llamada sync (.execute()) <-- nop, no func en Activity
+//            Response<List<CloudParameterValueEntity>> response = callClone.execute();
+//            List<CloudParameterValueEntity> bodyResponse = response.body();
+//            repositoryCallback.onSuccess(bodyResponse);
 
         } catch (Exception e) {
             e.printStackTrace();

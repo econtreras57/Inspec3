@@ -8,6 +8,8 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import com.example.data.datasource.db.model.DbParameterEntity;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
@@ -19,54 +21,99 @@ import java.util.Date;
         indices = {@Index("idParameter")})
 
 public class CloudParameterValueEntity {
+
+    // 2020-05-13 Probando @SerializedName
+
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
+    @SerializedName("id")
+    @Expose
     public String id;
     @NonNull
     @ColumnInfo(name = "idParameter")
+    @SerializedName("idParameter")
+    @Expose
     public String idParameter; // Parameter.id
     @ColumnInfo(name = "idParameterValueSuperior")
+    @SerializedName("idParameterValueSuperior")
+    @Expose
     public String idParameterValueSuperior; // ParameterValue.id
     @NonNull
     @ColumnInfo(name = "name")
+    @SerializedName("name")
+    @Expose
     public String name;
     @NonNull
     @ColumnInfo(name = "value")
+    @SerializedName("value")
+    @Expose
     public String value;
     @NonNull
     @ColumnInfo(name = "valueFull")
+    @SerializedName("valueFull")
+    @Expose
     public String valueFull;
     @ColumnInfo(name = "valueAdditional1")
+    @SerializedName("valueAdditional1")
+    @Expose
     public String valueAdditional1;
     @ColumnInfo(name = "valueAdditional2")
+    @SerializedName("valueAdditional2")
+    @Expose
     public String valueAdditional2;
     @ColumnInfo(name = "valueAdditional3")
+    @SerializedName("valueAdditional3")
+    @Expose
     public String valueAdditional3;
     @ColumnInfo(name = "order")
-    public int order;
+    @SerializedName("order")
+    @Expose
+    public String order;    // antes int
     @NonNull
     @ColumnInfo(name = "enable")
-    public boolean enable;
+    @SerializedName("enable")
+    @Expose
+    public String enable;   // boolean
     @ColumnInfo(name = "idUserRegister")
+    @SerializedName("idUserRegister")
+    @Expose
     public String idUserRegister;
     @ColumnInfo(name = "idUserModify")
+    @SerializedName("idUserModify")
+    @Expose
     public String idUserModify;
     @ColumnInfo(name = "dateRegister")
-    public Date dateRegister;
+    @SerializedName("dateRegister")
+    @Expose
+    public String dateRegister;   // Date
     @ColumnInfo(name = "dateModify")
-    public Date dateModify;
+    @SerializedName("dateModify")
+    @Expose
+    public String dateModify;     // Date
     @NonNull
     @ColumnInfo(name = "deleted")
+    @SerializedName("deleted")
+    @Expose
     public boolean deleted;
 
-    public CloudParameterValueEntity(@NonNull String id, @NonNull String idParameter,
-                                     String idParameterValueSuperior, @NonNull String name,
-                                     @NonNull String value, String valueFull, String valueAdditional1,
-                                     String valueAdditional2, String valueAdditional3, int order,
-                                     @NonNull boolean enable, String idUserRegister,
-                                     String idUserModify, Date dateRegister, Date dateModify,
-                                     @NonNull boolean deleted) {
+    public CloudParameterValueEntity(
+            @NonNull String id,
+            @NonNull String idParameter,
+            String idParameterValueSuperior,
+            @NonNull String name,
+            @NonNull String value,
+            String valueFull,
+            String valueAdditional1,
+            String valueAdditional2,
+            String valueAdditional3,
+            String order,       // int
+            @NonNull String enable, // boolean
+            String idUserRegister,
+            String idUserModify,
+            String dateRegister,      // Date
+            String dateModify,        // Date
+            @NonNull boolean deleted) {
         this.id = id;
         this.idParameter = idParameter;
         this.idParameterValueSuperior = idParameterValueSuperior;
@@ -162,19 +209,19 @@ public class CloudParameterValueEntity {
         this.valueAdditional3 = valueAdditional3;
     }
 
-    public int getOrder() {
+    public String getOrder() {
         return order;
     }
 
-    public void setOrder(int order) {
+    public void setOrder(String order) {
         this.order = order;
     }
 
-    public boolean isEnable() {
+    public String isEnable() {
         return enable;
     }
 
-    public void setEnable(boolean enable) {
+    public void setEnable(String enable) {
         this.enable = enable;
     }
 
@@ -194,19 +241,19 @@ public class CloudParameterValueEntity {
         this.idUserModify = idUserModify;
     }
 
-    public Date getDateRegister() {
+    public String getDateRegister() {
         return dateRegister;
     }
 
-    public void setDateRegister(Date dateRegister) {
+    public void setDateRegister(String dateRegister) {
         this.dateRegister = dateRegister;
     }
 
-    public Date getDateModify() {
+    public String getDateModify() {
         return dateModify;
     }
 
-    public void setDateModify(Date dateModify) {
+    public void setDateModify(String dateModify) {
         this.dateModify = dateModify;
     }
 
